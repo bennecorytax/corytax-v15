@@ -1,4 +1,3 @@
-
 const IBGE_BASE = 'https://servicodados.ibge.gov.br/api/v2/cnae';
 const TIMEOUT_MS = Number(process.env.IBGE_TIMEOUT_MS || 20000);
 
