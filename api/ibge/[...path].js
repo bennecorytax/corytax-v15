@@ -8,55 +8,44 @@ function setCors(res) {
   res.setHeader('X-CORYTAX-Proxy', 'v15-vercel-ibge-cnae');
 }
 
-function safePath(req) {
-  const raw = req.query.path;
-  const parts = Array.isArray(raw) ? raw : raw ? [raw] : [];
-  const clean = parts.map(part => String(part || '').replace(/^\/+|\/+$/g, '')).filter(Boolean);
-  if (clean.some(part => part === '..' || part.includes('..'))) throw new Error('Caminho inválido para API CNAE IBGE.');
-  const first = clean[0] || '';
-  const allowed = ['secoes', 'divisoes', 'grupos', 'classes', 'subclasses'];
-  if (!allowed.includes(first)) throw new Error('Rota CNAE IBGE não permitida.');
-  return `/${clean.join('/')}`;
-}
-
-function queryString(req) {
-  const qs = new URLSearchParams();
-  Object.entries(req.query || {}).forEach(([key, value]) => {
-    if (key === 'path') return;
-    if (Array.isArray(value)) value.forEach(v => qs.append(key, v));
-    else if (value !== undefined && value !== null) qs.append(key, value);
-  });
-  const out = qs.toString();
-  return out ? `?${out}` : '';
+function extractPath(req) {
+  // Vercel pode passar como req.query.path (array) ou via req.url
+  let parts = [];
+  if (req.query && req.query.path) {
+    const raw = req.query.path;
+    parts = Array.isArray(raw) ? raw : [raw];
+  } else if (req.url) {
+    // fallback: extrair da URL diretamente
+    const url = req.url.split('?')[0];
+    parts = url.replace(/^\/api\/ibge\/?/, '').split('/').filter(Boolean);
+  }
+  return parts.map(p => String(p).replace(/^\/+|\/+$/g, '')).filter(Boolean);
 }
 
 module.exports = async function handler(req, res) {
   setCors(res);
   if (req.method === 'OPTIONS') return res.status(204).end();
-  if (req.method !== 'GET') return res.status(405).json({ ok:false, error:'Método não permitido.' });
+  if (req.method !== 'GET') return res.status(405).json({ ok: false, error: 'Metodo nao permitido.' });
 
-  let targetUrl = '';
-  try {
-    targetUrl = `${IBGE_BASE}${safePath(req)}${queryString(req)}`;
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
-    const upstream = await fetch(targetUrl, {
-      method:'GET',
-      headers:{ Accept:'application/json', 'User-Agent':'CORYTAX-IBGE-CNAE-Proxy/15.0' },
-      signal:controller.signal,
-    });
-    clearTimeout(timer);
-    const contentType = upstream.headers.get('content-type') || 'application/json; charset=utf-8';
-    const text = await upstream.text();
-    res.status(upstream.status);
-    res.setHeader('Content-Type', contentType);
-    return res.send(text);
-  } catch (error) {
-    return res.status(error && error.name === 'AbortError' ? 504 : 502).json({
-      ok:false,
-      error:'Falha ao consultar API CNAE IBGE pelo backend CORYTAX.',
-      detail:error && error.message ? error.message : String(error),
-      target:targetUrl,
+  const parts = extractPath(req);
+  const first = parts[0] || '';
+  const allowed = ['secoes', 'divisoes', 'grupos', 'classes', 'subclasses'];
+
+  if (!first || !allowed.includes(first)) {
+    return res.status(400).json({
+      ok: false,
+      error: 'Rota CNAE IBGE nao permitida.',
+      received: parts,
+      query: req.query,
+      url: req.url
     });
   }
-};
+
+  if (parts.some(p => p === '..' || p.includes('..'))) {
+    return res.status(400).json({ ok: false, error: 'Caminho invalido.' });
+  }
+
+  const qs = new URLSearchParams();
+  Object.entries(req.query || {}).forEach(([key, value]) => {
+    if (key === 'path') return;
+    if (Array.isArray(
