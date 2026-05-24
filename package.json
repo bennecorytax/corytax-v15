@@ -1,0 +1,13 @@
+{
+  "name": "corytax-v15-web-serverless-cnae",
+  "version": "15.0.0",
+  "private": true,
+  "description": "CORYTAX Diagnóstico Integralizador Web com Vercel Functions, API oficial de tributos, CNAE IBGE e complementação manual de campos fiscais.",
+  "scripts": {
+    "check": "node -c api/lead.js && node -c api/tributos/[...path].js && node -c api/ibge/[...path].js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "UNLICENSED"
+}
