@@ -3386,7 +3386,7 @@
           setCnpjData(dados);
           setLead(prev => ({ ...prev, cnpj: dados.cnpj || prev.cnpj }));
           if (dados._cnaeIbgeAuto) {
-            setCnaeIbgeData(dados._cnaeIbgeAuto);
+            setCnaeIbgeResultado(dados._cnaeIbgeAuto);
             setCnaeIbgeStatus('');
             setCnaeIbgeErro('');
           }
