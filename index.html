@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CORYTAX — Diagnóstico Integralizador Web + CNAE IBGE</title>
+  <title>CORYTAX V20 — Diagnóstico Integralizador da Reforma Tributária</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
@@ -62,40 +62,140 @@
 
     @page { size: A4; margin: 12mm 10mm; }
     @media print {
-      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
-      html, body { background: #000000 !important; height: auto !important; overflow: visible !important; }
-      body.printing-report { background: #000000 !important; }
+      html, body { background: #ffffff !important; color: #111111 !important; height: auto !important; overflow: visible !important; }
+      body.printing-report { background: #ffffff !important; color: #111111 !important; }
       body.printing-report .corytax-modal,
       body.printing-report button,
       body.printing-report [data-no-print="true"],
       body.printing-report .app-bg-glow { display: none !important; }
       body.printing-report #root { min-height: auto !important; }
-      body.printing-report .app-shell { min-height: auto !important; background: #000000 !important; }
+      body.printing-report .app-shell,
+      body.printing-report .report-shell,
+      body.printing-report .screen-container { min-height: auto !important; background: #ffffff !important; }
       body.printing-report .report-shell { max-width: 186mm !important; width: 186mm !important; margin: 0 auto !important; padding: 0 !important; }
       body.printing-report .screen-container { max-width: 186mm !important; padding: 0 !important; }
       body.printing-report .report-card,
       body.printing-report .print-avoid,
       body.printing-report .report-section,
-      body.printing-report .metric-card {
+      body.printing-report .metric-card,
+      body.printing-report .diagnostic-table td,
+      body.printing-report .diagnostic-table th,
+      body.printing-report table,
+      body.printing-report section,
+      body.printing-report article,
+      body.printing-report .report-shell > div {
         page-break-inside: avoid !important;
         break-inside: avoid !important;
         -webkit-column-break-inside: avoid !important;
+        background: #ffffff !important;
+        background-image: none !important;
+        border-color: #d6dce3 !important;
+        box-shadow: none !important;
       }
       body.printing-report .report-page-before { page-break-before: always !important; break-before: page !important; }
       body.printing-report h1, body.printing-report h2, body.printing-report h3,
       body.printing-report p, body.printing-report table, body.printing-report ul, body.printing-report ol {
         page-break-inside: avoid !important; break-inside: avoid !important;
       }
+      body.printing-report .report-shell *,
+      body.printing-report .screen-container * {
+        color: #111111 !important;
+        text-shadow: none !important;
+      }
+      body.printing-report .diagnostic-table td:first-child,
+      body.printing-report strong,
+      body.printing-report b,
+      body.printing-report h1,
+      body.printing-report h2,
+      body.printing-report h3 { color: #000000 !important; }
+
+      body.printing-report .report-card,
+      body.printing-report .metric-card { background: #ffffff !important; }
+      body.printing-report span,
+      body.printing-report p,
+      body.printing-report div { color: #111111 !important; }
       body.printing-report div { max-height: none !important; overflow: visible !important; }
       body.printing-report a { color: inherit !important; text-decoration: none !important; }
     }
+
+
+    /* Ajustes premium V20 */
+    @media screen {
+      .report-shell { max-width: 920px !important; }
+    }
+    @media print {
+      @page { size: A4; margin: 8mm 7mm; }
+      body.printing-report { margin: 0 !important; }
+      body.printing-report #root,
+      body.printing-report .app-shell,
+      body.printing-report .screen-container,
+      body.printing-report .report-shell {
+        width: 100% !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+      }
+      body.printing-report .report-shell {
+        font-size: 10px !important;
+        line-height: 1.35 !important;
+      }
+      body.printing-report .report-card,
+      body.printing-report .report-section,
+      body.printing-report .metric-card,
+      body.printing-report .print-avoid {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+        padding: 10px 12px !important;
+        margin: 0 0 8px !important;
+        border-radius: 8px !important;
+      }
+      body.printing-report div[style*="grid-template-columns"] {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+      body.printing-report .diagnostic-table {
+        width: 100% !important;
+        table-layout: fixed !important;
+        border-spacing: 0 4px !important;
+      }
+      body.printing-report .diagnostic-table th,
+      body.printing-report .diagnostic-table td {
+        font-size: 8.5px !important;
+        line-height: 1.25 !important;
+        padding: 5px 6px !important;
+        word-break: break-word !important;
+        overflow-wrap: anywhere !important;
+      }
+      body.printing-report p { font-size: 9.5px !important; line-height: 1.45 !important; }
+      body.printing-report h1 { font-size: 18px !important; }
+      body.printing-report h2 { font-size: 15px !important; }
+      body.printing-report h3 { font-size: 13px !important; }
+    }
+
   </style>
 </head>
 <body>
   <div id="root"></div>
 
+  <noscript>
+    <div style="padding:20px;background:#111;color:#fff;font-family:sans-serif">Este diagnóstico precisa de JavaScript habilitado para funcionar.</div>
+  </noscript>
+
   <!-- Configuração de produção: define a URL do backend/proxy CORYTAX antes do app iniciar -->
-  <script src="./config.js"></script>
+  <script>
+    // CORYTAX V20 Modelo 1 — HTML único com consultas públicas ativas.
+    // Esta versão não depende de GitHub, Vercel, backend ou servidor local.
+    // Pode ser publicada por arrastar e soltar no Netlify Drop ou hospedagem estática.
+    // Mantém somente consultas públicas diretas no navegador: CNPJ público e IBGE/CNAE.
+    // A API oficial da Calculadora de Tributos NÃO é consultada nesta versão, pois exige backend/proxy para uso confiável.
+    window.CORYTAX_MODELO_PUBLICACAO = 'VERCEL_BACKEND';
+    window.CORYTAX_LEAD_API_URL = '/api/lead';
+    window.CORYTAX_TRIBUTOS_API_PROXY_BASE = '/api/tributos';
+    window.CORYTAX_CNPJ_API_BASE = 'https://publica.cnpj.ws/cnpj/';
+    window.CORYTAX_IBGE_CNAE_API_PROXY_BASE = '/api/ibge';
+  </script>
 
   <!-- React + Babel -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
@@ -125,7 +225,7 @@
     /* ═══════════════════════════════════════════════════════════
        UTILITÁRIOS PREMIUM — CNPJ, VALORES E RELATÓRIO
     ═══════════════════════════════════════════════════════════ */
-    const CNPJ_API_BASE = 'https://publica.cnpj.ws/cnpj/';
+    const CNPJ_API_BASE = window.CORYTAX_CNPJ_API_BASE || 'https://publica.cnpj.ws/cnpj/';
 
     function onlyDigits(value = '') {
       return String(value || '').replace(/\D/g, '');
@@ -1076,6 +1176,9 @@
 
     function parseFiscalJsonManual(inputText) {
       const raw = String(inputText || '').trim();
+      if (raw.startsWith('<') || raw.startsWith('<?')) {
+        try { return parseFiscalDocument(raw, 'Texto colado (XML)'); } catch(_) {}
+      }
       if (!raw) return [];
 
       try {
@@ -1586,21 +1689,26 @@
       if (!normalized.razaoSocial && !normalized.nomeFantasia && !normalized.cnpj) {
         throw new Error('A base retornou dados incompletos para este CNPJ. Preencha os dados manualmente e continue.');
       }
+      if (normalized.cnaePrincipal) {
+        try {
+          normalized._cnaeIbgeAuto = await consultarCnaeIbgePorCodigo(normalized.cnaePrincipal);
+        } catch(_) {}
+      }
       return normalized;
     }
 
 
     /* ═══════════════════════════════════════════════════════════
-       ENRIQUECIMENTO SETORIAL — API CNAE IBGE
-       Usa backend/serverless CORYTAX para evitar CORS e manter padrão web.
+       ENRIQUECIMENTO SETORIAL — API PÚBLICA CNAE IBGE
+       Consulta direta no navegador à base pública do IBGE/CNAE.
     ═══════════════════════════════════════════════════════════ */
-    const IBGE_CNAE_API_PROXY_BASE = window.CORYTAX_IBGE_CNAE_API_PROXY_BASE || '/api/ibge';
+    const IBGE_CNAE_API_PROXY_BASE = window.CORYTAX_IBGE_CNAE_API_PROXY_BASE || 'https://servicodados.ibge.gov.br/api/v2/cnae';
     const IBGE_CNAE_TIMEOUT_MS = 20000;
 
     function buildIbgeCnaeApiUrl(path = '') {
       const cleanPath = String(path || '').startsWith('/') ? String(path || '') : `/${path}`;
       const base = String(IBGE_CNAE_API_PROXY_BASE || '').replace(/\/$/, '');
-      if (!base) throw new Error('Backend/proxy CORYTAX para CNAE IBGE não configurado.');
+      if (!base) throw new Error('API pública CNAE IBGE não configurada.');
       return `${base}${cleanPath}`;
     }
 
@@ -1658,7 +1766,7 @@
         const mensagem = error?.name === 'AbortError'
           ? 'Tempo de resposta esgotado ao consultar CNAE IBGE.'
           : error?.message || 'Falha ao consultar CNAE IBGE.';
-        throw new Error(`${mensagem} Verifique a rota /api/ibge no backend/serverless.`);
+        throw new Error(`${mensagem} A consulta CNAE depende de o navegador permitir acesso à API pública do IBGE.`);
       } finally {
         clearTimeout(timer);
       }
@@ -1685,14 +1793,14 @@
        CAMADA API OFICIAL — CALCULADORA DE TRIBUTOS DO CONSUMO
        Produção web: o navegador NÃO chama diretamente o domínio oficial.
        O frontend chama o backend/proxy CORYTAX hospedado online.
-       Padrão recomendado: mesmo domínio, rota relativa /api/tributos.
-       Para backend separado, altere public/config.js.
+       Padrão recomendado: mesmo domínio, rota relativa serverless/proxy profissional.
+       Para backend separado, altere configuração da versão profissional.
     ═══════════════════════════════════════════════════════════ */
-    const TRIBUTOS_API_PROXY_BASE = window.CORYTAX_TRIBUTOS_API_PROXY_BASE || '/api/tributos';
+    const TRIBUTOS_API_PROXY_BASE = window.CORYTAX_TRIBUTOS_API_PROXY_BASE || '';
     const TRIBUTOS_API_TIMEOUT_MS = 30000;
 
     function getTributosApiModeLabel() {
-      if (!TRIBUTOS_API_PROXY_BASE) return 'backend CORYTAX não configurado';
+      if (!TRIBUTOS_API_PROXY_BASE) return 'modo HTML único — consulta oficial real desabilitada';
       if (String(TRIBUTOS_API_PROXY_BASE).startsWith('/')) return `backend CORYTAX no mesmo domínio (${TRIBUTOS_API_PROXY_BASE})`;
       return `backend CORYTAX online configurado (${TRIBUTOS_API_PROXY_BASE})`;
     }
@@ -1700,7 +1808,7 @@
     function buildTributosApiUrl(path = '') {
       const cleanPath = String(path || '').startsWith('/') ? String(path || '') : `/${path}`;
       const base = String(TRIBUTOS_API_PROXY_BASE || '').replace(/\/$/, '');
-      if (!base) throw new Error('Backend/proxy CORYTAX não configurado. Defina window.CORYTAX_TRIBUTOS_API_PROXY_BASE em public/config.js.');
+      if (!base) throw new Error('Modelo 1 HTML único: sem backend/proxy para consultar a API oficial da Calculadora de Tributos. Use esta versão para diagnóstico, complementação manual, prontidão fiscal e laudo preliminar.');
       return `${base}${cleanPath}`;
     }
 
@@ -1754,7 +1862,7 @@
         const mensagemBase = error?.name === 'AbortError'
           ? 'Tempo de resposta esgotado ao consultar a API oficial.'
           : error?.message || 'Falha desconhecida ao consultar a API oficial.';
-        const dica = 'Verifique se o backend CORYTAX está online, se a URL configurada em public/config.js está correta, se o servidor tem saída HTTPS para a API oficial e consulte os logs do backend.';
+        const dica = 'Verifique se o backend CORYTAX está online, se a URL configurada em configuração da versão profissional está correta, se o servidor tem saída HTTPS para a API oficial e consulte os logs do backend.';
         throw new Error(`${mensagemBase} ${dica}`);
       } finally {
         clearTimeout(timer);
@@ -1871,80 +1979,101 @@
 
 
     async function consultarCamadaOficialTributos(fiscalRows = [], perfil = {}) {
-      const rows = normalizeFiscalRows(fiscalRows).slice(0, 8);
+      const rows = normalizeFiscalRows(fiscalRows).slice(0, 20);
       const consultas = [];
       const erros = [];
-      const addConsulta = (tipo, detalhe, retorno) => {
-        consultas.push({ tipo, detalhe, status:retorno.status, warning:retorno.warning || '', resumo:resumirRetornoOficial(retorno.data), data:retorno.data });
+      const prontidao = rows.map((row, index) => ({ item:index + 1, documento:row.documentoOrigem, ...avaliarProntidaoFiscal(row) }));
+      const operacao = montarOperacaoObservabilidade(rows, perfil);
+      const itensCalculaveis = operacao?.itens || [];
+      const addConsultaLocal = (tipo, detalhe, resumo, data = null) => {
+        consultas.push({ tipo, detalhe, status:'local', warning:'', resumo, data });
       };
-      const tryConsulta = async (tipo, detalhe, path, options = {}) => {
+
+      if (TRIBUTOS_API_PROXY_BASE) {
         try {
-          const retorno = await fetchTributosApi(path, options);
-          addConsulta(tipo, detalhe, retorno);
-          return retorno;
-        } catch (error) {
-          erros.push({ tipo, detalhe, erro:error?.message || String(error) });
-          return null;
+          const versaoRes = await fetchTributosApi('/calculadora/dados-abertos/versao');
+          addConsultaLocal('Versão da base oficial', 'Consulta de versão do aplicativo e banco de dados via proxy/backend', 'retorno recebido', versaoRes.data);
+          const calculaveis = rows.filter(row => avaliarProntidaoFiscal(row).podeCalcular);
+          for (const row of calculaveis.slice(0, 10)) {
+            try {
+              const calc = await fetchTributosApi('/calculadora/calculo', {
+                method:'POST',
+                body:JSON.stringify({
+                  valor: row.baseCalculoNumero || row.valorOperacaoNumero || 0,
+                  cst: onlyDigits(row.cstIbsCbs || row.cstAtual).slice(0,3) || '000',
+                  cClassTrib: onlyDigits(row.cClassTrib).slice(0,6) || null,
+                  ano: new Date(row.dataEmissao||'').getFullYear() || new Date().getFullYear(),
+                })
+              });
+              addConsultaLocal(
+                'Cálculo IBS/CBS — Motor LC 214/2025',
+                `${row.documentoOrigem||'Item'} · CST ${onlyDigits(row.cstIbsCbs).slice(0,3)} · R$ ${(row.baseCalculoNumero||row.valorOperacaoNumero||0).toLocaleString('pt-BR')}`,
+                `IBS: R$ ${calc.data.resultado?.ibs?.toLocaleString('pt-BR')} | CBS: R$ ${calc.data.resultado?.cbs?.toLocaleString('pt-BR')} | Total: R$ ${calc.data.resultado?.total?.toLocaleString('pt-BR')}`,
+                calc.data
+              );
+            } catch(e) { erros.push({tipo:'Cálculo item',detalhe:row.documentoOrigem||'Item',erro:e.message}); }
+          }
+        } catch(e) {
+          addConsultaLocal('Motor local', 'Backend disponível mas sem conexão.', e.message);
         }
-      };
+      } else {
+        addConsultaLocal(
+          'Modo HTML único',
+          'Leitura executada no navegador, sem envio de XML ou dados fiscais para backend.',
+          'Diagnóstico local, complementação manual e prontidão para futura consulta oficial.'
+        );
+      }
 
-      const versao = await tryConsulta('Versão da base oficial', 'Consulta de versão do aplicativo e banco de dados via proxy/backend', '/calculadora/dados-abertos/versao');
-
-      const ncmRows = rows.filter(row => onlyDigits(row.ncm).length >= 8).slice(0, 3);
+      const ncmRows = rows.filter(row => onlyDigits(row.ncm).length >= 8).slice(0, 8);
       for (const row of ncmRows) {
         const data = dataReferenciaTributos(row.dataEmissao);
         const ncm = onlyDigits(row.ncm).slice(0, 8);
-        await tryConsulta('NCM / Imposto Seletivo', `NCM ${ncm} · data ${data}`, `/calculadora/dados-abertos/ncm?ncm=${encodeURIComponent(ncm)}&data=${encodeURIComponent(data)}`);
+        addConsultaLocal('NCM informado', `NCM ${ncm} · data ${data}`, 'Campo disponível para futura consulta oficial de NCM/Imposto Seletivo.', { ncm, data });
       }
 
-      const nbsRows = rows.filter(row => onlyDigits(row.nbs).length >= 9).slice(0, 3);
+      const nbsRows = rows.filter(row => onlyDigits(row.nbs).length >= 9).slice(0, 8);
       for (const row of nbsRows) {
         const data = dataReferenciaTributos(row.dataEmissao);
         const nbs = onlyDigits(row.nbs).slice(0, 9);
-        await tryConsulta('NBS / Imposto Seletivo', `NBS ${nbs} · data ${data}`, `/calculadora/dados-abertos/nbs?nbs=${encodeURIComponent(nbs)}&data=${encodeURIComponent(data)}`);
+        addConsultaLocal('NBS informado', `NBS ${nbs} · data ${data}`, 'Campo disponível para futura consulta oficial de NBS/Imposto Seletivo.', { nbs, data });
       }
 
-      const classificaveis = rows.filter(row => onlyDigits(row.cClassTrib).length === 6).slice(0, 4);
-      for (const row of classificaveis) {
+      const cclassRows = rows.filter(row => onlyDigits(row.cClassTrib).length === 6).slice(0, 8);
+      for (const row of cclassRows) {
         const data = dataReferenciaTributos(row.dataEmissao);
         const cClassTrib = onlyDigits(row.cClassTrib).slice(0, 6);
-        const sigla = inferirSiglaDfe(row);
-        if (sigla) {
-          await tryConsulta('Validade DFe × cClassTrib', `${sigla} · cClassTrib ${cClassTrib} · data ${data}`, `/calculadora/dados-abertos/classificacoes-tributarias/cbs-ibs/${encodeURIComponent(sigla)}/${encodeURIComponent(cClassTrib)}?data=${encodeURIComponent(data)}`);
-        }
+        const sigla = inferirSiglaDfe(row) || 'DFe não identificado';
+        addConsultaLocal('cClassTrib informado', `${sigla} · cClassTrib ${cClassTrib} · data ${data}`, 'Classificação preenchida e pronta para validação oficial quando houver backend/serverless.', { sigla, cClassTrib, data });
       }
 
-      const prontidaoResumo = rows.map((row, index) => ({
-        item:index + 1,
-        documento:row.documentoOrigem,
-        prontidao:avaliarProntidaoFiscal(row),
-      }));
-      const operacao = montarOperacaoObservabilidade(rows, perfil);
-      const itensCalculaveis = operacao?.itens || [];
-
-      if (operacao && itensCalculaveis.length) {
-        await tryConsulta('Observabilidade / cálculo por item', `${itensCalculaveis.length} item(ns) com CST, cClassTrib, município e base`, '/calculadora/observabilidade/regime-geral', { method:'POST', body:JSON.stringify(operacao) });
+      if (itensCalculaveis.length) {
+        addConsultaLocal(
+          'Prontidão para cálculo oficial',
+          `${itensCalculaveis.length} item(ns) com CST, cClassTrib, município IBGE e base/valor preenchidos.`,
+          'Os campos mínimos estão completos. Para calcular CBS/IBS/IS de fato, publique a versão com serverless/proxy.',
+          { itensCalculaveis }
+        );
       } else {
-        const pendencias = prontidaoResumo
-          .slice(0, 5)
-          .map(item => `Item ${item.item}: ${item.prontidao.pendenciasCalculo.join(', ') || 'sem pendência de cálculo'}`)
+        const pendencias = prontidao
+          .slice(0, 8)
+          .map(item => `Item ${item.item}: ${item.pendenciasCalculo.join(', ') || 'sem pendência de cálculo'}`)
           .join(' | ');
         erros.push({
-          tipo:'Observabilidade / cálculo por item',
-          detalhe:'Cálculo não executado',
-          erro:`Faltam campos mínimos para cálculo oficial. Complete os campos editáveis antes de consultar: CST IBS/CBS, cClassTrib, município IBGE com 7 dígitos e base/valor da operação. Amostra lida: ${rows.length} item(ns); calculáveis: ${itensCalculaveis.length}. ${pendencias}`,
+          tipo:'Prontidão para cálculo oficial',
+          detalhe:'Cálculo oficial não executado no Modelo 1',
+          erro:`Complete os campos para calcular: CST IBS/CBS, cClassTrib, município IBGE com 7 dígitos e base/valor da operação. Amostra lida: ${rows.length} item(ns); calculáveis: ${itensCalculaveis.length}. ${pendencias}`,
         });
       }
 
       return {
         modo:getTributosApiModeLabel(),
-        configuracao:'proxy-backend',
+        configuracao:'html-unico-estatico',
         atualizadoEm:new Date().toLocaleString('pt-BR'),
-        versao:versao?.data || null,
+        versao:null,
         consultas,
         erros,
-        prontidao:rows.map((row, index) => ({ item:index + 1, documento:row.documentoOrigem, ...avaliarProntidaoFiscal(row) })),
-        resumo:`${consultas.length} consulta(s) com retorno e ${erros.length} pendência(s)/erro(s).`,
+        prontidao,
+        resumo:`${consultas.length} leitura(s) local(is) e ${erros.length} pendência(s).`,
       };
     }
 
@@ -2186,7 +2315,7 @@
       { n:'01', titulo:'Perfil financeiro e operacional', desc:'Faturamento, margem, caixa, recebimento, créditos, folha e pressão de preço.' },
       { n:'02', titulo:'Cruzamento fiscal documental', desc:'XML, NFS-e, SPED, CFOP, NCM, NBS, UF, município, qualidade da amostra e complementação manual.' },
       { n:'03', titulo:'Classificação da Reforma', desc:'CST, cClassTrib, validade por DFe, tratamento tributário, reduções, créditos e enriquecimento setorial CNAE/IBGE.' },
-      { n:'04', titulo:'Motor oficial habilitável', desc:'Camada preparada para validar XML, consultar dados abertos e calcular CBS, IBS e IS via API oficial quando configurada.' },
+      { n:'04', titulo:'Prontidão para motor oficial', desc:'Camada preparada para validar campos mínimos e organizar dados para futura consulta oficial em versão com serverless/proxy.' },
       { n:'05', titulo:'Score e memorial de evidências', desc:'Risco, maturidade, caixa, pendências, alertas e trilha de cálculo para decisão executiva.' },
       { n:'06', titulo:'Governança e plano de ação', desc:'Radar de mudanças, tarefas para fiscal/ERP/comercial, comitê e acompanhamento recorrente.' },
     ];
@@ -2489,9 +2618,19 @@
        O Apps Script recebe o diagnóstico, grava na planilha e dispara
        os e-mails para comercial@corytax.com.br e para o cliente.
     ═══════════════════════════════════════════════════════════ */
-    const LEAD_API_URL = window.CORYTAX_LEAD_API_URL || '/api/lead';
+    const LEAD_API_URL = window.CORYTAX_LEAD_API_URL || '';
 
     async function enviarDiagnosticoAppsScript(payload) {
+      // Modelo 1 HTML único: não há backend para envio automático.
+      // Guardamos uma cópia local no navegador para não travar o fluxo do cliente.
+      if (!LEAD_API_URL) {
+        try {
+          localStorage.setItem('corytax_ultimo_diagnostico', JSON.stringify({ ...payload, salvo_em:new Date().toISOString(), modo:'html-unico' }));
+        } catch (error) {
+          console.warn('Não foi possível salvar cópia local do diagnóstico:', error);
+        }
+        return true;
+      }
       try {
         const response = await fetch(LEAD_API_URL, {
           method: 'POST',
@@ -2505,7 +2644,7 @@
         }
         return true;
       } catch (error) {
-        console.error('Erro ao enviar diagnóstico pelo backend CORYTAX:', error);
+        console.error('Erro ao enviar diagnóstico:', error);
         return false;
       }
     }
@@ -2551,6 +2690,7 @@
       const selected = normalizedOptions.find(opt => opt.value === currentValue);
       const selectedLabel = selected ? selected.label : placeholder;
       const visualAccent = (accent === C.gold || accent === C.white) ? C.blueSoft : accent;
+      const selectionAccent = selected ? C.plan2 : visualAccent;
 
       return (
         <div
@@ -2567,35 +2707,51 @@
             aria-haspopup="listbox"
             aria-expanded={open}
             style={{
-              width:'100%', minHeight:compact ? 46 : 52,
+              width:'100%', minHeight:compact ? 58 : 64,
               display:'flex', alignItems:'center', justifyContent:'space-between', gap:14,
               textAlign:'left', appearance:'none', WebkitAppearance:'none', MozAppearance:'none',
               background:selected
-                ? `linear-gradient(135deg, rgba(8,119,201,.22), rgba(5,8,13,.98) 62%)`
+                ? `linear-gradient(135deg, rgba(19,200,167,.16), rgba(5,8,13,.98) 64%)`
                 : `linear-gradient(180deg, ${C.bgCardAlt}, ${C.bgCard})`,
-              border:`1px solid ${selected ? accent : C.border}`,
+              border:`1px solid ${selected ? selectionAccent : C.borderLight}`,
               borderRadius:12,
-              padding: compact ? '12px 14px' : '14px 15px',
-              color:selected ? '#dff7ff' : C.textMuted,
+              padding: compact ? '10px 12px' : '12px 14px',
+              color:selected ? '#e9fff6' : C.textMuted,
               fontSize: compact ? 13 : 14,
               fontWeight:selected ? 850 : 650,
               lineHeight:1.35,
               outline:'none',
               cursor:'pointer',
-              boxShadow:selected ? `0 0 0 1px ${accent}22, 0 14px 32px rgba(0,0,0,.22)` : '0 10px 24px rgba(0,0,0,.16)',
+              boxShadow:selected ? `0 0 0 1px ${selectionAccent}22, 0 14px 32px rgba(0,0,0,.22)` : '0 10px 24px rgba(0,0,0,.16)',
               transition:'all .2s ease',
             }}
           >
-            <span style={{ display:'block', overflow:'hidden', textOverflow:'ellipsis', color:selected ? '#dff7ff' : C.textMuted }}>{selectedLabel}</span>
-            <span style={{
-              width:26, height:26, borderRadius:8, flexShrink:0,
-              display:'inline-flex', alignItems:'center', justifyContent:'center',
-              background:open ? `${accent}28` : 'rgba(255,255,255,.045)',
-              border:`1px solid ${open || selected ? accent + '66' : C.border}`,
-              color:selected ? C.blueSoft : C.textFaint,
-              transform:open ? 'rotate(180deg)' : 'none',
-              transition:'all .2s ease', fontSize:12, fontWeight:900,
-            }}>⌄</span>
+            <span style={{ minWidth:0, display:'grid', gap:4 }}>
+              <span style={{ color:selected ? selectionAccent : C.textFaint, fontSize:10, fontWeight:900, textTransform:'uppercase', letterSpacing:'.08em' }}>
+                {selected ? 'Resposta registrada' : 'Clique para escolher uma resposta'}
+              </span>
+              <span style={{ display:'block', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap', color:selected ? '#e9fff6' : C.textMuted, fontSize:compact ? 13 : 14, fontWeight:selected ? 850 : 700 }}>{selectedLabel}</span>
+            </span>
+            <span style={{ display:'flex', alignItems:'center', gap:8, flexShrink:0 }}>
+              <span style={{
+                display:'inline-flex', alignItems:'center', gap:6,
+                background:selected ? `${selectionAccent}18` : 'rgba(255,255,255,.04)',
+                border:`1px solid ${selected ? selectionAccent + '55' : C.border}`,
+                color:selected ? selectionAccent : C.textFaint,
+                borderRadius:999, padding:'6px 9px', fontSize:10, fontWeight:900, textTransform:'uppercase', letterSpacing:'.06em'
+              }}>
+                {selected ? '✓ Respondido' : 'Responder'}
+              </span>
+              <span style={{
+                width:28, height:28, borderRadius:8, flexShrink:0,
+                display:'inline-flex', alignItems:'center', justifyContent:'center',
+                background:open ? `${visualAccent}28` : 'rgba(255,255,255,.045)',
+                border:`1px solid ${open || selected ? visualAccent + '66' : C.border}`,
+                color:selected ? selectionAccent : C.textFaint,
+                transform:open ? 'rotate(180deg)' : 'none',
+                transition:'all .2s ease', fontSize:12, fontWeight:900,
+              }}>⌄</span>
+            </span>
           </button>
 
           {open && (
@@ -2606,16 +2762,17 @@
                 position:'absolute', left:0, right:0, top:'calc(100% + 8px)', zIndex:100000,
                 maxHeight:360, overflowY:'auto',
                 background:'#05080d',
-                border:`1px solid ${accent}66`, borderRadius:14, padding:8,
+                border:`1px solid ${visualAccent}66`, borderRadius:14, padding:8,
                 boxShadow:'0 24px 70px rgba(0,0,0,.58), 0 0 0 1px rgba(255,255,255,.03)',
                 backdropFilter:'blur(12px)',
               }}
             >
               <div style={{
-                color:C.textFaint, fontSize:10, fontWeight:900, textTransform:'uppercase', letterSpacing:'.09em',
-                padding:'7px 9px 8px', borderBottom:`1px solid ${C.border}`, marginBottom:6,
+                color:C.white, fontSize:10, fontWeight:900, textTransform:'uppercase', letterSpacing:'.09em',
+                padding:'8px 10px', borderBottom:`1px solid ${C.border}`, marginBottom:8,
+                background:'linear-gradient(90deg, rgba(8,119,201,.16), rgba(5,8,13,0))', borderRadius:10
               }}>
-                Escolha uma opção
+                Escolha uma resposta abaixo
               </div>
               {normalizedOptions.map((opt, i) => {
                 const isSelected = opt.value === currentValue;
@@ -2628,19 +2785,28 @@
                     aria-selected={isSelected}
                     onClick={() => { onChange(opt.value); setOpen(false); }}
                     style={{
-                      width:'100%', border:`1px solid ${isSelected ? accent + '70' : 'rgba(255,255,255,.07)'}`,
-                      background:isSelected ? `${accent}22` : 'rgba(255,255,255,.025)',
+                      width:'100%', border:`1px solid ${isSelected ? selectionAccent + '70' : 'rgba(255,255,255,.07)'}`,
+                      background:isSelected ? `${selectionAccent}18` : 'rgba(255,255,255,.028)',
                       color:isSelected ? '#ffffff' : '#bfe7ff',
                       borderRadius:10, padding:'11px 12px', marginBottom:6,
                       cursor:'pointer', textAlign:'left', transition:'all .18s ease',
-                      display:'grid', gridTemplateColumns:'1fr auto', gap:10, alignItems:'center',
+                      display:'grid', gridTemplateColumns:'auto 1fr auto', gap:10, alignItems:'center',
                     }}
                   >
+                    <span style={{
+                      width:18, height:18, borderRadius:'50%',
+                      border:`2px solid ${isSelected ? selectionAccent : C.borderLight}`,
+                      display:'inline-flex', alignItems:'center', justifyContent:'center',
+                      color:isSelected ? selectionAccent : 'transparent', fontSize:11, fontWeight:900,
+                      background:isSelected ? `${selectionAccent}14` : 'transparent'
+                    }}>{isSelected ? '✓' : '•'}</span>
                     <span>
-                      <span style={{ display:'block', fontSize:13, fontWeight:850, lineHeight:1.35, color:isSelected ? '#ffffff' : '#bfe7ff' }}>{opt.label}</span>
+                      <span style={{ display:'block', fontSize:13, fontWeight:850, lineHeight:1.35, color:isSelected ? '#ffffff' : '#d8efff' }}>{opt.label}</span>
                       {opt.meta && <span style={{ display:'block', color:C.textFaint, fontSize:11, lineHeight:1.45, marginTop:3 }}>{opt.meta}</span>}
                     </span>
-                    {isSelected && <span style={{ color:visualAccent, fontSize:13, fontWeight:900 }}>✓</span>}
+                    <span style={{ color:isSelected ? selectionAccent : C.textFaint, fontSize:10, fontWeight:900, textTransform:'uppercase', letterSpacing:'.06em' }}>
+                      {isSelected ? 'Selecionada' : 'Marcar'}
+                    </span>
                   </button>
                 );
               })}
@@ -2650,7 +2816,7 @@
       );
     }
 
-    function PremiumInputBox({ label, value, onChange, onBlur, placeholder, hint, inputMode = 'text', suffix = '', required = false }) {
+    function PremiumInputBox({ label, value, onChange, onBlur, placeholder, hint, inputMode = 'text', suffix = '', required = false, requiredMessage = 'Preencha se tiver esse dado. Se não souber, deixe em branco e siga com estimativa parcial.' }) {
       return (
         <div style={{ width:'100%' }}>
           <PerfilLabel text={label} />
@@ -2683,7 +2849,73 @@
               )}
             </div>
             {hint && <div style={{ color:C.textFaint, fontSize:11, lineHeight:1.55, marginTop:8 }}>{hint}</div>}
-            {required && !String(value || '').trim() && <div style={{ color:C.risk3, fontSize:10, fontWeight:800, textTransform:'uppercase', letterSpacing:'.06em', marginTop:7 }}>Preencha se tiver esse dado. Se não souber, deixe em branco e siga com estimativa parcial.</div>}
+            {required && !String(value || '').trim() && <div style={{ color:C.risk3, fontSize:10, fontWeight:800, textTransform:'uppercase', letterSpacing:'.06em', marginTop:7 }}>{requiredMessage}</div>}
+          </div>
+        </div>
+      );
+    }
+
+    function ToggleOptionCard({ active, title, subtitle, onToggle, ctaLabel = 'Clique aqui para informar', activeLabel = 'Campo habilitado', icon = '＋' }) {
+      return (
+        <div style={{ width:'100%', display:'flex', alignItems:'stretch' }}>
+          <button
+            type="button"
+            onClick={onToggle}
+            className="premium-focus"
+            style={{
+              width:'100%', marginTop:19, minHeight:108, borderRadius:14,
+              border:`1px solid ${active ? C.plan2 : C.borderLight}`,
+              background:active ? 'linear-gradient(135deg, rgba(19,200,167,.18), rgba(5,8,13,.92))' : 'linear-gradient(180deg, rgba(255,255,255,.04), rgba(5,8,13,.86))',
+              color:active ? '#e9fff6' : C.textMuted,
+              cursor:'pointer', padding:'14px 15px', textAlign:'left', lineHeight:1.45,
+              display:'grid', gap:10, alignContent:'space-between', boxShadow:active ? '0 10px 24px rgba(19,200,167,.08)' : '0 10px 24px rgba(0,0,0,.10)'
+            }}
+          >
+            <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', gap:10 }}>
+              <div style={{ minWidth:0 }}>
+                <div style={{ color:active ? C.plan2 : C.white, fontSize:15, fontWeight:900, marginBottom:6 }}>{title}</div>
+                <div style={{ color:C.textMuted, fontSize:12, fontWeight:600, lineHeight:1.55 }}>{subtitle}</div>
+              </div>
+              <div style={{
+                width:32, height:32, borderRadius:10, flexShrink:0,
+                display:'inline-flex', alignItems:'center', justifyContent:'center',
+                border:`1px solid ${active ? C.plan2 + '66' : C.border}`,
+                background:active ? `${C.plan2}1a` : 'rgba(255,255,255,.04)',
+                color:active ? C.plan2 : C.textFaint,
+                fontSize:18, fontWeight:900
+              }}>{active ? '✓' : icon}</div>
+            </div>
+            <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', gap:10, flexWrap:'wrap' }}>
+              <span style={{
+                display:'inline-flex', alignItems:'center', gap:6,
+                background:active ? `${C.plan2}18` : `${C.blueAccent}14`,
+                border:`1px solid ${active ? C.plan2 + '44' : C.blueAccent + '44'}`,
+                color:active ? C.plan2 : C.blueSoft,
+                borderRadius:999, padding:'7px 10px', fontSize:10, fontWeight:900, textTransform:'uppercase', letterSpacing:'.07em'
+              }}>{active ? activeLabel : ctaLabel}</span>
+              <span style={{ color:C.textFaint, fontSize:11, fontWeight:700 }}>{active ? 'Clique para ocultar este campo' : 'Opcional — use apenas se tiver esse dado'}</span>
+            </div>
+          </button>
+        </div>
+      );
+    }
+
+    function PremiumTextareaBox({ label, value, onChange, placeholder, hint }) {
+      return (
+        <div style={{ width:'100%' }}>
+          <PerfilLabel text={label} />
+          <div style={{ background:'rgba(255,255,255,.035)', border:`1px solid ${value ? C.blueAccent : C.border}`, borderRadius:12, padding:12, minHeight:92 }}>
+            <textarea
+              className="premium-focus"
+              value={value}
+              onChange={onChange}
+              placeholder={placeholder}
+              style={{
+                width:'100%', minHeight:92, resize:'vertical', background:C.bgCard, border:`1px solid ${C.borderLight}`,
+                borderRadius:10, padding:'13px 14px', color:C.white, fontSize:13, lineHeight:1.55, outline:'none', fontFamily:'inherit'
+              }}
+            />
+            {hint && <div style={{ color:C.textFaint, fontSize:11, lineHeight:1.55, marginTop:8 }}>{hint}</div>}
           </div>
         </div>
       );
@@ -2991,7 +3223,7 @@
             : 'Sem vulnerabilidades críticas informadas',
 
           data_envio: new Date().toLocaleString('pt-BR'),
-          origem: 'Diagnóstico Integralizador CORYTAX - Web serverless V15',
+          origem: 'Diagnóstico Integralizador CORYTAX - Modelo 1 HTML único V16',
         };
       }
 
@@ -3105,7 +3337,7 @@
 
       async function handleConsultarApiOficial() {
         setApiOficialErro('');
-        setApiOficialStatus('Consultando a camada oficial da Calculadora de Tributos...');
+        setApiOficialStatus('Verificando prontidão fiscal e consultas públicas disponíveis...');
         setApiOficialLoading(true);
         try {
           const resultado = await consultarCamadaOficialTributos(fiscalRows, perfil);
@@ -3152,10 +3384,12 @@
         try {
           const dados = await consultarCnpjPublico(lead.cnpj);
           setCnpjData(dados);
-          setLead(prev => ({
-            ...prev,
-            cnpj: dados.cnpj || prev.cnpj,
-          }));
+          setLead(prev => ({ ...prev, cnpj: dados.cnpj || prev.cnpj }));
+          if (dados._cnaeIbgeAuto) {
+            setCnaeIbgeData(dados._cnaeIbgeAuto);
+            setCnaeIbgeStatus('');
+            setCnaeIbgeErro('');
+          }
         } catch (error) {
           setCnpjData(null);
           setCnpjErro(error?.message || 'Não foi possível consultar o CNPJ neste momento.');
@@ -3179,12 +3413,17 @@
 
       useEffect(() => {
         if (etapa !== 'quiz' && etapa !== 'financeiro') return;
-        const id = etapa === 'quiz' ? `quiz-question-${quizIdx}` : `finance-question-${finIdx}`;
+        const primeiraTela = (etapa === 'quiz' && quizIdx === 0) || (etapa === 'financeiro' && finIdx === 0);
         const timer = setTimeout(() => {
+          if (primeiraTela) {
+            window.scrollTo({ top: 0, behavior:'smooth' });
+            return;
+          }
+          const id = etapa === 'quiz' ? `quiz-question-${quizIdx}` : `finance-question-${finIdx}`;
           const el = document.getElementById(id);
           if (!el) return;
           const rect = el.getBoundingClientRect();
-          const target = window.pageYOffset + rect.top - Math.max(110, window.innerHeight * 0.20);
+          const target = window.pageYOffset + rect.top - Math.max(90, window.innerHeight * 0.12);
           window.scrollTo({ top: Math.max(target, 0), behavior:'smooth' });
         }, 140);
         return () => clearTimeout(timer);
@@ -3192,7 +3431,7 @@
 
       /* ── INTRO ── */
       if (etapa === 'intro') return (
-        <div style={{ maxWidth:980, margin:'0 auto' }}>
+        <div style={{ maxWidth:940, margin:'0 auto' }}>
           <style>{`
             @keyframes fadeSlide{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
             @keyframes softGlow{0%,100%{box-shadow:0 0 0 0 rgba(8,119,201,.35)}50%{box-shadow:0 0 0 10px rgba(8,119,201,0)}}
@@ -3203,36 +3442,38 @@
             animation:'fadeSlide 0.5s ease',
             position:'relative', overflow:'hidden', borderRadius:24,
             border:`1px solid ${C.borderLight}`,
-            background:`linear-gradient(115deg, rgba(0,0,0,.97) 0%, rgba(0,23,42,.96) 43%, rgba(0,62,111,.86) 100%), url(${BRAND_BACKGROUND}) center/cover`,
-            boxShadow:'0 30px 90px rgba(0,0,0,.55)',
-            padding:'42px 34px', marginBottom:22,
+            background:`linear-gradient(135deg, rgba(1,6,12,.98) 0%, rgba(4,22,38,.96) 58%, rgba(5,42,70,.90) 100%), url(${BRAND_BACKGROUND}) center/cover`,
+            boxShadow:'0 24px 70px rgba(0,0,0,.42)',
+            padding:'36px 32px', marginBottom:22,
           }}>
             <div style={{ position:'absolute', inset:0, background:'linear-gradient(90deg, rgba(0,0,0,.25), transparent 48%, rgba(5,82,137,.28))', pointerEvents:'none' }} />
-            <div style={{ position:'relative', display:'grid', gridTemplateColumns:'1.08fr .92fr', gap:30, alignItems:'center' }}>
+            <div style={{ position:'relative', display:'grid', gridTemplateColumns:'1fr .72fr', gap:28, alignItems:'center' }}>
               <div>
                 <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(255,255,255,.08)', border:'1px solid rgba(255,255,255,.18)', borderRadius:999, padding:'8px 14px', marginBottom:22 }}>
                   <span style={{ width:8, height:8, borderRadius:'50%', background:C.blueSoft, boxShadow:`0 0 18px ${C.blueSoft}` }} />
                   <span style={{ color:C.white, fontSize:11, fontWeight:800, letterSpacing:'.12em', textTransform:'uppercase' }}>Diagnóstico integralizador orientado por dados</span>
                 </div>
 
+                <div style={{ display:'inline-flex', alignItems:'center', gap:8, background:'rgba(19,200,167,.10)', border:`1px solid ${C.plan2}44`, borderRadius:999, padding:'7px 12px', marginBottom:18, color:C.plan2, fontSize:10, fontWeight:900, textTransform:'uppercase', letterSpacing:'.08em' }}>
+                  Consultas públicas ativas: CNPJ + IBGE/CNAE
+                </div>
+
                 <h1 style={{ fontSize:42, fontWeight:900, color:C.white, lineHeight:1.05, marginBottom:16, letterSpacing:'-0.035em' }}>
                   Reforma Tributária:<br/>
-                  <span style={{ color:C.blueSoft }}>integre dados, riscos e cálculo</span><br/>
+                  <span style={{ color:C.blueSoft }}>integre dados, riscos e evidências</span><br/>
                   em um único laudo.
                 </h1>
 
                 <p style={{ color:C.textMain, fontSize:16, lineHeight:1.75, marginBottom:24, maxWidth:590 }}>
-                  O CORYTAX passa a operar como um diagnóstico integralizador: soma perfil financeiro, exposição operacional, cruzamento fiscal, XML/NFS-e, classificação tributária, bases oficiais disponíveis e plano de governança para orientar a transição IBS/CBS/IS.
+                  O CORYTAX passa a operar como um diagnóstico integralizador: soma perfil financeiro, exposição operacional, cruzamento fiscal, XML/NFS-e, classificação tributária e plano de governança para orientar a transição IBS/CBS/IS.
                 </p>
 
-                <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:10, marginBottom:26, maxWidth:620 }}>
+                <div style={{ display:'grid', gridTemplateColumns:'repeat(2,1fr)', gap:10, marginBottom:24, maxWidth:520 }}>
                   {[
                     { n:'01', t:'Perfil', d:'financeiro e operacional' },
                     { n:'02', t:'Fiscal', d:'XML, NFS-e, NCM e NBS' },
-                    { n:'03', t:'Classificação', d:'CST, cClassTrib e DFe' },
-                    { n:'04', t:'Cálculo', d:'CBS, IBS e IS por operação' },
-                    { n:'05', t:'Score', d:'risco, caixa e conformidade' },
-                    { n:'06', t:'Governança', d:'radar, plano e comitê' },
+                    { n:'03', t:'Score', d:'risco, caixa e conformidade' },
+                    { n:'04', t:'Plano', d:'governança e próximos passos' },
                   ].map((item,i)=>(
                     <div key={i} style={{ background:'rgba(255,255,255,.06)', border:'1px solid rgba(255,255,255,.14)', borderRadius:14, padding:'14px 12px' }}>
                       <div style={{ color:C.blueSoft, fontSize:11, fontWeight:900, letterSpacing:'.10em', marginBottom:4 }}>{item.n}</div>
@@ -3241,8 +3482,6 @@
                     </div>
                   ))}
                 </div>
-
-                <CamadasIntegralizadoras compacto={true} />
 
                 <button onClick={() => setEtapa('lead')} style={{
                   padding:'16px 34px', fontSize:14, fontWeight:900,
@@ -3254,8 +3493,8 @@
                 </button>
               </div>
 
-              <div style={{ justifySelf:'center', width:'100%', maxWidth:360 }}>
-                <div style={{ background:'rgba(0,0,0,.42)', border:'1px solid rgba(255,255,255,.18)', borderRadius:22, padding:'24px', backdropFilter:'blur(6px)' }}>
+              <div style={{ justifySelf:'center', width:'100%', maxWidth:300 }}>
+                <div style={{ background:'rgba(0,0,0,.42)', border:'1px solid rgba(255,255,255,.18)', borderRadius:22, padding:'20px', backdropFilter:'blur(6px)' }}>
                   <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginBottom:22 }}>
                     <div style={{ fontSize:38, fontWeight:900, letterSpacing:'.06em', color:C.white, lineHeight:1 }}>CORYTAX</div>
                     <div style={{ width:220, height:3, background:C.white, margin:'9px 0 8px' }} />
@@ -3291,7 +3530,7 @@
               <div key={i} style={{ background:'linear-gradient(180deg, rgba(8,119,201,.12), rgba(5,8,13,.96))', border:`1px solid ${C.border}`, borderRadius:16, padding:'18px 16px' }}>
                 <div style={{ fontSize:25, marginBottom:10 }}>{p.icon}</div>
                 <div style={{ color:C.white, fontWeight:800, fontSize:14, marginBottom:7 }}>{p.titulo}</div>
-                <div style={{ color:C.textMuted, fontSize:12, lineHeight:1.65 }}>{p.desc}</div>
+                <div style={{ color:C.textMuted, fontSize:11, lineHeight:1.58 }}>{p.desc}</div>
               </div>
             ))}
           </div>
@@ -3309,7 +3548,7 @@
           }}>
             <h2 style={{ color:C.white, fontWeight:900, fontSize:24, marginBottom:6 }}>Quem está fazendo o diagnóstico?</h2>
             <p style={{ color:C.textMuted, fontSize:14, marginBottom:24, lineHeight:1.75, maxWidth:760 }}>
-              Os dados do responsável pelo preenchimento são usados exclusivamente para personalizar o resultado e para que a equipe CORYTAX possa enviar o relatório completo.
+              Os dados do responsável pelo preenchimento são usados para personalizar o resultado. Nesta versão HTML único, o diagnóstico fica no próprio navegador e pode ser salvo/imprimido pelo usuário.
             </p>
 
             <div className="mobile-stack" style={{ display:'grid', gridTemplateColumns:'repeat(2,minmax(0,1fr))', gap:14, marginBottom:16 }}>
@@ -3346,7 +3585,7 @@
                     CNPJ da empresa analisada
                   </label>
                   <div style={{ color:C.textFaint, fontSize:12, lineHeight:1.6 }}>
-                    Digite 14 números para consultar o cadastro da empresa analisada. A consulta não altera os dados de quem está preenchendo.
+                    Digite 14 números para consultar o cadastro público da empresa. Após retornar o CNAE principal, o CORYTAX consulta automaticamente a base pública CNAE/IBGE para orientar NCM, NBS, NFS-e, CT-e e complementação manual.
                   </div>
                 </div>
                 {cnpjData && (
@@ -3402,12 +3641,22 @@
             </div>
 
             {cnpjData && (
-              <DadosCadastraisCliente
-                dados={cnpjData}
-                lead={lead}
-                titulo="Resumo cadastral encontrado"
-                subtitulo="Dados da empresa analisada retornados pela consulta pública de CNPJ. Essas informações não substituem o responsável pelo preenchimento."
-              />
+              <>
+                <DadosCadastraisCliente
+                  dados={cnpjData}
+                  lead={lead}
+                  titulo="Resumo cadastral encontrado"
+                  subtitulo="Dados da empresa analisada retornados pela consulta pública de CNPJ. Essas informações não substituem o responsável pelo preenchimento."
+                />
+                <div style={{ background:'rgba(6,9,15,.72)', border:`1px solid ${cnaeIbgeErro ? C.risk3 : C.plan2}33`, borderRadius:12, padding:'12px 14px', marginBottom:16 }}>
+                  <div style={{ color:cnaeIbgeErro ? C.risk3 : C.plan2, fontSize:10, fontWeight:900, textTransform:'uppercase', letterSpacing:'.08em', marginBottom:6 }}>
+                    Consulta pública CNAE/IBGE
+                  </div>
+                  <div style={{ color:C.textMuted, fontSize:11, lineHeight:1.58 }}>
+                    {cnaeIbgeLoading ? 'Consultando CNAE na base pública do IBGE...' : cnaeIbgeErro ? cnaeIbgeErro : cnaeIbgeResultado ? `${cnaeIbgeResultado.resumo}. Prioridade sugerida: ${cnaeIbgeResultado.inferencia.tipo} — ${cnaeIbgeResultado.inferencia.prioridade}` : 'Aguardando CNAE principal retornado pela consulta de CNPJ.'}
+                  </div>
+                </div>
+              </>
             )}
 
             <button disabled={!leadOk} onClick={() => setEtapa('perfil')} style={{
@@ -3522,7 +3771,7 @@
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', gap:12, flexWrap:'wrap', marginBottom:14 }}>
                 <div>
                   <div style={{ color:C.white, fontSize:16, fontWeight:900, marginBottom:4 }}>Dados financeiros para escala do relatório</div>
-                  <div style={{ color:C.textMuted, fontSize:12, lineHeight:1.65, maxWidth:760 }}>
+                  <div style={{ color:C.textMuted, fontSize:11, lineHeight:1.58, maxWidth:760 }}>
                     Para evitar informações sem sentido para a decisão, o diagnóstico usa apenas premissas declaradas pelo cliente. Quando algum dado não for preenchido, o relatório indica cálculo parcial.
                   </div>
                 </div>
@@ -3535,7 +3784,7 @@
                 <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', gap:12, flexWrap:'wrap', marginBottom:12 }}>
                   <div>
                     <div style={{ color:C.white, fontSize:15, fontWeight:900, marginBottom:5 }}>Dados para entender a rentabilidade da empresa</div>
-                    <div style={{ color:C.textMuted, fontSize:12, lineHeight:1.65, maxWidth:840 }}>
+                    <div style={{ color:C.textMuted, fontSize:11, lineHeight:1.58, maxWidth:840 }}>
                       Você não precisa saber a margem operacional exata. Responda algumas perguntas simples sobre lucro, custos e despesas para que o diagnóstico estime o nível de pressão financeira. Caso não saiba alguma resposta, deixe em branco.
                     </div>
                   </div>
@@ -3608,42 +3857,35 @@
 
                 <div className="mobile-stack" style={{ display:'grid', gridTemplateColumns:'repeat(3,minmax(0,1fr))', gap:12, marginTop:12 }}>
                   <PremiumInputBox
-                    label="Créditos tributários a revisar"
+                    label="Créditos tributários já identificados, em revisão ou com chance de recuperação"
                     value={perfil.creditosRevisar}
                     inputMode="decimal"
-                    required
-                    placeholder="Ex: R$ 150.000,00"
-                    hint="Valor conhecido ou a validar. Informe R$ 0,00 se não houver créditos mapeados."
+                    placeholder="Ex: R$ 150.000,00 ou R$ 0,00"
+                    hint="Informe somente se a empresa já tiver um valor estimado de créditos a aproveitar, recuperar ou revisar, como ICMS, PIS, COFINS ou outros tributos. Se não souber, deixe em branco. O diagnóstico continua com estimativa parcial."
                     onChange={e => setPerfil(p=>({...p, creditosRevisar:e.target.value}))}
                     onBlur={() => {
                       const valor = formatMoedaBR(perfil.creditosRevisar);
                       if (valor || perfil.creditosRevisar === '0') setPerfil(p=>({...p, creditosRevisar:valor || 'R$ 0,00'}));
                     }}
                   />
-                  <div style={{ width:'100%', display:'flex', alignItems:'stretch' }}>
-                    <button type="button" onClick={() => setShowExactMargin(v => !v)} style={{
-                      width:'100%', marginTop:19, minHeight:72, borderRadius:12, border:`1px solid ${showExactMargin ? C.blueAccent : C.border}`,
-                      background:showExactMargin ? `${C.blueAccent}18` : 'rgba(255,255,255,.035)', color:showExactMargin ? C.blueSoft : C.textMuted,
-                      fontSize:13, fontWeight:900, cursor:'pointer', padding:'12px 14px', textAlign:'left', lineHeight:1.45
-                    }}>
-                      Tenho a margem operacional exata
-                      <span style={{ display:'block', color:C.textFaint, fontSize:11, fontWeight:600, marginTop:4 }}>
-                        Campo avançado opcional para empresas que acompanham DRE ou demonstrativo de resultado.
-                      </span>
-                    </button>
-                  </div>
-                  <div style={{ width:'100%', display:'flex', alignItems:'stretch' }}>
-                    <button type="button" onClick={() => setShowAdvancedMargin(v => !v)} style={{
-                      width:'100%', marginTop:19, minHeight:72, borderRadius:12, border:`1px solid ${showAdvancedMargin ? C.blueAccent : C.border}`,
-                      background:showAdvancedMargin ? `${C.blueAccent}18` : 'rgba(255,255,255,.035)', color:showAdvancedMargin ? C.blueSoft : C.textMuted,
-                      fontSize:13, fontWeight:900, cursor:'pointer', padding:'12px 14px', textAlign:'left', lineHeight:1.45
-                    }}>
-                      Tenho uma estimativa técnica de pressão IBS/CBS
-                      <span style={{ display:'block', color:C.textFaint, fontSize:11, fontWeight:600, marginTop:4 }}>
-                        Opcional para quem já possui estudo técnico sobre preço, custo ou margem.
-                      </span>
-                    </button>
-                  </div>
+                  <ToggleOptionCard
+                    active={showExactMargin}
+                    onToggle={() => setShowExactMargin(v => !v)}
+                    title="Tenho a margem operacional exata"
+                    subtitle="Use esta opção se a empresa já acompanha DRE, demonstrativo de resultado ou tem a margem operacional calculada."
+                    ctaLabel="Clique aqui para informar"
+                    activeLabel="Campo habilitado"
+                    icon="％"
+                  />
+                  <ToggleOptionCard
+                    active={showAdvancedMargin}
+                    onToggle={() => setShowAdvancedMargin(v => !v)}
+                    title="Tenho uma estimativa técnica de pressão IBS/CBS"
+                    subtitle="Opcional para quem já possui estudo técnico sobre preço, custo, margem ou efeito da reforma tributária."
+                    ctaLabel="Clique aqui para informar"
+                    activeLabel="Campo habilitado"
+                    icon="∑"
+                  />
                 </div>
 
                 {showExactMargin && (
@@ -3687,7 +3929,7 @@
                 <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', gap:12, flexWrap:'wrap', marginBottom:12 }}>
                   <div>
                     <div style={{ color:C.white, fontSize:15, fontWeight:900, marginBottom:5 }}>Dados para estimar o impacto no caixa</div>
-                    <div style={{ color:C.textMuted, fontSize:12, lineHeight:1.65, maxWidth:760 }}>
+                    <div style={{ color:C.textMuted, fontSize:11, lineHeight:1.58, maxWidth:760 }}>
                       O impacto de caixa será estimado com base no perfil de recebimento, prazo médio, regime tributário e exposição estimada ao IBS/CBS. Caso você não saiba algum dado, deixe em branco e o diagnóstico fará apenas cálculo parcial.
                     </div>
                   </div>
@@ -3750,27 +3992,23 @@
                     value={perfil.segurancaCaixaPct}
                     inputMode="decimal"
                     suffix="%"
-                    required
                     placeholder="Ex: 20%"
-                    hint="Reserva sobre a necessidade mensal calculada. Premissa declarada pelo cliente."
+                    hint="É uma folga adicional para suportar oscilações no caixa. Exemplo: se a empresa precisa de R$ 100 mil por mês, uma margem de segurança de 20% significa manter R$ 120 mil disponíveis. Se não souber, deixe em branco e o sistema fará estimativa parcial."
                     onChange={e => setPerfil(p=>({...p, segurancaCaixaPct:e.target.value}))}
                     onBlur={() => {
                       const valor = formatPercentualBR(perfil.segurancaCaixaPct);
                       if (valor) setPerfil(p=>({...p, segurancaCaixaPct:valor}));
                     }}
                   />
-                  <div style={{ width:'100%', display:'flex', alignItems:'stretch' }}>
-                    <button type="button" onClick={() => setShowAdvancedCash(v => !v)} style={{
-                      width:'100%', marginTop:19, minHeight:72, borderRadius:12, border:`1px solid ${showAdvancedCash ? C.blueAccent : C.border}`,
-                      background:showAdvancedCash ? `${C.blueAccent}18` : 'rgba(255,255,255,.035)', color:showAdvancedCash ? C.blueSoft : C.textMuted,
-                      fontSize:13, fontWeight:900, cursor:'pointer', padding:'12px 14px', textAlign:'left', lineHeight:1.45
-                    }}>
-                      Tenho uma estimativa técnica
-                      <span style={{ display:'block', color:C.textFaint, fontSize:11, fontWeight:600, marginTop:4 }}>
-                        Campo avançado opcional para quem já possui premissa interna de split payment/caixa.
-                      </span>
-                    </button>
-                  </div>
+                  <ToggleOptionCard
+                    active={showAdvancedCash}
+                    onToggle={() => setShowAdvancedCash(v => !v)}
+                    title="Tenho uma estimativa técnica de impacto no caixa"
+                    subtitle="Opcional para quem já possui premissa interna de split payment, impacto financeiro ou necessidade adicional de caixa."
+                    ctaLabel="Clique aqui para informar"
+                    activeLabel="Campo habilitado"
+                    icon="＄"
+                  />
                 </div>
 
                 {showAdvancedCash && (
@@ -3828,23 +4066,17 @@
                     if (valor) setPerfil(p=>({...p, vendasB2CPct:valor}));
                   }}
                 />
-                <div style={{ width:'100%' }}>
-                  <PerfilLabel text="Observações financeiras do cliente" />
-                  <textarea
-                    className="premium-focus"
-                    value={perfil.observacoesFinanceiras}
-                    onChange={e => setPerfil(p=>({...p, observacoesFinanceiras:e.target.value}))}
-                    placeholder="Ex.: premissas usadas, sazonalidade, mudança de preço, créditos em auditoria..."
-                    style={{
-                      width:'100%', minHeight:92, resize:'vertical', background:C.bgCard, border:`1px solid ${C.borderLight}`,
-                      borderRadius:12, padding:'13px 14px', color:C.white, fontSize:13, lineHeight:1.55, outline:'none', fontFamily:'inherit'
-                    }}
-                  />
-                </div>
+                <PremiumTextareaBox
+                  label="Observações opcionais do cliente"
+                  value={perfil.observacoesFinanceiras}
+                  onChange={e => setPerfil(p=>({...p, observacoesFinanceiras:e.target.value}))}
+                  placeholder="Ex.: sazonalidade do negócio, reajuste recente de preços, crédito em auditoria, contratos longos, mudança de mix, expansão, investimento ou qualquer contexto útil."
+                  hint="Este campo é opcional e pode ser preenchido pelo próprio cliente ou com apoio do consultor. Só vale a pena escrever aqui se houver alguma informação que ajude a interpretar os números e a realidade da empresa. Se não houver observações relevantes, deixe em branco."
+                />
               </div>
 
               {parseValorMonetarioBR(perfil.faturamento) <= 0 && (
-                <div style={{ marginTop:13, background:`${C.risk3}10`, border:`1px solid ${C.risk3}33`, borderRadius:10, padding:'11px 12px', color:C.textMuted, fontSize:12, lineHeight:1.65 }}>
+                <div style={{ marginTop:13, background:`${C.risk3}10`, border:`1px solid ${C.risk3}33`, borderRadius:10, padding:'11px 12px', color:C.textMuted, fontSize:11, lineHeight:1.58 }}>
                   Informe o faturamento mensal para liberar a avaliação. Os demais campos financeiros melhoram o memorial; se algum dado ficar em branco, o relatório usará referência qualitativa sinalizada como estimativa orientativa.
                 </div>
               )}
@@ -4147,7 +4379,7 @@
                   <div style={{ color:C.blueSoft, fontSize:11, fontWeight:900, textTransform:'uppercase', letterSpacing:'.08em', marginBottom:4 }}>
                     Validação para geração do laudo
                   </div>
-                  <div style={{ color:C.textMuted, fontSize:12, lineHeight:1.65 }}>
+                  <div style={{ color:C.textMuted, fontSize:11, lineHeight:1.58 }}>
                     Notas sem CFOP, NCM, cClassTrib, CST IBS/CBS, base ou imposto destacado são tratadas como pendência de qualidade da amostra. Elas entram no score fiscal integralizador e no memorial, mas não bloqueiam a emissão do laudo preliminar.
                   </div>
                 </div>
@@ -4159,7 +4391,7 @@
                     <div style={{ color:C.blueSoft, fontSize:10, fontWeight:900, textTransform:'uppercase', letterSpacing:'.1em', marginBottom:5 }}>
                       Enriquecimento setorial IBGE/CNAE
                     </div>
-                    <div style={{ color:C.textMuted, fontSize:12, lineHeight:1.65 }}>
+                    <div style={{ color:C.textMuted, fontSize:11, lineHeight:1.58 }}>
                       Usa o CNAE principal do CNPJ para orientar se a amostra deve priorizar NCM, NBS, NFS-e, CT-e, município IBGE ou operação mista. O CNAE não define o cálculo sozinho; ele aumenta a eficiência da triagem e da complementação manual.
                     </div>
                   </div>
@@ -4198,7 +4430,7 @@
                     <div style={{ color:C.gold, fontSize:10, fontWeight:900, textTransform:'uppercase', letterSpacing:'.1em', marginBottom:5 }}>
                       Complementação manual para consulta oficial
                     </div>
-                    <div style={{ color:C.textMuted, fontSize:12, lineHeight:1.65 }}>
+                    <div style={{ color:C.textMuted, fontSize:11, lineHeight:1.58 }}>
                       Quando o XML não trouxer CST IBS/CBS, cClassTrib, município IBGE, NCM/NBS ou base/valor, complete os campos abaixo. O motor usa os dados preenchidos para consultar NCM/NBS, validar classificação e, quando possível, executar observabilidade/cálculo por item.
                     </div>
                   </div>
@@ -4265,13 +4497,13 @@
                 <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', gap:12, flexWrap:'wrap' }}>
                   <div style={{ flex:'1 1 280px' }}>
                     <div style={{ color:C.gold, fontSize:10, fontWeight:900, textTransform:'uppercase', letterSpacing:'.1em', marginBottom:5 }}>
-                      Camada API oficial da Calculadora de Tributos
+                      
                     </div>
-                    <div style={{ color:C.textMuted, fontSize:12, lineHeight:1.65 }}>
+                    <div style={{ color:C.textMuted, fontSize:11, lineHeight:1.58 }}>
                       Consulta versão da base oficial, NCM/NBS, validade DFe × cClassTrib e, quando houver campos mínimos, observabilidade por item. Modo atual: <strong style={{color:C.white}}>{getTributosApiModeLabel()}</strong>.
                     </div>
                     <div style={{ color:C.textFaint, fontSize:11, lineHeight:1.55, marginTop:7 }}>
-                      Em produção, esta tela consulta o backend CORYTAX online, e o backend consulta a API oficial. Se o site e o backend estiverem no mesmo domínio, mantenha /api/tributos. Se estiverem separados, ajuste public/config.js para a URL pública do backend.
+                      Nesta versão Modelo 1 HTML único, a tela faz leitura local, complementação manual e verificação de prontidão. A consulta oficial real à Calculadora de Tributos exige a versão profissional com serverless/proxy.
                     </div>
                   </div>
                   <button type="button" disabled={apiOficialLoading} onClick={handleConsultarApiOficial} style={{
@@ -4279,7 +4511,7 @@
                     background:apiOficialLoading ? C.bgCardAlt : `linear-gradient(135deg,${C.gold},#dcecff)`,
                     color:apiOficialLoading ? C.textFaint : '#06101d', fontSize:12, fontWeight:900
                   }}>
-                    {apiOficialLoading ? 'Consultando...' : 'Testar / consultar API oficial'}
+                    {apiOficialLoading ? 'Consultando...' : 'Verificar prontidão / gerar leitura local'}
                   </button>
                 </div>
 
@@ -4478,7 +4710,7 @@
         ];
 
         return (
-          <div className="report-shell" style={{ maxWidth:940, margin:'0 auto' }}>
+          <div className="report-shell" style={{ maxWidth:920, margin:'0 auto' }}>
             <style>{`
               @keyframes fadeSlide{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
               @keyframes scoreGrow{from{width:0}to{width:${scoreTotal}%}}
@@ -4569,8 +4801,8 @@
                       borderRadius:8, padding:'12px 16px', display:'flex', gap:10, alignItems:'center' }}>
                       <span style={{ fontSize:16 }}>✅</span>
                       <div>
-                        <div style={{ color:C.plan2, fontWeight:700, fontSize:13 }}>Informações recebidas com sucesso</div>
-                        <div style={{ color:C.textMuted, fontSize:12, marginTop:2 }}>O relatório foi preparado e as respostas foram direcionadas para o comercial CORYTAX e para o e-mail informado pelo cliente.</div>
+                        <div style={{ color:C.plan2, fontWeight:700, fontSize:13 }}>Diagnóstico preparado com sucesso</div>
+                        <div style={{ color:C.textMuted, fontSize:12, marginTop:2 }}>O relatório foi preparado nesta sessão do navegador. Para envio automático por e-mail/CRM, use a versão profissional com serverless.</div>
                       </div>
                     </div>
                   )}
@@ -4631,11 +4863,18 @@
                 </div>
               </div>
 
-              <CamadasIntegralizadoras />
+              {(cnpjData || lead.cnpj) && (
+                <DadosCadastraisCliente
+                  dados={cnpjData}
+                  lead={lead}
+                  titulo="Dados cadastrais do cliente"
+                  subtitulo="Informações cadastrais posicionadas no início do laudo para conferência imediata antes da análise financeira, fiscal e operacional."
+                />
+              )}
 
               {/* REFERÊNCIAS DE ESCALA */}
-              <div className="report-card print-avoid" style={{ background:`linear-gradient(135deg, ${C.blueDeep} 0%, #0a1428 100%)`,
-                border:`1px solid ${risk.color}44`, borderRadius:14, padding:'24px',
+              <div className="report-card print-avoid" style={{ background:'linear-gradient(135deg, rgba(5,8,13,.98), rgba(7,20,34,.94))',
+                border:`1px solid ${C.borderLight}`, borderRadius:14, padding:'20px 22px',
                 marginBottom:16, position:'relative', overflow:'hidden' }}>
                 <div style={{ position:'absolute', top:0, right:0, width:160, height:160,
                   background:`radial-gradient(circle, ${risk.color}14 0%, transparent 70%)`, pointerEvents:'none' }} />
@@ -4649,7 +4888,7 @@
                     Estimativa orientativa · não projeção definitiva
                   </div>
                 </div>
-                <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(155px,1fr))', gap:12, marginBottom:20 }}>
+                <div style={{ display:'grid', gridTemplateColumns:'repeat(4,minmax(0,1fr))', gap:12, marginBottom:20 }}>
                   {[
                     { l:'Pressão sobre Margem', v:formatMoedaOuPendente(sim.refEscalaMargem), sub:'referência anual',
                       cor:sim.rMargemScore>65?C.risk3:sim.rMargemScore>40?C.risk2:C.risk1, pct:sim.rMargemScore },
@@ -4678,11 +4917,7 @@
                     <span style={{ fontSize:14, flexShrink:0 }}>💡</span>
                     <p style={{ color:C.textMuted, fontSize:12, lineHeight:1.75, margin:0 }}>
                       <strong style={{color:C.textMain}}>Como interpretar estes números:</strong>{' '}
-                      As referências acima são estimativas de ordem de grandeza calculadas com base no porte
-                      operacional, nas respostas guiadas e nos valores informados pelo cliente no perfil. Nesta versão, o motor
-                      não aplica benchmark setorial externo automático; quando a margem exata não é informada, ele gera
-                      referência qualitativa integralizadora sinalizada como estimativa orientativa. O objetivo é <strong style={{color:C.white}}>sensibilização estratégica</strong> — não
-                      projeção financeira consolidada.
+                      As referências acima são estimativas orientativas calculadas com as premissas preenchidas pelo cliente. O objetivo é apoiar a decisão estratégica e indicar onde aprofundar a análise — não substituir DRE, SPED, XML completo ou simulação tributária oficial.
                     </p>
                   </div>
                 </div>
@@ -4810,7 +5045,7 @@
                   </table>
                 </div>
                 {!sim.dadosSuficientes && (
-                  <div style={{ marginTop:12, background:`${C.risk3}10`, border:`1px solid ${C.risk3}33`, borderRadius:10, padding:'11px 12px', color:C.textMuted, fontSize:12, lineHeight:1.65 }}>
+                  <div style={{ marginTop:12, background:`${C.risk3}10`, border:`1px solid ${C.risk3}33`, borderRadius:10, padding:'11px 12px', color:C.textMuted, fontSize:11, lineHeight:1.58 }}>
                     Dados insuficientes para cálculo completo. Campos em aberto: {sim.camposEmAberto.join(', ') || 'premissas financeiras'}.
                   </div>
                 )}
@@ -4901,36 +5136,6 @@
                   ) : (
                     <p style={{ color:C.textMuted, fontSize:12, lineHeight:1.7, margin:0 }}>
                       Nenhum item fiscal foi importado ou complementado manualmente neste laudo.
-                    </p>
-                  )}
-                </div>
-
-                <div style={{ background:'rgba(255,255,255,.035)', border:`1px solid ${C.border}`, borderRadius:10, padding:'12px 13px', marginBottom:14 }}>
-                  <div style={{ color:C.gold, fontSize:10, fontWeight:900, textTransform:'uppercase', letterSpacing:'.08em', marginBottom:8 }}>
-                    Camada API oficial da Calculadora de Tributos
-                  </div>
-                  {apiOficialResultado ? (
-                    <div>
-                      <p style={{ color:C.textMain, fontSize:12, lineHeight:1.7, margin:'0 0 8px' }}>
-                        Consulta realizada em {apiOficialResultado.atualizadoEm} via {apiOficialResultado.modo}. Resultado: {apiOficialResultado.resumo}
-                      </p>
-                      <div style={{ display:'grid', gap:7 }}>
-                        {apiOficialResultado.consultas.slice(0, 5).map((item,i)=>(
-                          <div key={i} style={{ background:'rgba(5,8,13,.72)', border:`1px solid ${C.border}`, borderRadius:8, padding:'8px 10px' }}>
-                            <div style={{ color:C.white, fontSize:11, fontWeight:900 }}>{item.tipo}</div>
-                            <div style={{ color:C.textMuted, fontSize:10, lineHeight:1.45 }}>{item.detalhe} · {item.resumo}{item.warning ? ` · warning ${item.warning}` : ''}</div>
-                          </div>
-                        ))}
-                      </div>
-                      {apiOficialResultado.erros.length > 0 && (
-                        <p style={{ color:C.textFaint, fontSize:11, lineHeight:1.55, margin:'8px 0 0' }}>
-                          Pendências/erros oficiais registrados: {apiOficialResultado.erros.slice(0, 4).map(e => `${e.tipo}: ${e.erro}`).join(' | ')}
-                        </p>
-                      )}
-                    </div>
-                  ) : (
-                    <p style={{ color:C.textMuted, fontSize:12, lineHeight:1.7, margin:0 }}>
-                      API oficial ainda não consultada neste laudo. Modo configurado: {getTributosApiModeLabel()}. Para retorno real em produção, publique o backend CORYTAX e confirme a configuração em public/config.js.
                     </p>
                   )}
                 </div>
@@ -5080,35 +5285,58 @@
               </div>
 
               {/* VETORES DE ATENÇÃO */}
-              <div className="report-section" style={{ marginBottom:16 }}>
-                <div style={{ color:C.textFaint, fontWeight:700, fontSize:11, textTransform:'uppercase',
-                  letterSpacing:'0.1em', marginBottom:14 }}>Vetores de Atenção Identificados</div>
-                <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))', gap:10 }}>
+              <div className="report-card print-avoid" style={{
+                background:'linear-gradient(135deg, rgba(5,8,13,.98), rgba(8,18,31,.92))',
+                border:`1px solid ${C.borderLight}`,
+                borderRadius:14,
+                padding:'20px 22px',
+                marginBottom:16,
+                overflow:'hidden'
+              }}>
+                <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', gap:12, flexWrap:'wrap', marginBottom:16 }}>
+                  <div>
+                    <div style={{ color:C.gold, fontSize:12, fontWeight:900, textTransform:'uppercase', letterSpacing:'.12em', marginBottom:6 }}>
+                      Vetores de atenção identificados
+                    </div>
+                    <p style={{ color:C.textMuted, fontSize:12, lineHeight:1.7, margin:0, maxWidth:690 }}>
+                      Resumo dos principais pontos de atenção para orientar a conversa consultiva. Cada vetor combina respostas, perfil financeiro e sinais fiscais disponíveis.
+                    </p>
+                  </div>
+                  <div style={{ background:`${risk.color}15`, border:`1px solid ${risk.color}44`, color:risk.color, borderRadius:999, padding:'7px 12px', fontSize:11, fontWeight:900 }}>
+                    {risk.label} · {scoreTotal}/100
+                  </div>
+                </div>
+                <div style={{ display:'grid', gridTemplateColumns:'repeat(2,minmax(0,1fr))', gap:12 }}>
                   {dimensoes.map((d,i) => (
-                    <div className="report-card print-avoid" key={i} style={{ background:C.bgCard, border:`1px solid ${d.cor}33`,
-                      borderRadius:10, padding:'14px 16px' }}>
-                      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:10 }}>
-                        <div style={{ display:'flex', alignItems:'center', gap:8 }}>
-                          <span style={{ fontSize:16 }}>{d.icon}</span>
-                          <span style={{ color:C.white, fontWeight:700, fontSize:13 }}>{d.titulo}</span>
+                    <div className="metric-card" key={i} style={{
+                      background:'rgba(5,8,13,.72)',
+                      border:`1px solid ${d.cor}44`,
+                      borderRadius:12,
+                      padding:'14px 15px',
+                      minHeight:142
+                    }}>
+                      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', gap:10, marginBottom:10 }}>
+                        <div style={{ display:'flex', alignItems:'flex-start', gap:9, minWidth:0 }}>
+                          <span style={{ fontSize:16, lineHeight:1.2, flexShrink:0 }}>{d.icon}</span>
+                          <span style={{ color:C.white, fontWeight:900, fontSize:13, lineHeight:1.25 }}>{d.titulo}</span>
                         </div>
-                        <div style={{ background:`${d.cor}18`, border:`1px solid ${d.cor}44`,
-                          borderRadius:5, padding:'3px 10px', fontSize:11, fontWeight:800, color:d.cor }}>
+                        <div style={{ background:`${d.cor}18`, border:`1px solid ${d.cor}55`,
+                          borderRadius:7, padding:'4px 9px', fontSize:11, fontWeight:900, color:d.cor, whiteSpace:'nowrap' }}>
                           {d.score}/100
                         </div>
                       </div>
-                      <div style={{ height:5, background:C.bgCardAlt, borderRadius:3, overflow:'hidden', marginBottom:10 }}>
-                        <div style={{ height:'100%', width:`${d.score}%`,
+                      <div style={{ height:5, background:'rgba(255,255,255,.06)', borderRadius:3, overflow:'hidden', marginBottom:11 }}>
+                        <div style={{ height:'100%', width:`${Math.min(d.score,100)}%`,
                           background:`linear-gradient(90deg, ${d.cor}88, ${d.cor})`,
                           borderRadius:3, transition:'width 0.6s ease' }} />
                       </div>
-                      <p style={{ color:C.textMuted, fontSize:12, lineHeight:1.6, margin:'0 0 8px' }}>{d.desc}</p>
+                      <p style={{ color:C.textMuted, fontSize:11, lineHeight:1.58, margin:'0 0 10px' }}>{d.desc}</p>
                       <div style={{ display:'flex', flexWrap:'wrap', gap:6 }}>
-                        <div style={{ background:`${d.cor}0d`, borderRadius:6, padding:'5px 10px',
-                          fontSize:11, color:d.cor, fontWeight:700 }}>{d.nivel}</div>
+                        <div style={{ background:`${d.cor}12`, border:`1px solid ${d.cor}33`, borderRadius:7, padding:'6px 10px',
+                          fontSize:11, color:d.cor, fontWeight:800 }}>{d.nivel}</div>
                         {d.refEscala && (
-                          <div style={{ background:C.bgCardAlt, border:`1px solid ${C.border}`, borderRadius:6,
-                            padding:'5px 10px', fontSize:10, color:C.textFaint, fontStyle:'italic' }}>
+                          <div style={{ background:'rgba(255,255,255,.035)', border:`1px solid ${C.border}`, borderRadius:7,
+                            padding:'6px 10px', fontSize:10, color:C.textFaint, fontStyle:'italic' }}>
                             {d.refEscala}
                           </div>
                         )}
@@ -5255,25 +5483,15 @@
                 </div>
               )}
 
-              {(cnpjData || lead.cnpj) && (
-                <DadosCadastraisCliente
-                  dados={cnpjData}
-                  lead={lead}
-                  titulo="Dados cadastrais do cliente"
-                  subtitulo="Seção final do relatório, pronta para conferência cadastral e impressão em PDF."
-                />
-              )}
-
-
               {leadEnviado && !modalAberto && (
                 <div className="report-card print-avoid" style={{ background:`${C.plan2}0d`, border:`1px solid ${C.plan2}44`,
                   borderRadius:9, padding:'12px 16px', marginBottom:16,
                   display:'flex', gap:10, alignItems:'center' }}>
                   <span style={{ fontSize:16 }}>✅</span>
                   <div>
-                    <div style={{ color:C.plan2, fontWeight:700, fontSize:13 }}>Recebemos suas informações</div>
+                    <div style={{ color:C.plan2, fontWeight:700, fontSize:13 }}>Diagnóstico preparado localmente</div>
                     <div style={{ color:C.textMuted, fontSize:12, marginTop:2 }}>
-                      Um especialista CORYTAX entrará em contato para apresentar os próximos passos.
+                      Salve ou imprima o laudo em PDF e encaminhe para análise comercial/consultiva.
                     </div>
                   </div>
                 </div>
@@ -5300,18 +5518,18 @@
       return (
         <div className="app-shell" style={{
           minHeight:'100vh',
-          background:`linear-gradient(90deg, ${C.blueDeep} 0%, ${C.blueDeep} 15%, #000 15%, #000 100%)`,
+          background:'linear-gradient(135deg, #02060b 0%, #061827 42%, #000000 100%)',
           color:C.textMain,
           fontFamily:"'Barlow','DM Sans','Segoe UI',sans-serif",
           position:'relative', overflowX:'hidden',
         }}>
-          <div className="app-bg-glow" data-no-print="true" style={{ position:'fixed', inset:0, pointerEvents:'none', background:`radial-gradient(ellipse 55% 45% at 19% 22%, ${C.blueGlow}55 0%, transparent 62%), radial-gradient(ellipse 40% 35% at 92% 18%, ${C.blueAccent}20 0%, transparent 60%)` }} />
+          <div className="app-bg-glow" data-no-print="true" style={{ position:'fixed', inset:0, pointerEvents:'none', background:`radial-gradient(ellipse 46% 36% at 22% 18%, ${C.blueGlow}2d 0%, transparent 62%), radial-gradient(ellipse 38% 32% at 82% 14%, ${C.blueAccent}18 0%, transparent 60%)` }} />
 
           {/* Header */}
           <div data-no-print="true" style={{ position:'relative', zIndex:1, padding:'26px 24px 0' }}>
             <div style={{
               display:'flex', alignItems:'center', justifyContent:'space-between', gap:18,
-              maxWidth:1120, margin:'0 auto 22px',
+              maxWidth:1040, margin:'0 auto 22px',
               background:'rgba(0,0,0,.34)', border:`1px solid ${C.border}`, borderRadius:18,
               padding:'16px 18px', backdropFilter:'blur(8px)'
             }}>
@@ -5342,7 +5560,7 @@
             </div>
           </div>
 
-          <div className="screen-container mobile-tight" style={{ position:'relative', zIndex:20, padding:'20px 24px 220px', maxWidth:1120, margin:'0 auto' }}>
+          <div className="screen-container mobile-tight" style={{ position:'relative', zIndex:20, padding:'20px 24px 220px', maxWidth:1040, margin:'0 auto' }}>
             <SimuladorTab />
           </div>
 
