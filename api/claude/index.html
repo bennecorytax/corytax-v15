@@ -1178,6 +1178,12 @@
 
     function parseFiscalJsonManual(inputText) {
       const raw = String(inputText || '').trim();
+      // Tenta interpretar como XML primeiro
+      if (raw.startsWith('<') || raw.startsWith('<?')) {
+        try {
+          return parseFiscalDocument(raw, 'Texto colado (XML)');
+        } catch(_) { /* não é XML válido, continua */ }
+      }
       if (!raw) return [];
 
       try {
@@ -1688,6 +1694,13 @@
       if (!normalized.razaoSocial && !normalized.nomeFantasia && !normalized.cnpj) {
         throw new Error('A base retornou dados incompletos para este CNPJ. Preencha os dados manualmente e continue.');
       }
+      // Auto-consulta CNAE IBGE após CNPJ bem-sucedido
+      if (normalized.cnaePrincipal) {
+        try {
+          const cnaeResult = await consultarCnaeIbgePorCodigo(normalized.cnaePrincipal);
+          normalized._cnaeIbgeAuto = cnaeResult;
+        } catch(_) { /* silencioso — CNAE é enriquecimento, não bloqueante */ }
+      }
       return normalized;
     }
 
@@ -1983,11 +1996,44 @@
         consultas.push({ tipo, detalhe, status:'local', warning:'', resumo, data });
       };
 
-      addConsultaLocal(
-        'Modo HTML único',
-        'Leitura executada no navegador, sem envio de XML ou dados fiscais para backend.',
-        'Diagnóstico local, complementação manual e prontidão para futura consulta oficial.'
-      );
+      // Se backend disponível, consultar motor interno IBS/CBS
+      if (TRIBUTOS_API_PROXY_BASE) {
+        try {
+          const versaoRes = await fetchTributosApi('/calculadora/dados-abertos/versao');
+          addConsultaLocal('Versão da base oficial', 'Consulta de versão do aplicativo e banco de dados via proxy/backend', 'retorno recebido', versaoRes.data);
+          // Calcular itens com campos suficientes
+          const calculaveis = rows.filter(row => avaliarProntidaoFiscal(row).podeCalcular);
+          for (const row of calculaveis.slice(0, 10)) {
+            try {
+              const calc = await fetchTributosApi('/calculadora/calculo', {
+                method: 'POST',
+                body: JSON.stringify({
+                  valor: row.baseCalculoNumero || row.valorOperacaoNumero || 0,
+                  cst: onlyDigits(row.cstIbsCbs || row.cstAtual).slice(0,3) || '000',
+                  cClassTrib: onlyDigits(row.cClassTrib).slice(0,6) || null,
+                  ano: new Date(row.dataEmissao || '').getFullYear() || new Date().getFullYear(),
+                })
+              });
+              addConsultaLocal(
+                'Cálculo IBS/CBS (motor interno LC 214/2025)',
+                `${row.documentoOrigem || 'Item'} · CST ${onlyDigits(row.cstIbsCbs).slice(0,3)} · Valor R$ ${(row.baseCalculoNumero || row.valorOperacaoNumero || 0).toLocaleString('pt-BR')}`,
+                `IBS: R$ ${calc.data.resultado?.ibs?.toLocaleString('pt-BR')} | CBS: R$ ${calc.data.resultado?.cbs?.toLocaleString('pt-BR')} | Total: R$ ${calc.data.resultado?.total?.toLocaleString('pt-BR')}`,
+                calc.data
+              );
+            } catch(calcErr) {
+              erros.push({ tipo:'Cálculo item', detalhe: row.documentoOrigem || 'Item', erro: calcErr.message });
+            }
+          }
+        } catch(backendErr) {
+          addConsultaLocal('Modo local', 'Backend disponível mas sem conexão no momento.', backendErr.message);
+        }
+      } else {
+        addConsultaLocal(
+          'Modo HTML único',
+          'Leitura executada no navegador, sem envio de XML ou dados fiscais para backend.',
+          'Diagnóstico local, complementação manual e prontidão para futura consulta oficial.'
+        );
+      }
 
       const ncmRows = rows.filter(row => onlyDigits(row.ncm).length >= 8).slice(0, 8);
       for (const row of ncmRows) {
@@ -2024,15 +2070,15 @@
           .map(item => `Item ${item.item}: ${item.pendenciasCalculo.join(', ') || 'sem pendência de cálculo'}`)
           .join(' | ');
         erros.push({
-          tipo:'Prontidão para cálculo oficial',
-          detalhe:'Cálculo oficial não executado no Modelo 1',
-          erro:`Esta versão HTML único não consulta a API oficial. Complete os campos editáveis para deixar a amostra pronta: CST IBS/CBS, cClassTrib, município IBGE com 7 dígitos e base/valor da operação. Amostra lida: ${rows.length} item(ns); prontos para cálculo: ${itensCalculaveis.length}. ${pendencias}`,
+          tipo:'Pendência de campos para cálculo',
+          detalhe:'Campos mínimos incompletos',
+          erro:`Complete os campos editáveis para calcular: CST IBS/CBS, cClassTrib, município IBGE com 7 dígitos e base/valor da operação. Amostra lida: ${rows.length} item(ns); calculáveis: ${itensCalculaveis.length}. ${pendencias}`,
         });
       }
 
       return {
         modo:getTributosApiModeLabel(),
-        configuracao:'html-unico-estatico',
+        configuracao: TRIBUTOS_API_PROXY_BASE ? 'vercel-backend-motor-local' : 'html-unico-estatico',
         atualizadoEm:new Date().toLocaleString('pt-BR'),
         versao:null,
         consultas,
@@ -3353,6 +3399,12 @@
             ...prev,
             cnpj: dados.cnpj || prev.cnpj,
           }));
+          // IBGE automático: se veio _cnaeIbgeAuto do fetch, já aplica sem precisar clicar
+          if (dados._cnaeIbgeAuto) {
+            setCnaeIbgeData(dados._cnaeIbgeAuto);
+            setCnaeIbgeStatus('');
+            setCnaeIbgeErro('');
+          }
         } catch (error) {
           setCnpjData(null);
           setCnpjErro(error?.message || 'Não foi possível consultar o CNPJ neste momento.');
