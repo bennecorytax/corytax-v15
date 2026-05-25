@@ -1195,10 +1195,14 @@
           block.split(/\n|;/).forEach(line => {
             const match = line.match(/^\s*([^:=]+)\s*[:=]\s*(.*?)\s*$/);
             if (!match) return;
-            row[fiscalCanonicalKey(match[1])] = match[2];
+            const val = match[2].trim();
+            if (val) row[fiscalCanonicalKey(match[1])] = val;
           });
           return row;
-        }).filter(row => Object.keys(row).length > 3);
+        }).filter(row => Object.keys(row).length > 2);
+        if (!rows.length) {
+          throw new Error('Não encontrei dados estruturados. Use o formato:\nCFOP: 5102\nNCM: 00000000\nValor operação: 1000,00\nCST IBS/CBS: 000\nOu cole um JSON ou XML válido.');
+        }
         return rows;
       }
     }
