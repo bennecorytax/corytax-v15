@@ -2942,6 +2942,7 @@
       const [apiOficialResultado, setApiOficialResultado] = useState(null);
       const [leadEnviado, setLeadEnviado] = useState(false);
       const [enviando, setEnviando] = useState(false);
+      const leadJaDisparouRef = React.useRef(false); // flag síncrona — evita duplo disparo
 
       const QUIZ_FIN  = QUIZ_QUESTIONS.filter(q => q.financeiro);
       const QUIZ_MAIN = QUIZ_QUESTIONS.filter(q => !q.financeiro);
@@ -3206,8 +3207,9 @@
       }
 
       async function dispararEnvioLead(scoreT, riskLevel, planoNome, vulnerabilidades) {
-        // Garante disparo único — evita múltiplos emails ao abrir modais ou botões
-        if (leadEnviado || enviando) return false;
+        // Guard síncrono via ref — garante disparo ÚNICO independente do ciclo React
+        if (leadJaDisparouRef.current) return false;
+        leadJaDisparouRef.current = true;
         setEnviando(true);
         const basePayload = montarResumoPerfil(scoreT, riskLevel, planoNome, vulnerabilidades);
         const enviado = await enviarDiagnosticoAppsScript(basePayload);
