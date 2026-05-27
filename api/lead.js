@@ -3,7 +3,7 @@
  * Envia dados do diagnóstico para Google Apps Script → Gmail
  */
 
-const APPS_SCRIPT_URL = process.env.APPS_SCRIPT_URL || '';
+const APPS_SCRIPT_URL = process.env.APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbznAZSBFat6Pv6UdE0O_mB49rY8TjP59w6PNMdu09c5pkC_joM4w_i0U150dP8p6m0v/exec';
 const TIMEOUT_MS = 15000;
 
 function setCors(res) {
