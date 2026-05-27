@@ -1195,13 +1195,12 @@
           block.split(/\n|;/).forEach(line => {
             const match = line.match(/^\s*([^:=]+)\s*[:=]\s*(.*?)\s*$/);
             if (!match) return;
-            const val = match[2].trim();
-            if (val) row[fiscalCanonicalKey(match[1])] = val;
+            row[fiscalCanonicalKey(match[1])] = match[2];
           });
           return row;
         }).filter(row => Object.keys(row).length > 2);
         if (!rows.length) {
-          throw new Error('Não encontrei dados estruturados. Use o formato:\nCFOP: 5102\nNCM: 00000000\nValor operação: 1000,00\nCST IBS/CBS: 000\nOu cole um JSON ou XML válido.');
+          throw new Error('Formato não reconhecido. Use: CFOP: 5102 / NCM: 00000000 / Valor operação: 1000,00 / CST IBS/CBS: 000');
         }
         return rows;
       }
@@ -1694,9 +1693,7 @@
         throw new Error('A base retornou dados incompletos para este CNPJ. Preencha os dados manualmente e continue.');
       }
       if (normalized.cnaePrincipal) {
-        try {
-          normalized._cnaeIbgeAuto = await consultarCnaeIbgePorCodigo(normalized.cnaePrincipal);
-        } catch(_) {}
+        try { normalized._cnaeIbgeAuto = await consultarCnaeIbgePorCodigo(normalized.cnaePrincipal); } catch(_) {}
       }
       return normalized;
     }
