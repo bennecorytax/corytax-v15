@@ -1,10 +1,10 @@
 /**
- * CORYTAX V20 — /api/lead.js atualizado
- * Envia dados do diagnóstico para Google Apps Script → Gmail
+ * CORYTAX V20 — /api/lead.js
+ * Repassa TODOS os campos do diagnóstico ao Google Apps Script → Gmail
  */
 
 const APPS_SCRIPT_URL = process.env.APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbznAZSBFat6Pv6UdE0O_mB49rY8TjP59w6PNMdu09c5pkC_joM4w_i0U150dP8p6m0v/exec';
-const TIMEOUT_MS = 15000;
+const TIMEOUT_MS = 20000;
 
 function setCors(res) {
   res.setHeader('Access-Control-Allow-Origin', process.env.CORYTAX_ALLOW_ORIGIN || '*');
@@ -19,9 +19,8 @@ module.exports = async function handler(req, res) {
 
   const body = req.body || {};
 
-  // Validar email mínimo
   const email = (body.email || '').trim();
-  const nome  = (body.nome || body.razaoSocial || '').trim();
+  const nome  = (body.nome || body.razaoSocial || body.cnpj_razao_social || '').trim();
 
   if (!email && !nome) {
     return res.status(400).json({ ok: false, error: 'Dados insuficientes para envio.' });
@@ -31,9 +30,12 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({
       ok: true,
       stored: false,
-      message: 'APPS_SCRIPT_URL não configurada. Configure nas variáveis de ambiente da Vercel.',
+      message: 'APPS_SCRIPT_URL não configurada.',
     });
   }
+
+  // Repassa todos os campos recebidos do frontend, sem filtrar
+  const payload = { ...body, nome, email };
 
   try {
     const controller = new AbortController();
@@ -42,16 +44,7 @@ module.exports = async function handler(req, res) {
     const upstream = await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        nome,
-        email,
-        cnpj:        body.cnpj        || '',
-        telefone:    body.telefone    || '',
-        cargo:       body.cargo       || '',
-        scoreFiscal: body.scoreFiscal || '',
-        laudoResumo: body.laudoResumo || '',
-        origem:      'CORYTAX-V20-Vercel',
-      }),
+      body: JSON.stringify(payload),
       signal: controller.signal,
     });
     clearTimeout(timer);
