@@ -3206,6 +3206,8 @@
       }
 
       async function dispararEnvioLead(scoreT, riskLevel, planoNome, vulnerabilidades) {
+        // Garante disparo único — evita múltiplos emails ao abrir modais ou botões
+        if (leadEnviado || enviando) return false;
         setEnviando(true);
         const basePayload = montarResumoPerfil(scoreT, riskLevel, planoNome, vulnerabilidades);
         const enviado = await enviarDiagnosticoAppsScript(basePayload);
