@@ -3228,8 +3228,8 @@
         };
       }
 
-      async function dispararEnvioLead(scoreT, riskLevel, planoNome, vulnerabilidades) {
-        if (leadEnviado) return true;
+      async function dispararEnvioLead(scoreT, riskLevel, planoNome, vulnerabilidades, forcar = false) {
+        if (leadEnviado && !forcar) return true;
         setEnviando(true);
 
         const basePayload = montarResumoPerfil(scoreT, riskLevel, planoNome, vulnerabilidades);
@@ -4633,7 +4633,8 @@
         function abrirValor()    { setModalValorAberto(true); dispararEnvioLead(scoreTotal, risk.label, risk.plano, vulns.map(q=>q.titulo)); }
         async function finalizarJornadaEBaixarPDF() {
           setModalValorAberto(true);
-          await dispararEnvioLead(scoreTotal, risk.label, risk.plano, vulns.map(q=>q.titulo));
+          // Força reenvio completo com todos os dados do diagnóstico
+          await dispararEnvioLead(scoreTotal, risk.label, risk.plano, vulns.map(q=>q.titulo), true);
           baixarRelatorioPDF();
         }
         function baixarRelatorioPDF() {
