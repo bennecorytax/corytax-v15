@@ -45,6 +45,10 @@
     .site-footer { position: static !important; z-index: 0 !important; opacity: .58; margin-top: 32px; clear: both; }
     .site-footer:hover { opacity: .86; }
     .workflow-footer { display: none !important; }
+    /* Oculta Vercel Toolbar (visível apenas para owner) */
+    vercel-live-feedback, #vercel-live-feedback,
+    [data-vercel-toolbar], [id^="vercel-toolbar"],
+    .__vercel_toolbar, #__vercel_toolbar { display: none !important; }
     .diagnostic-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
     .diagnostic-table th { text-align:left; color:#6e94ae; font-size:10px; text-transform:uppercase; letter-spacing:.08em; padding:0 10px 4px; }
     .diagnostic-table td { background:rgba(5,8,13,.72); border-top:1px solid #123454; border-bottom:1px solid #123454; padding:11px 10px; color:#edf6ff; font-size:12px; vertical-align:top; }
