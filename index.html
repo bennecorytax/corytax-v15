@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CORYTAX V20 — Diagnóstico Integralizador da Reforma Tributária</title>
+  <title>CORYTAX — Diagnóstico Integralizador HTML Único V20</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
@@ -1198,10 +1198,7 @@
             row[fiscalCanonicalKey(match[1])] = match[2];
           });
           return row;
-        }).filter(row => Object.keys(row).length > 2);
-        if (!rows.length) {
-          throw new Error('Formato não reconhecido. Use: CFOP: 5102 / NCM: 00000000 / Valor operação: 1000,00 / CST IBS/CBS: 000');
-        }
+        }).filter(row => Object.keys(row).length > 3);
         return rows;
       }
     }
@@ -1993,27 +1990,7 @@
       if (TRIBUTOS_API_PROXY_BASE) {
         try {
           const versaoRes = await fetchTributosApi('/calculadora/dados-abertos/versao');
-          addConsultaLocal('Versão da base oficial', 'Consulta de versão do aplicativo e banco de dados via proxy/backend', 'retorno recebido', versaoRes.data);
-          const calculaveis = rows.filter(row => avaliarProntidaoFiscal(row).podeCalcular);
-          for (const row of calculaveis.slice(0, 10)) {
-            try {
-              const calc = await fetchTributosApi('/calculadora/calculo', {
-                method:'POST',
-                body:JSON.stringify({
-                  valor: row.baseCalculoNumero || row.valorOperacaoNumero || 0,
-                  cst: onlyDigits(row.cstIbsCbs || row.cstAtual).slice(0,3) || '000',
-                  cClassTrib: onlyDigits(row.cClassTrib).slice(0,6) || null,
-                  ano: new Date(row.dataEmissao||'').getFullYear() || new Date().getFullYear(),
-                })
-              });
-              addConsultaLocal(
-                'Cálculo IBS/CBS — Motor LC 214/2025',
-                `${row.documentoOrigem||'Item'} · CST ${onlyDigits(row.cstIbsCbs).slice(0,3)} · R$ ${(row.baseCalculoNumero||row.valorOperacaoNumero||0).toLocaleString('pt-BR')}`,
-                `IBS: R$ ${calc.data.resultado?.ibs?.toLocaleString('pt-BR')} | CBS: R$ ${calc.data.resultado?.cbs?.toLocaleString('pt-BR')} | Total: R$ ${calc.data.resultado?.total?.toLocaleString('pt-BR')}`,
-                calc.data
-              );
-            } catch(e) { erros.push({tipo:'Cálculo item',detalhe:row.documentoOrigem||'Item',erro:e.message}); }
-          }
+          addConsultaLocal('Versão da base oficial', 'Motor LC 214/2025', 'online', versaoRes.data);
         } catch(e) {
           addConsultaLocal('Motor local', 'Backend disponível mas sem conexão.', e.message);
         }
@@ -3228,13 +3205,10 @@
         };
       }
 
-      async function dispararEnvioLead(scoreT, riskLevel, planoNome, vulnerabilidades, forcar = false) {
-        if (leadEnviado && !forcar) return true;
+      async function dispararEnvioLead(scoreT, riskLevel, planoNome, vulnerabilidades) {
         setEnviando(true);
-
         const basePayload = montarResumoPerfil(scoreT, riskLevel, planoNome, vulnerabilidades);
         const enviado = await enviarDiagnosticoAppsScript(basePayload);
-
         if (enviado) setLeadEnviado(true);
         setEnviando(false);
         return enviado;
@@ -4633,8 +4607,7 @@
         function abrirValor()    { setModalValorAberto(true); dispararEnvioLead(scoreTotal, risk.label, risk.plano, vulns.map(q=>q.titulo)); }
         async function finalizarJornadaEBaixarPDF() {
           setModalValorAberto(true);
-          // Força reenvio completo com todos os dados do diagnóstico
-          await dispararEnvioLead(scoreTotal, risk.label, risk.plano, vulns.map(q=>q.titulo), true);
+          await dispararEnvioLead(scoreTotal, risk.label, risk.plano, vulns.map(q=>q.titulo));
           baixarRelatorioPDF();
         }
         function baixarRelatorioPDF() {
