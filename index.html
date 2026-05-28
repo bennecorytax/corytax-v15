@@ -2507,32 +2507,32 @@
       'PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
 
     const MARGIN_REPASSE_OPTIONS = [
-      { label:'Sim, consegue reajustar rapidamente', value:'facil', score:20 },
-      { label:'Consegue parcialmente', value:'parcial', score:55 },
-      { label:'Tem muita dificuldade', value:'dificil', score:85 },
-      { label:'Não consegue reajustar', value:'nao_consegue', score:95 },
+      { label:'Não consigo reajustar', value:'nao_consegue', score:95 },
+      { label:'Tenho muita dificuldade', value:'dificil', score:85 },
+      { label:'Consigo parcialmente', value:'parcial', score:55 },
+      { label:'Sim — consigo reajustar rapidamente', value:'facil', score:20 },
       { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
 
     /* INSERIDO — opções simples para estimar rentabilidade sem exigir margem operacional */
     const PROFITABILITY_LUCRO_OPTIONS = [
-      { label:'Sim, com boa folga', value:'boa_folga', score:15 },
-      { label:'Sim, mas com pouca folga', value:'pouca_folga', score:45 },
-      { label:'Fica próxima do equilíbrio', value:'equilibrio', score:70 },
       { label:'Frequentemente opera no prejuízo', value:'prejuizo', score:95 },
+      { label:'Fica próxima do equilíbrio', value:'equilibrio', score:70 },
+      { label:'Sim — mas com pouca folga', value:'pouca_folga', score:45 },
+      { label:'Sim — com boa folga', value:'boa_folga', score:15 },
       { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const PROFITABILITY_CAIXA_OPTIONS = [
-      { label:'Sim, sobra caixa com frequência', value:'sobra_frequente', score:15 },
-      { label:'Às vezes sobra', value:'as_vezes', score:45 },
-      { label:'Quase não sobra', value:'quase_nao', score:75 },
       { label:'Normalmente falta caixa', value:'falta_caixa', score:95 },
+      { label:'Quase não sobra', value:'quase_nao', score:75 },
+      { label:'Às vezes sobra', value:'as_vezes', score:45 },
+      { label:'Sim — sobra com frequência', value:'sobra_frequente', score:15 },
       { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const PROFITABILITY_CUSTOS_RECENTES_OPTIONS = [
-      { label:'Sim, aumentaram muito', value:'aumentaram_muito', score:90 },
-      { label:'Sim, aumentaram um pouco', value:'aumentaram_pouco', score:60 },
-      { label:'Permaneceram estáveis', value:'estaveis', score:30 },
+      { label:'Subiram bastante', value:'aumentaram_muito', score:90 },
+      { label:'Subiram um pouco', value:'aumentaram_pouco', score:60 },
+      { label:'Ficaram estáveis', value:'estaveis', score:30 },
       { label:'Reduziram', value:'reduziram', score:15 },
       { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
@@ -2544,9 +2544,9 @@
       { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const PROFITABILITY_DEPENDENCIA_CLIENTES_OPTIONS = [
-      { label:'Sim, depende muito', value:'depende_muito', score:85 },
+      { label:'Sim — depende muito de poucos clientes', value:'depende_muito', score:85 },
       { label:'Depende parcialmente', value:'depende_parcial', score:55 },
-      { label:'Não, a carteira é diversificada', value:'diversificada', score:20 },
+      { label:'Não — carteira bem diversificada', value:'diversificada', score:20 },
       { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const PROFITABILITY_CONTROLE_OPTIONS = [
@@ -2557,17 +2557,17 @@
       { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const MARGIN_CLIENTES_OPTIONS = [
-      { label:'Empresas que aproveitam crédito tributário', value:'empresas_credito', score:25 },
-      { label:'Consumidores finais', value:'consumidores_finais', score:80 },
-      { label:'Governo ou contratos públicos', value:'governo', score:75 },
-      { label:'Marketplace/intermediadores', value:'marketplace', score:65 },
-      { label:'Misto', value:'misto', score:55 },
+      { label:'Outras empresas (B2B)', value:'empresas_credito', score:25 },
+      { label:'Consumidor final (B2C)', value:'consumidores_finais', score:80 },
+      { label:'Governo ou setor público', value:'governo', score:75 },
+      { label:'Marketplace ou plataformas', value:'marketplace', score:65 },
+      { label:'Misto — empresas e consumidores', value:'misto', score:55 },
       { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const MARGIN_CONTRATO_OPTIONS = [
-      { label:'Sim, muitos contratos longos ou preço fixo', value:'muitos_longos', score:85 },
-      { label:'Alguns contratos possuem preço fixo', value:'alguns_fixos', score:60 },
       { label:'A maioria das vendas permite reajuste rápido', value:'reajuste_rapido', score:25 },
+      { label:'Alguns contratos têm preço fixo', value:'alguns_fixos', score:60 },
+      { label:'Sim — muitos contratos com preço fixo', value:'muitos_longos', score:85 },
       { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const MARGIN_CREDITO_OPTIONS = [
@@ -2577,15 +2577,15 @@
       { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const MARGIN_SENSIBILIDADE_OPTIONS = [
-      { label:'Muito sensível', value:'muito', score:90 },
+      { label:'Muito sensível — qualquer aumento afasta clientes', value:'muito', score:90 },
       { label:'Moderadamente sensível', value:'moderado', score:60 },
-      { label:'Pouco sensível', value:'pouco', score:25 },
+      { label:'Pouco sensível — preço não é o principal fator', value:'pouco', score:25 },
       { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const MARGIN_CONCORRENCIA_OPTIONS = [
-      { label:'Sim, muita concorrência por preço', value:'forte', score:85 },
-      { label:'Concorrência moderada', value:'moderada', score:55 },
-      { label:'Baixa concorrência por preço', value:'baixa', score:25 },
+      { label:'Sim — muita guerra de preço no mercado', value:'forte', score:85 },
+      { label:'Concorrência moderada por preço', value:'moderada', score:55 },
+      { label:'Baixa — preço não é o principal campo de batalha', value:'baixa', score:25 },
       { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
 
@@ -3789,6 +3789,7 @@
                   <div style={{ color:C.textMuted, fontSize:11, lineHeight:1.58, maxWidth:760 }}>
                     Para evitar informações sem sentido para a decisão, o diagnóstico usa apenas premissas declaradas pelo cliente. Quando algum dado não for preenchido, o relatório indica cálculo parcial.
                   </div>
+                <div style={{ color:'#8fafd4', fontSize:12, lineHeight:1.6, marginTop:6, marginBottom:4 }}>Preencha o que souber. Quanto mais dados, mais preciso o diagnóstico — mas nenhum campo é obrigatório.</div>
                 </div>
                 <div style={{ background:'rgba(0,0,0,.20)', border:`1px solid ${C.borderLight}`, borderRadius:999, padding:'7px 10px', color:C.blueSoft, fontSize:10, fontWeight:900, textTransform:'uppercase', letterSpacing:'.08em' }}>
                   Base declarada pelo cliente
@@ -3802,6 +3803,7 @@
                     <div style={{ color:C.textMuted, fontSize:11, lineHeight:1.58, maxWidth:840 }}>
                       Você não precisa saber a margem operacional exata. Responda algumas perguntas simples sobre lucro, custos e despesas para que o diagnóstico estime o nível de pressão financeira. Caso não saiba alguma resposta, deixe em branco.
                     </div>
+                <div style={{ color:'#8fafd4', fontSize:12, lineHeight:1.6, marginTop:6, marginBottom:4 }}>Entender a margem e o resultado atual ajuda a medir o quanto a Reforma vai pressionar sua operação.</div>
                   </div>
                   <div style={{ color:C.blueSoft, fontSize:22, lineHeight:1 }}>📉</div>
                 </div>
@@ -3947,6 +3949,7 @@
                     <div style={{ color:C.textMuted, fontSize:11, lineHeight:1.58, maxWidth:760 }}>
                       O impacto de caixa será estimado com base no perfil de recebimento, prazo médio, regime tributário e exposição estimada ao IBS/CBS. Caso você não saiba algum dado, deixe em branco e o diagnóstico fará apenas cálculo parcial.
                     </div>
+                <div style={{ color:'#8fafd4', fontSize:12, lineHeight:1.6, marginTop:6, marginBottom:4 }}>O Split Payment pode reter parte do seu dinheiro antes de cair na conta. Essas perguntas estimam o tamanho desse impacto.</div>
                   </div>
                   <div style={{ color:C.blueSoft, fontSize:22, lineHeight:1 }}>💧</div>
                 </div>
