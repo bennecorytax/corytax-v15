@@ -829,8 +829,10 @@
       });
       const impactoCaixaMensal = impactoCaixa.necessidadeMensalCaixa;
       const impactoCaixaAnual = impactoCaixa.impactoAnualCaixa;
-      const exposicaoConsolidada = [pressaoMargemValor, creditosRevisarValor, impactoCaixaAnual].every(v => v !== null)
-        ? Math.round(pressaoMargemValor + creditosRevisarValor + impactoCaixaAnual)
+      // Exposição consolidada: creditos usa 0 se não informado (não bloqueia o cálculo)
+      const creditosParaExposicao = creditosRevisarValor ?? 0;
+      const exposicaoConsolidada = [pressaoMargemValor, impactoCaixaAnual].every(v => v !== null)
+        ? Math.round(pressaoMargemValor + creditosParaExposicao + impactoCaixaAnual)
         : null;
       const necessidadeMensalCaixa = impactoCaixaMensal;
       const margemSegurancaValor = necessidadeMensalCaixa !== null && segurancaDecimal !== null
@@ -914,7 +916,7 @@
         { indicador:'Faturamento anual', valor:fatAnual, formula:'Faturamento mensal médio × 12', observacao:fatAnual !== null ? 'Base informada pelo cliente' : 'Dado insuficiente' },
         { indicador:'Perfil de rentabilidade', valor:profitabilityProfile.scoreCalculado, formula:profitabilityProfile.metodo, observacao:`${profitabilityProfile.rentabilidade.label} · confiança ${profitabilityProfile.confianca}` },
         { indicador:'Pressão sobre margem', valor:pressaoMargemValor, formula:marginPressure.formulaImpacto, observacao:pressaoPctInput !== null ? `${marginPressure.nivel.label} · ${marginPressure.metodo}` : `${marginPressure.nivel.label} · estimativa qualitativa sem conversão automática para percentual` },
-        { indicador:'Créditos a revisar', valor:creditosRevisarValor, formula:'Valor informado pelo cliente', observacao:creditosRevisarValor !== null ? 'Premissa declarada' : 'Dado não informado' },
+        { indicador:'Créditos a revisar', valor:creditosRevisarValor, formula:'Valor informado pelo cliente', observacao:creditosRevisarValor !== null ? 'Premissa declarada' : 'Não preenchido — usando R$ 0 na exposição' },
         { indicador:'Impacto anual de caixa', valor:impactoCaixaAnual, formula:impactoCaixa.metodo === 'estimativa técnica informada pelo cliente' ? 'Faturamento mensal × % técnico informado × 12' : 'Necessidade mensal projetada pelo perfil de recebimento × 12', observacao:impactoCaixa.necessidadeMensalCaixa !== null ? `${impactoCaixa.nivel.label} · ${impactoCaixa.metodo}` : 'Dados insuficientes para estimativa completa' },
         { indicador:'Exposição consolidada', valor:exposicaoConsolidada, formula:'Pressão + créditos + impacto anual de caixa', observacao:exposicaoConsolidada !== null ? 'Resultado anual estimado' : 'Cálculo parcial indisponível' },
         { indicador:'Necessidade mensal de caixa', valor:necessidadeMensalCaixa, formula:impactoCaixa.metodo === 'estimativa técnica informada pelo cliente' ? 'Faturamento mensal × % técnico informado' : 'Exposição mensal ajustada pelo perfil de recebimento', observacao:necessidadeMensalCaixa !== null ? 'Projeção gerencial mensal' : 'Cálculo parcial indisponível' },
