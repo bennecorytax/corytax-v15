@@ -2347,81 +2347,81 @@
       { id:'q1', peso:12, titulo:'Vai precisar aumentar seus preços?',
         desc:'Com o fim do modelo antigo e a chegada do IBS e CBS, os impostos serão cobrados "por fora" do preço. Você já sabe qual será o seu novo preço de venda para não perder lucro?',
         opcoes:[
-          { label:'Sim, já refizemos a precificação completa.', risco:0 },
-          { label:'Mais ou menos — estamos tentando entender.', risco:6 },
-          { label:'Não, ainda não calculei isso.', risco:12 },
+          { label:'Ainda não calculei isso.', risco:12 },
+          { label:'Estou tentando entender o impacto.', risco:6 },
+          { label:'Sim — já refizemos a precificação completa.', risco:0 },
         ],
       },
       { id:'q2', peso:14, titulo:'O imposto pode travar seu caixa?',
         desc:'Na nova regra, o banco vai separar o imposto e pagar diretamente ao governo antes do dinheiro cair na sua conta. Você já calculou o quanto isso vai reduzir o caixa disponível diariamente?',
         opcoes:[
-          { label:'Sim, já temos essa projeção financeira.', risco:0 },
-          { label:'Não sabia que isso ia acontecer.', risco:8 },
-          { label:'Não faço ideia de como calcular.', risco:14 },
+          { label:'Não sabia que isso ia acontecer.', risco:14 },
+          { label:'Sei do risco, mas ainda não calculei.', risco:8 },
+          { label:'Sim — já temos a projeção financeira.', risco:0 },
         ],
       },
       { id:'q3', peso:11, titulo:'Seus fornecedores podem virar risco?',
         desc:'O que você compra vai gerar créditos para abater impostos. Dependendo do fornecedor ou regime tributário, sua empresa pode perder competitividade. Você já mapeou quais fornecedores manter, renegociar ou substituir?',
         opcoes:[
-          { label:'Sim, já avaliamos nossa cadeia de fornecedores.', risco:0 },
-          { label:'Não — continuamos comprando normalmente.', risco:6 },
-          { label:'Não sabia que fornecedores impactariam nossos créditos.', risco:11 },
+          { label:'Não sabia que fornecedores afetam meus créditos.', risco:11 },
+          { label:'Compro normalmente, não avaliei isso ainda.', risco:6 },
+          { label:'Sim — já avaliamos nossa cadeia de fornecedores.', risco:0 },
         ],
       },
       { id:'q4', peso:10, titulo:'Seu sistema está pronto para a mudança?',
         desc:'Em 2026 já começaram os testes operacionais do novo modelo tributário. Seu ERP e emissão fiscal já foram adequados para o novo cenário?',
         opcoes:[
-          { label:'Sim, nosso sistema já está adequado.', risco:0 },
-          { label:'O fornecedor do sistema disse que vai atualizar.', risco:5 },
-          { label:'Não — seguimos operando da mesma forma.', risco:10 },
+          { label:'Opero da mesma forma, sem nenhuma mudança.', risco:10 },
+          { label:'Meu fornecedor disse que vai atualizar.', risco:5 },
+          { label:'Sim — nosso sistema já está adequado.', risco:0 },
         ],
       },
       { id:'q5', peso:9, titulo:'Seus contratos protegem sua margem?',
         desc:'Contratos de médio e longo prazo podem perder margem quando as novas regras entrarem em vigor. Seus contratos atuais já possuem mecanismos de reajuste tributário?',
         opcoes:[
-          { label:'Sim, revisamos e adequamos os contratos.', risco:0 },
-          { label:'Apenas parte deles foi revisada.', risco:5 },
-          { label:'Não temos isso previsto em nenhum contrato.', risco:9 },
+          { label:'Nenhum contrato tem isso previsto.', risco:9 },
+          { label:'Revisamos parte dos contratos.', risco:5 },
+          { label:'Sim — revisamos e adequamos todos os contratos.', risco:0 },
         ],
       },
       { id:'q6', peso:8, titulo:'Seu produto ou serviço será taxado a mais?',
         desc:'Alguns produtos e setores sofrerão incidência adicional do Imposto Seletivo. Você já avaliou se sua operação pode ser impactada?',
         opcoes:[
-          { label:'Sim, já analisamos esse risco com profundidade.', risco:0 },
-          { label:'Talvez exista impacto — mas não sei o tamanho.', risco:4 },
           { label:'Não sei como isso funciona.', risco:8 },
+          { label:'Pode haver impacto, mas não sei o tamanho.', risco:4 },
+          { label:'Sim — já analisamos com profundidade.', risco:0 },
         ],
       },
       { id:'q7', peso:10, titulo:'Você pode perder créditos que já tem?',
         desc:'Com o encerramento de PIS e COFINS, empresas podem perder créditos acumulados se não houver planejamento. Você possui estratégia para aproveitamento desses créditos?',
         opcoes:[
-          { label:'Sim, temos estratégia definida e em execução.', risco:0 },
-          { label:'Não temos créditos relevantes a recuperar.', risco:3 },
           { label:'Não sabemos se temos valores a recuperar.', risco:10 },
+          { label:'Não temos créditos relevantes a recuperar.', risco:3 },
+          { label:'Sim — temos estratégia definida e em execução.', risco:0 },
         ],
       },
       { id:'q8', peso:9, titulo:'Seu cadastro fiscal está em ordem?',
         desc:'A fiscalização será praticamente instantânea através da nota fiscal eletrônica. Seu cadastro fiscal e tributário está revisado e auditado?',
         opcoes:[
-          { label:'Sim, realizamos auditorias frequentes.', risco:0 },
-          { label:'Acreditamos que esteja correto.', risco:5 },
           { label:'Não temos controle disso hoje.', risco:9 },
+          { label:'Acreditamos que está correto, mas sem auditoria.', risco:5 },
+          { label:'Sim — realizamos auditorias frequentes.', risco:0 },
         ],
       },
       { id:'q9', peso:9, titulo:'Sua empresa perde terreno para concorrentes?',
         desc:'Grandes empresas já começaram seus ajustes tributários e financeiros. Sua empresa já possui estratégia para não perder margem ou competitividade?',
         opcoes:[
-          { label:'Sim, temos planejamento competitivo estruturado.', risco:0 },
-          { label:'Existe preocupação com isso, mas sem plano definido.', risco:5 },
           { label:'Ainda não analisamos esse impacto.', risco:9 },
+          { label:'Há preocupação, mas sem plano definido ainda.', risco:5 },
+          { label:'Sim — temos planejamento competitivo estruturado.', risco:0 },
         ],
       },
       { id:'q10', peso:8, titulo:'A liderança tem plano para atravessar a Reforma?',
         desc:'A liderança da empresa possui hoje um plano claro para atravessar a Reforma Tributária com segurança financeira?',
         opcoes:[
-          { label:'Sim, temos plano estruturado e em execução.', risco:0 },
-          { label:'Sabemos que precisamos agir — mas ainda sem plano.', risco:4 },
           { label:'Não temos direcionamento claro.', risco:8 },
+          { label:'Sabemos que precisamos agir, mas ainda sem plano.', risco:4 },
+          { label:'Sim — temos plano estruturado e em execução.', risco:0 },
         ],
       },
       /* ── BLOCO FINANCEIRO ── */
@@ -2537,10 +2537,10 @@
       { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const PROFITABILITY_PESO_CUSTOS_OPTIONS = [
-      { label:'Baixo', value:'baixo', score:20 },
-      { label:'Moderado', value:'moderado', score:45 },
-      { label:'Alto', value:'alto', score:75 },
-      { label:'Muito alto', value:'muito_alto', score:95 },
+      { label:'Menos de 40% do faturamento', value:'baixo', score:20 },
+      { label:'Entre 40% e 60%', value:'moderado', score:45 },
+      { label:'Entre 60% e 80%', value:'alto', score:75 },
+      { label:'Acima de 80%', value:'muito_alto', score:95 },
       { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const PROFITABILITY_DEPENDENCIA_CLIENTES_OPTIONS = [
@@ -2550,10 +2550,10 @@
       { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const PROFITABILITY_CONTROLE_OPTIONS = [
-      { label:'Sim, acompanha DRE/resultado mensal', value:'dre_mensal', score:15 },
-      { label:'Tem controle parcial', value:'parcial', score:45 },
-      { label:'Controla apenas entradas e saídas', value:'entradas_saidas', score:70 },
-      { label:'Não possui controle estruturado', value:'sem_controle', score:90 },
+      { label:'Não tenho controle estruturado', value:'sem_controle', score:90 },
+      { label:'Só entradas e saídas', value:'entradas_saidas', score:70 },
+      { label:'Parcial — acompanho algumas coisas', value:'parcial', score:45 },
+      { label:'Sim — acompanho DRE ou resultado mensal', value:'dre_mensal', score:15 },
       { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const MARGIN_CLIENTES_OPTIONS = [
@@ -2571,9 +2571,9 @@
       { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const MARGIN_CREDITO_OPTIONS = [
-      { label:'Sim, volume relevante de compras com possível crédito', value:'relevante', score:25 },
-      { label:'Parcialmente', value:'parcial', score:55 },
-      { label:'Pouco ou quase nenhum crédito', value:'baixo', score:85 },
+      { label:'Sim — compro bastante de fornecedores que geram crédito', value:'relevante', score:25 },
+      { label:'Alguns fornecedores geram crédito', value:'parcial', score:55 },
+      { label:'Quase nenhuma compra gera crédito', value:'baixo', score:85 },
       { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const MARGIN_SENSIBILIDADE_OPTIONS = [
@@ -2660,7 +2660,39 @@
     }
 
 
-    function PremiumSelect({ value, onChange, options = [], placeholder = 'Selecione uma opção...', compact = false, accent = C.blueAccent }) {
+          function Tooltip({ text }) {
+        const [visible, setVisible] = React.useState(false);
+        return (
+          <span style={{ position:'relative', display:'inline-flex', alignItems:'center', marginLeft:6 }}>
+            <span
+              onMouseEnter={() => setVisible(true)}
+              onMouseLeave={() => setVisible(false)}
+              onClick={() => setVisible(v => !v)}
+              style={{
+                display:'inline-flex', alignItems:'center', justifyContent:'center',
+                width:16, height:16, borderRadius:'50%', fontSize:10, fontWeight:900,
+                background:'rgba(255,255,255,.12)', color:'rgba(255,255,255,.55)',
+                cursor:'pointer', border:'1px solid rgba(255,255,255,.18)',
+                userSelect:'none', flexShrink:0,
+              }}
+            >?</span>
+            {visible && (
+              <span style={{
+                position:'absolute', bottom:'calc(100% + 6px)', left:'50%',
+                transform:'translateX(-50%)', background:'#1a2744', color:'#e2eeff',
+                fontSize:11, lineHeight:1.5, padding:'8px 11px', borderRadius:8,
+                border:'1px solid rgba(100,160,255,.25)', boxShadow:'0 4px 20px rgba(0,0,0,.5)',
+                width:220, zIndex:999, whiteSpace:'normal', textAlign:'left',
+                pointerEvents:'none',
+              }}>
+                {text}
+              </span>
+            )}
+          </span>
+        );
+      }
+
+      function PremiumSelect({ value, onChange, options = [], placeholder = 'Selecione uma opção...', compact = false, accent = C.blueAccent }) {
       const [open, setOpen] = useState(false);
       const normalizedOptions = options.map((opt, i) => {
         const label = typeof opt === 'string' ? opt : opt.label;
@@ -3663,9 +3695,9 @@
           <div style={{ animation:'fadeSlide 0.4s ease' }}>
             <h2 style={{ color:C.white, fontWeight:900, fontSize:24, marginBottom:4 }}>Perfil da sua empresa</h2>
             <p style={{ color:C.textMuted, fontSize:13, marginBottom:22, lineHeight:1.7 }}>
-              Essas informações personalizam o nível de exposição e tornam o diagnóstico mais preciso para a sua realidade.
+              Quanto mais você preencher, mais preciso será o seu diagnóstico. Pule o que não souber — o sistema calcula mesmo assim.
             </p>
-            <PerfilLabel text="Faturamento Mensal Médio" />
+            <PerfilLabel text="Quanto sua empresa fatura por mês?" />
             <div style={{ background:'rgba(255,255,255,.035)', border:`1px solid ${perfil.faturamento ? C.blueAccent : C.border}`, borderRadius:12, padding:14, marginBottom:20 }}>
               <input
                 className="premium-focus"
@@ -3689,7 +3721,7 @@
             </div>
             <div className="mobile-stack" style={{ display:'grid', gridTemplateColumns:'repeat(2,minmax(0,1fr))', gap:14, marginBottom:18 }}>
               <div>
-                <PerfilLabel text="Regime Tributário" />
+                <PerfilLabel text="Qual é o regime tributário?" />
                 <PremiumSelect
                   value={perfil.regime}
                   options={['Simples Nacional','Lucro Presumido','Lucro Real']}
@@ -3698,7 +3730,7 @@
                 />
               </div>
               <div>
-                <PerfilLabel text="Possui Filiais?" />
+                <PerfilLabel text="Tem filiais?" />
                 <PremiumSelect
                   value={perfil.filiais}
                   options={['Não','Sim, até 3','Sim, mais de 3']}
@@ -3709,7 +3741,7 @@
             </div>
             <div className="mobile-stack" style={{ display:'grid', gridTemplateColumns:'repeat(2,minmax(0,1fr))', gap:14, marginBottom:18 }}>
               <div>
-                <PerfilLabel text="Sócios / Diretores" />
+                <PerfilLabel text="Quantos sócios ou diretores?" />
                 <PremiumSelect
                   value={perfil.socios}
                   options={['1','2 a 3','4 a 6','Mais de 6']}
@@ -3718,7 +3750,7 @@
                 />
               </div>
               <div>
-                <PerfilLabel text="Média de Fornecedores Ativos" />
+                <PerfilLabel text="Quantos fornecedores ativos?" />
                 <PremiumSelect
                   value={perfil.fornecedores}
                   options={['Até 10','11 a 50','51 a 100','101 a 200','Mais de 200']}
@@ -3729,7 +3761,7 @@
             </div>
             <div className="mobile-stack" style={{ display:'grid', gridTemplateColumns:'repeat(2,minmax(0,1fr))', gap:14, marginBottom:24 }}>
               <div>
-                <PerfilLabel text="Segmento de Atuação" />
+                <PerfilLabel text="Qual é o segmento da empresa?" />
                 <PremiumSelect
                   value={perfil.segmento}
                   options={SEGMENTOS}
@@ -3738,7 +3770,7 @@
                 />
               </div>
               <div>
-                <PerfilLabel text="Estado (UF) Principal de Operação" />
+                <PerfilLabel text="Em qual estado opera principalmente?" />
                 <PremiumSelect
                   value={perfil.uf}
                   options={UFS}
@@ -3753,7 +3785,7 @@
             }}>
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', gap:12, flexWrap:'wrap', marginBottom:14 }}>
                 <div>
-                  <div style={{ color:C.white, fontSize:16, fontWeight:900, marginBottom:4 }}>Dados financeiros para escala do relatório</div>
+                  <div style={{ color:C.white, fontSize:16, fontWeight:900, marginBottom:4 }}>Situação financeira da empresa</div>
                   <div style={{ color:C.textMuted, fontSize:11, lineHeight:1.58, maxWidth:760 }}>
                     Para evitar informações sem sentido para a decisão, o diagnóstico usa apenas premissas declaradas pelo cliente. Quando algum dado não for preenchido, o relatório indica cálculo parcial.
                   </div>
@@ -3766,7 +3798,7 @@
               <div className="print-avoid" style={{ marginTop:2, background:'rgba(5,8,13,.62)', border:`1px solid ${C.borderLight}`, borderRadius:14, padding:16 }}>
                 <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', gap:12, flexWrap:'wrap', marginBottom:12 }}>
                   <div>
-                    <div style={{ color:C.white, fontSize:15, fontWeight:900, marginBottom:5 }}>Dados para entender a rentabilidade da empresa</div>
+                    <div style={{ color:C.white, fontSize:15, fontWeight:900, marginBottom:5 }}>Como está a rentabilidade?</div>
                     <div style={{ color:C.textMuted, fontSize:11, lineHeight:1.58, maxWidth:840 }}>
                       Você não precisa saber a margem operacional exata. Responda algumas perguntas simples sobre lucro, custos e despesas para que o diagnóstico estime o nível de pressão financeira. Caso não saiba alguma resposta, deixe em branco.
                     </div>
@@ -3776,48 +3808,48 @@
 
                 <div className="mobile-stack" style={{ display:'grid', gridTemplateColumns:'repeat(3,minmax(0,1fr))', gap:12 }}>
                   <div>
-                    <PerfilLabel text="A empresa costuma operar com lucro?" />
+                    <PerfilLabel text="Sua empresa costuma fechar no lucro?" />
                     <PremiumSelect value={perfil.lucroOperacional} options={PROFITABILITY_LUCRO_OPTIONS} placeholder="Selecione uma opção..." onChange={value => setPerfil(p=>({...p, lucroOperacional:value}))} />
                   </div>
                   <div>
-                    <PerfilLabel text="Depois de pagar custos, despesas e impostos, sobra caixa?" />
+                    <PerfilLabel text="Após pagar tudo, sobra dinheiro no caixa?" />
                     <PremiumSelect value={perfil.sobraCaixa} options={PROFITABILITY_CAIXA_OPTIONS} placeholder="Selecione uma opção..." onChange={value => setPerfil(p=>({...p, sobraCaixa:value}))} />
                   </div>
                   <div>
-                    <PerfilLabel text="Os custos aumentaram nos últimos meses?" />
+                    <PerfilLabel text="Seus custos subiram nos últimos meses?" />
                     <PremiumSelect value={perfil.custosRecentes} options={PROFITABILITY_CUSTOS_RECENTES_OPTIONS} placeholder="Selecione uma opção..." onChange={value => setPerfil(p=>({...p, custosRecentes:value}))} />
                   </div>
                 </div>
 
                 <div className="mobile-stack" style={{ display:'grid', gridTemplateColumns:'repeat(3,minmax(0,1fr))', gap:12, marginTop:12 }}>
                   <div>
-                    <PerfilLabel text="A empresa consegue reajustar preços quando os custos aumentam?" />
+                    <PerfilLabel text="Você consegue repassar o aumento de custo no preço?" />
                     <PremiumSelect value={perfil.capacidadeRepasse} options={MARGIN_REPASSE_OPTIONS} placeholder="Selecione uma opção..." onChange={value => setPerfil(p=>({...p, capacidadeRepasse:value}))} />
                     <div style={{ color:C.textFaint, fontSize:11, lineHeight:1.55, marginTop:8 }}>A capacidade de reajuste ajuda a medir a pressão sobre preço e margem.</div>
                   </div>
                   <div>
-                    <PerfilLabel text="Qual é o peso dos custos e despesas no faturamento?" />
+                    <PerfilLabel text="Quanto pesa o custo total sobre o faturamento?" />
                     <PremiumSelect value={perfil.pesoCustos} options={PROFITABILITY_PESO_CUSTOS_OPTIONS} placeholder="Selecione uma opção..." onChange={value => setPerfil(p=>({...p, pesoCustos:value}))} />
                     <div style={{ color:C.textFaint, fontSize:11, lineHeight:1.55, marginTop:8 }}>Considere aluguel, folha, fornecedores, impostos, comissões, fretes e demais despesas.</div>
                   </div>
                   <div>
-                    <PerfilLabel text="A empresa depende de poucos clientes ou contratos?" />
+                    <PerfilLabel text="A empresa depende muito de poucos clientes?" />
                     <PremiumSelect value={perfil.dependenciaClientes} options={PROFITABILITY_DEPENDENCIA_CLIENTES_OPTIONS} placeholder="Selecione uma opção..." onChange={value => setPerfil(p=>({...p, dependenciaClientes:value}))} />
                   </div>
                 </div>
 
                 <div className="mobile-stack" style={{ display:'grid', gridTemplateColumns:'repeat(3,minmax(0,1fr))', gap:12, marginTop:12 }}>
                   <div>
-                    <PerfilLabel text="A empresa tem controle financeiro mensal?" />
+                    <PerfilLabel text="Você acompanha resultado financeiro todo mês?" />
                     <PremiumSelect value={perfil.controleFinanceiro} options={PROFITABILITY_CONTROLE_OPTIONS} placeholder="Selecione uma opção..." onChange={value => setPerfil(p=>({...p, controleFinanceiro:value}))} />
                   </div>
                   <div>
-                    <PerfilLabel text="Quem são os principais clientes da empresa?" />
+                    <PerfilLabel text="Para quem você vende principalmente?" />
                     <PremiumSelect value={perfil.perfilClientes} options={MARGIN_CLIENTES_OPTIONS} placeholder="Selecione uma opção..." onChange={value => setPerfil(p=>({...p, perfilClientes:value}))} />
                     <div style={{ color:C.textFaint, fontSize:11, lineHeight:1.55, marginTop:8 }}>Ajuda a avaliar repasse, créditos e sensibilidade de preço.</div>
                   </div>
                   <div>
-                    <PerfilLabel text="As vendas têm contratos de longo prazo ou preço fixo?" />
+                    <PerfilLabel text="Você tem contratos com preço fechado?" />
                     <PremiumSelect value={perfil.tipoContrato} options={MARGIN_CONTRATO_OPTIONS} placeholder="Selecione uma opção..." onChange={value => setPerfil(p=>({...p, tipoContrato:value}))} />
                     <div style={{ color:C.textFaint, fontSize:11, lineHeight:1.55, marginTop:8 }}>Contratos longos podem dificultar recomposição de preço.</div>
                   </div>
@@ -3825,15 +3857,15 @@
 
                 <div className="mobile-stack" style={{ display:'grid', gridTemplateColumns:'repeat(3,minmax(0,1fr))', gap:12, marginTop:12 }}>
                   <div>
-                    <PerfilLabel text="A empresa compra itens que podem gerar créditos?" />
+                    <PerfilLabel text="Suas compras podem gerar créditos de imposto?" />
                     <PremiumSelect value={perfil.dependenciaCredito} options={MARGIN_CREDITO_OPTIONS} placeholder="Selecione uma opção..." onChange={value => setPerfil(p=>({...p, dependenciaCredito:value}))} />
                   </div>
                   <div>
-                    <PerfilLabel text="O mercado da empresa é muito sensível a preço?" />
+                    <PerfilLabel text="Seu cliente é muito sensível a preço?" />
                     <PremiumSelect value={perfil.sensibilidadePreco} options={MARGIN_SENSIBILIDADE_OPTIONS} placeholder="Selecione uma opção..." onChange={value => setPerfil(p=>({...p, sensibilidadePreco:value}))} />
                   </div>
                   <div>
-                    <PerfilLabel text="O setor possui concorrência forte por preço?" />
+                    <PerfilLabel text="Sua concorrência compete muito por preço?" />
                     <PremiumSelect value={perfil.concorrenciaPreco} options={MARGIN_CONCORRENCIA_OPTIONS} placeholder="Selecione uma opção..." onChange={value => setPerfil(p=>({...p, concorrenciaPreco:value}))} />
                   </div>
                 </div>
@@ -3854,7 +3886,7 @@
                   <ToggleOptionCard
                     active={showExactMargin}
                     onToggle={() => setShowExactMargin(v => !v)}
-                    title="Tenho a margem operacional exata"
+                    title="Sei minha margem operacional exata"
                     subtitle="Use esta opção se a empresa já acompanha DRE, demonstrativo de resultado ou tem a margem operacional calculada."
                     ctaLabel="Clique aqui para informar"
                     activeLabel="Campo habilitado"
@@ -3863,7 +3895,7 @@
                   <ToggleOptionCard
                     active={showAdvancedMargin}
                     onToggle={() => setShowAdvancedMargin(v => !v)}
-                    title="Tenho uma estimativa técnica de pressão IBS/CBS"
+                    title="Tenho estimativa do impacto IBS/CBS na margem"
                     subtitle="Opcional para quem já possui estudo técnico sobre preço, custo, margem ou efeito da reforma tributária."
                     ctaLabel="Clique aqui para informar"
                     activeLabel="Campo habilitado"
@@ -3911,7 +3943,7 @@
               <div className="print-avoid" style={{ marginTop:16, background:'rgba(5,8,13,.62)', border:`1px solid ${C.borderLight}`, borderRadius:14, padding:16 }}>
                 <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', gap:12, flexWrap:'wrap', marginBottom:12 }}>
                   <div>
-                    <div style={{ color:C.white, fontSize:15, fontWeight:900, marginBottom:5 }}>Dados para estimar o impacto no caixa</div>
+                    <div style={{ color:C.white, fontSize:15, fontWeight:900, marginBottom:5 }}>Como funciona seu caixa?</div>
                     <div style={{ color:C.textMuted, fontSize:11, lineHeight:1.58, maxWidth:760 }}>
                       O impacto de caixa será estimado com base no perfil de recebimento, prazo médio, regime tributário e exposição estimada ao IBS/CBS. Caso você não saiba algum dado, deixe em branco e o diagnóstico fará apenas cálculo parcial.
                     </div>
@@ -3934,7 +3966,7 @@
                     }}
                   />
                   <PremiumInputBox
-                    label="Prazo médio de recebimento"
+                    label="Em quantos dias você recebe das vendas?"
                     value={perfil.prazoRecebimentoDias}
                     inputMode="numeric"
                     suffix="dias"
@@ -3943,7 +3975,7 @@
                     onChange={e => setPerfil(p=>({...p, prazoRecebimentoDias:onlyDigits(e.target.value)}))}
                   />
                   <PremiumInputBox
-                    label="Vendas por meios com intermediação financeira"
+                    label="Quanto das vendas passa por cartão ou intermediador?"
                     value={perfil.vendasIntermediadasPct}
                     inputMode="decimal"
                     suffix="%"
@@ -3958,7 +3990,7 @@
                 </div>
                 <div className="mobile-stack" style={{ display:'grid', gridTemplateColumns:'repeat(3,minmax(0,1fr))', gap:12, marginTop:12 }}>
                   <PremiumInputBox
-                    label="Compras com possível crédito tributário"
+                    label="Qual % das compras pode gerar crédito tributário?"
                     value={perfil.comprasCreditoPct}
                     inputMode="decimal"
                     suffix="%"
@@ -3971,7 +4003,7 @@
                     }}
                   />
                   <PremiumInputBox
-                    label="Margem de segurança de caixa"
+                    label="Qual é sua reserva de caixa (% do faturamento)?"
                     value={perfil.segurancaCaixaPct}
                     inputMode="decimal"
                     suffix="%"
@@ -3986,7 +4018,7 @@
                   <ToggleOptionCard
                     active={showAdvancedCash}
                     onToggle={() => setShowAdvancedCash(v => !v)}
-                    title="Tenho uma estimativa técnica de impacto no caixa"
+                    title="Tenho estimativa do impacto no caixa"
                     subtitle="Opcional para quem já possui premissa interna de split payment, impacto financeiro ou necessidade adicional de caixa."
                     ctaLabel="Clique aqui para informar"
                     activeLabel="Campo habilitado"
@@ -4015,7 +4047,7 @@
 
               <div className="mobile-stack" style={{ display:'grid', gridTemplateColumns:'repeat(4,minmax(0,1fr))', gap:12, marginTop:12 }}>
                 <PremiumInputBox
-                  label="Folha sobre faturamento"
+                  label="Peso da folha sobre o faturamento (opcional)"
                   value={perfil.folhaPct}
                   inputMode="decimal"
                   suffix="%"
@@ -4028,7 +4060,7 @@
                   }}
                 />
                 <PremiumInputBox
-                  label="Giro/ciclo médio de estoque"
+                  label="Giro médio do estoque em dias (opcional)"
                   value={perfil.estoqueDias}
                   inputMode="numeric"
                   suffix="dias"
@@ -4037,7 +4069,7 @@
                   onChange={e => setPerfil(p=>({...p, estoqueDias:onlyDigits(e.target.value)}))}
                 />
                 <PremiumInputBox
-                  label="Vendas para consumidor final"
+                  label="% de vendas para consumidor final (opcional)"
                   value={perfil.vendasB2CPct}
                   inputMode="decimal"
                   suffix="%"
@@ -4050,7 +4082,7 @@
                   }}
                 />
                 <PremiumTextareaBox
-                  label="Observações opcionais do cliente"
+                  label="Algum contexto importante sobre a empresa?"
                   value={perfil.observacoesFinanceiras}
                   onChange={e => setPerfil(p=>({...p, observacoesFinanceiras:e.target.value}))}
                   placeholder="Ex.: sazonalidade do negócio, reajuste recente de preços, crédito em auditoria, contratos longos, mudança de mix, expansão, investimento ou qualquer contexto útil."
@@ -4072,7 +4104,7 @@
               color: perfilOk ? C.white : C.textFaint,
               border:'none', borderRadius:8, cursor: perfilOk ? 'pointer' : 'default', transition:'all 0.2s',
             }}>
-              {perfilOk ? 'Iniciar Avaliação de Risco →' : 'Preencha os dados mínimos para iniciar →'}
+              {perfilOk ? 'Ver as perguntas de impacto →' : 'Preencha o faturamento para continuar →'}
             </button>
           </div>
         </div>
@@ -4091,7 +4123,7 @@
             <div style={{ marginBottom:18 }}>
               <h2 style={{ color:C.white, fontWeight:900, fontSize:24, marginBottom:6 }}>Avaliação estratégica</h2>
               <p style={{ color:C.textMuted, fontSize:13, lineHeight:1.75, maxWidth:760 }}>
-                Responda cada pergunta para liberar a próxima logo abaixo. Assim, o histórico fica visível e a análise permanece transparente durante o preenchimento.
+                Cada resposta libera a próxima pergunta automaticamente.
               </p>
             </div>
 
@@ -4116,8 +4148,10 @@
                           Pergunta {i + 1} de {QUIZ_MAIN.length}
                         </div>
                         <div style={{ background:'rgba(255,255,255,.055)', border:'1px solid rgba(255,255,255,.10)',
-                          borderRadius:7, padding:'5px 12px', fontSize:11, fontWeight:800, color:C.textMain }}>
-                          {q.titulo}
+                          borderRadius:7, padding:'5px 12px', fontSize:11, fontWeight:800, color:C.textMain,
+                          display:'flex', alignItems:'center', gap:4 }}>
+                          Contexto
+                          <Tooltip text={q.titulo} />
                         </div>
                       </div>
                       {resp !== undefined && (
@@ -4130,8 +4164,8 @@
                     <h3 style={{ color:C.white, fontWeight:800, fontSize:17, lineHeight:1.55, marginBottom:16 }}>{q.desc}</h3>
                     <PremiumSelect
                       value={resp !== undefined ? String(resp) : ''}
-                      options={q.opcoes.map((o,idx)=>({ label:o.label, value:idx, meta:`Peso de exposição: ${o.risco}/${q.peso}` }))}
-                      placeholder="Selecione a resposta mais aderente..."
+                      options={q.opcoes.map((o,idx)=>({ label:o.label, value:idx, meta:null }))}
+                      placeholder="Escolha uma opção..."
                       accent={C.blueAccent}
                       onChange={value => {
                         setRespostas(prev => ({...prev, [q.id]:Number(value)}));
@@ -4159,7 +4193,7 @@
                 background:'transparent', color:C.textMuted, cursor:'pointer', fontSize:13,
               }}>← Voltar ao Perfil</button>
               <div style={{ color:C.textFaint, fontSize:12, lineHeight:1.6, flex:'1 1 260px', textAlign:'center' }}>
-                {quizCompleto ? 'Avaliação estratégica concluída. Você já pode avançar.' : 'A próxima pergunta aparece automaticamente após a resposta.'}
+                {quizCompleto ? 'Todas as perguntas respondidas. Pode avançar!' : 'Responda para liberar a próxima pergunta.'}
               </div>
               <button disabled={!quizCompleto} onClick={() => { setEtapa('financeiro'); setFinIdx(0); }} style={{
                 padding:'12px 26px', borderRadius:9, fontSize:13, fontWeight:900,
@@ -4168,7 +4202,7 @@
                 border:'none', cursor: quizCompleto ? 'pointer' : 'default', transition:'all 0.2s',
                 boxShadow: quizCompleto ? `0 12px 32px ${C.blueAccent}28` : 'none',
               }}>
-                Continuar para Análise Financeira →
+                Continuar para caixa e margem →
               </button>
             </div>
           </div>
@@ -4199,7 +4233,7 @@
               </div>
             </div>
             <p style={{ color:C.textMuted, fontSize:13, lineHeight:1.75, margin:'0 0 18px', maxWidth:760 }}>
-              As perguntas financeiras também ficam empilhadas. Isso melhora a conferência das respostas e deixa o raciocínio do diagnóstico mais claro antes do laudo.
+              Responda com base no que conhece da operação. Se não souber, marque 'não sei' e continue.do.
             </p>
 
             <div className="question-stack">
@@ -4223,8 +4257,10 @@
                           Financeira {i + 1} de {QUIZ_FIN.length}
                         </div>
                         <div style={{ background:'rgba(255,255,255,.055)', border:'1px solid rgba(255,255,255,.10)',
-                          borderRadius:7, padding:'5px 12px', fontSize:11, fontWeight:800, color:C.textMain }}>
-                          {q.titulo}
+                          borderRadius:7, padding:'5px 12px', fontSize:11, fontWeight:800, color:C.textMain,
+                          display:'flex', alignItems:'center', gap:4 }}>
+                          Contexto
+                          <Tooltip text={q.titulo} />
                         </div>
                       </div>
                       {resp !== undefined && (
@@ -4244,7 +4280,7 @@
                     <PremiumSelect
                       value={resp !== undefined ? String(resp) : ''}
                       options={q.opcoes.map((o,idx)=>({ label:o.label, value:idx, meta:`Peso de exposição: ${o.risco}/${q.peso}` }))}
-                      placeholder="Selecione a resposta financeira/operacional..."
+                      placeholder="Escolha uma opção..."
                       accent={C.gold}
                       onChange={value => {
                         setRespostas(prev => ({...prev, [q.id]:Number(value)}));
