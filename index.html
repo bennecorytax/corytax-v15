@@ -4121,7 +4121,7 @@
             <style>{`@keyframes fadeSlide{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}`}</style>
             <ProgressBar pct={qPct} label={`Impacto no negócio — ${quizRespondidas} de ${QUIZ_MAIN.length} perguntas`} />
             <div style={{ marginBottom:18 }}>
-              <h2 style={{ color:C.white, fontWeight:900, fontSize:24, marginBottom:6 }}>Avaliação estratégica</h2>
+              <h2 style={{ color:C.white, fontWeight:900, fontSize:24, marginBottom:6 }}>Impacto no negócio</h2>
               <p style={{ color:C.textMuted, fontSize:13, lineHeight:1.75, maxWidth:760 }}>
                 Cada resposta libera a próxima pergunta automaticamente.
               </p>
@@ -4172,16 +4172,7 @@
                         if (i === quizIdx && quizIdx < QUIZ_MAIN.length - 1) setQuizIdx(prev => prev + 1);
                       }}
                     />
-                    {resp !== undefined && (
-                      <div style={{ marginTop:12, background:`${C.blueAccent}0d`, border:`1px solid ${C.blueAccent}33`, borderRadius:10, padding:'11px 12px' }}>
-                        <div style={{ color:C.textFaint, fontSize:10, fontWeight:900, textTransform:'uppercase', letterSpacing:'.08em', marginBottom:5 }}>
-                          Resposta registrada
-                        </div>
-                        <div style={{ color:C.plan2, fontSize:13, lineHeight:1.55, fontWeight:850 }}>
-                          {q.opcoes[resp].label}
-                        </div>
-                      </div>
-                    )}
+
                   </div>
                 );
               })}
