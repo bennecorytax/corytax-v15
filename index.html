@@ -2344,7 +2344,7 @@
        QUIZ
     ═══════════════════════════════════════════════════════════ */
     const QUIZ_QUESTIONS = [
-      { id:'q1', peso:12, titulo:'Novo Preço de Venda',
+      { id:'q1', peso:12, titulo:'Vai precisar aumentar seus preços?',
         desc:'Com o fim do modelo antigo e a chegada do IBS e CBS, os impostos serão cobrados "por fora" do preço. Você já sabe qual será o seu novo preço de venda para não perder lucro?',
         opcoes:[
           { label:'Sim, já refizemos a precificação completa.', risco:0 },
@@ -2352,7 +2352,7 @@
           { label:'Não, ainda não calculei isso.', risco:12 },
         ],
       },
-      { id:'q2', peso:14, titulo:'Bloqueio de Caixa (Split Payment)',
+      { id:'q2', peso:14, titulo:'O imposto pode travar seu caixa?',
         desc:'Na nova regra, o banco vai separar o imposto e pagar diretamente ao governo antes do dinheiro cair na sua conta. Você já calculou o quanto isso vai reduzir o caixa disponível diariamente?',
         opcoes:[
           { label:'Sim, já temos essa projeção financeira.', risco:0 },
@@ -2360,7 +2360,7 @@
           { label:'Não faço ideia de como calcular.', risco:14 },
         ],
       },
-      { id:'q3', peso:11, titulo:'Risco com Fornecedores',
+      { id:'q3', peso:11, titulo:'Seus fornecedores podem virar risco?',
         desc:'O que você compra vai gerar créditos para abater impostos. Dependendo do fornecedor ou regime tributário, sua empresa pode perder competitividade. Você já mapeou quais fornecedores manter, renegociar ou substituir?',
         opcoes:[
           { label:'Sim, já avaliamos nossa cadeia de fornecedores.', risco:0 },
@@ -2368,7 +2368,7 @@
           { label:'Não sabia que fornecedores impactariam nossos créditos.', risco:11 },
         ],
       },
-      { id:'q4', peso:10, titulo:'Adequação do ERP e Emissão Fiscal',
+      { id:'q4', peso:10, titulo:'Seu sistema está pronto para a mudança?',
         desc:'Em 2026 já começaram os testes operacionais do novo modelo tributário. Seu ERP e emissão fiscal já foram adequados para o novo cenário?',
         opcoes:[
           { label:'Sim, nosso sistema já está adequado.', risco:0 },
@@ -2376,7 +2376,7 @@
           { label:'Não — seguimos operando da mesma forma.', risco:10 },
         ],
       },
-      { id:'q5', peso:9, titulo:'Contratos com Clientes',
+      { id:'q5', peso:9, titulo:'Seus contratos protegem sua margem?',
         desc:'Contratos de médio e longo prazo podem perder margem quando as novas regras entrarem em vigor. Seus contratos atuais já possuem mecanismos de reajuste tributário?',
         opcoes:[
           { label:'Sim, revisamos e adequamos os contratos.', risco:0 },
@@ -2384,7 +2384,7 @@
           { label:'Não temos isso previsto em nenhum contrato.', risco:9 },
         ],
       },
-      { id:'q6', peso:8, titulo:'Imposto Seletivo',
+      { id:'q6', peso:8, titulo:'Seu produto ou serviço será taxado a mais?',
         desc:'Alguns produtos e setores sofrerão incidência adicional do Imposto Seletivo. Você já avaliou se sua operação pode ser impactada?',
         opcoes:[
           { label:'Sim, já analisamos esse risco com profundidade.', risco:0 },
@@ -2392,7 +2392,7 @@
           { label:'Não sei como isso funciona.', risco:8 },
         ],
       },
-      { id:'q7', peso:10, titulo:'Créditos Tributários Acumulados',
+      { id:'q7', peso:10, titulo:'Você pode perder créditos que já tem?',
         desc:'Com o encerramento de PIS e COFINS, empresas podem perder créditos acumulados se não houver planejamento. Você possui estratégia para aproveitamento desses créditos?',
         opcoes:[
           { label:'Sim, temos estratégia definida e em execução.', risco:0 },
@@ -2400,7 +2400,7 @@
           { label:'Não sabemos se temos valores a recuperar.', risco:10 },
         ],
       },
-      { id:'q8', peso:9, titulo:'Fiscalização em Tempo Real',
+      { id:'q8', peso:9, titulo:'Seu cadastro fiscal está em ordem?',
         desc:'A fiscalização será praticamente instantânea através da nota fiscal eletrônica. Seu cadastro fiscal e tributário está revisado e auditado?',
         opcoes:[
           { label:'Sim, realizamos auditorias frequentes.', risco:0 },
@@ -2408,7 +2408,7 @@
           { label:'Não temos controle disso hoje.', risco:9 },
         ],
       },
-      { id:'q9', peso:9, titulo:'Competitividade de Mercado',
+      { id:'q9', peso:9, titulo:'Sua empresa perde terreno para concorrentes?',
         desc:'Grandes empresas já começaram seus ajustes tributários e financeiros. Sua empresa já possui estratégia para não perder margem ou competitividade?',
         opcoes:[
           { label:'Sim, temos planejamento competitivo estruturado.', risco:0 },
@@ -2416,7 +2416,7 @@
           { label:'Ainda não analisamos esse impacto.', risco:9 },
         ],
       },
-      { id:'q10', peso:8, titulo:'Decisão Estratégica da Liderança',
+      { id:'q10', peso:8, titulo:'A liderança tem plano para atravessar a Reforma?',
         desc:'A liderança da empresa possui hoje um plano claro para atravessar a Reforma Tributária com segurança financeira?',
         opcoes:[
           { label:'Sim, temos plano estruturado e em execução.', risco:0 },
@@ -2425,29 +2425,29 @@
         ],
       },
       /* ── BLOCO FINANCEIRO ── */
-      { id:'qf1', peso:10, financeiro:true, titulo:'Perfil dos Clientes (B2B x B2C)',
+      { id:'qf1', peso:10, financeiro:true, titulo:'Você vende mais para empresas ou consumidor final?',
         desc:'Como é o perfil dos seus clientes (para quem você vende)?',
         auxilio:'Se você vende para Pessoa Física, o imposto trava no preço final. Se vende para Pessoa Jurídica, o cliente utiliza créditos tributários — o que muda completamente a dinâmica de negociação.',
         opcoes:[
           { label:'Mais de 80% para Pessoa Física (Consumidor Final)', risco:9, fin:'b2c' },
           { label:'Mais de 80% para Pessoa Jurídica (Outras Empresas)', risco:7, fin:'b2b' },
           { label:'Equilibrado (meio a meio)', risco:6, fin:'mix' },
-          { label:'Não sei analisar isso', risco:8, fin:'ns' },
+          { label:'Não sei — vou verificar com o financeiro/contador', risco:8, fin:'ns' },
           { label:'Não se aplica', risco:0, fin:'na' },
         ],
       },
-      { id:'qf2', peso:10, financeiro:true, titulo:'Peso da Folha de Pagamento',
+      { id:'qf2', peso:10, financeiro:true, titulo:'Quanto pesa sua folha sobre o faturamento?',
         desc:'Qual é o peso aproximado da sua folha de pagamento sobre o faturamento?',
         auxilio:'No novo sistema, folha de pagamento NÃO gera créditos de IBS/CBS. Empresas com folha alta podem sofrer forte erosão de margem se não reprecificarem corretamente.',
         opcoes:[
           { label:'Baixo — até 10% do faturamento', risco:2, fin:'folha_baixa' },
           { label:'Médio — 11% a 30%', risco:6, fin:'folha_media' },
           { label:'Alto — acima de 30%', risco:10, fin:'folha_alta' },
-          { label:'Não sei exatamente', risco:7, fin:'ns' },
+          { label:'Não sei ao certo — preciso conferir', risco:7, fin:'ns' },
           { label:'Não se aplica', risco:0, fin:'na' },
         ],
       },
-      { id:'qf3', peso:12, financeiro:true, titulo:'Situação de lucro e caixa',
+      { id:'qf3', peso:12, financeiro:true, titulo:'Após pagar tudo, a empresa fica confortável?',
         desc:'Depois de pagar custos, despesas e impostos, a empresa costuma ficar confortável financeiramente?',
         auxilio:'Você não precisa saber uma margem percentual. A resposta ajuda a entender sinais de rentabilidade e pressão financeira.',
         opcoes:[
@@ -2455,11 +2455,11 @@
           { label:'Sobra pouco, mas fecha positivo', risco:6, fin:'apertado' },
           { label:'Fica muito próxima do equilíbrio', risco:9, fin:'equilibrio' },
           { label:'Frequentemente falta caixa ou opera no prejuízo', risco:12, fin:'prejuizo' },
-          { label:'Não sei informar', risco:8, fin:'ns' },
+          { label:'Não sei — vou verificar com o financeiro/contador', risco:8, fin:'ns' },
           { label:'Não se aplica', risco:0, fin:'na' },
         ],
       },
-      { id:'qf4', peso:9, financeiro:true, titulo:'Prazo Médio de Recebimento',
+      { id:'qf4', peso:9, financeiro:true, titulo:'Seus clientes pagam rápido ou demorado?',
         desc:'Como seus clientes normalmente realizam os pagamentos?',
         auxilio:'Com o Split Payment, parte do imposto poderá ser retida automaticamente no momento do pagamento, impactando diretamente o capital de giro disponível.',
         opcoes:[
@@ -2467,11 +2467,11 @@
           { label:'Parcelado curto (até 30/60 dias)', risco:5, fin:'curto' },
           { label:'Parcelado longo (acima de 6 parcelas)', risco:9, fin:'longo' },
           { label:'Faço muita antecipação de recebíveis', risco:7, fin:'antecipacao' },
-          { label:'Não sei analisar isso', risco:6, fin:'ns' },
+          { label:'Não sei — vou verificar com o financeiro/contador', risco:6, fin:'ns' },
           { label:'Não se aplica', risco:0, fin:'na' },
         ],
       },
-      { id:'qf5', peso:8, financeiro:true, titulo:'Giro de Estoque',
+      { id:'qf5', peso:8, financeiro:true, titulo:'Seu estoque gira rápido ou fica parado?',
         desc:'Qual é o giro médio do seu estoque?',
         auxilio:'A transição entre os regimes antigos e o novo sistema tributário poderá gerar perda de créditos em estoques de giro lento.',
         opcoes:[
@@ -2482,7 +2482,7 @@
           { label:'Não se aplica', risco:0, fin:'na' },
         ],
       },
-      { id:'qf6', peso:10, financeiro:true, titulo:'Créditos Tributários Acumulados',
+      { id:'qf6', peso:10, financeiro:true, titulo:'Você sabe quanto tem de crédito tributário hoje?',
         desc:'Qual é a estimativa dos créditos tributários acumulados da empresa hoje?',
         auxilio:'Com o encerramento gradual de ICMS, PIS e COFINS, empresas podem perder valores relevantes sem planejamento de compensação.',
         opcoes:[
@@ -2511,7 +2511,7 @@
       { label:'Consegue parcialmente', value:'parcial', score:55 },
       { label:'Tem muita dificuldade', value:'dificil', score:85 },
       { label:'Não consegue reajustar', value:'nao_consegue', score:95 },
-      { label:'Não sei informar', value:'nao_sei', score:null },
+      { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
 
     /* INSERIDO — opções simples para estimar rentabilidade sem exigir margem operacional */
@@ -2520,41 +2520,41 @@
       { label:'Sim, mas com pouca folga', value:'pouca_folga', score:45 },
       { label:'Fica próxima do equilíbrio', value:'equilibrio', score:70 },
       { label:'Frequentemente opera no prejuízo', value:'prejuizo', score:95 },
-      { label:'Não sei informar', value:'nao_sei', score:null },
+      { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const PROFITABILITY_CAIXA_OPTIONS = [
       { label:'Sim, sobra caixa com frequência', value:'sobra_frequente', score:15 },
       { label:'Às vezes sobra', value:'as_vezes', score:45 },
       { label:'Quase não sobra', value:'quase_nao', score:75 },
       { label:'Normalmente falta caixa', value:'falta_caixa', score:95 },
-      { label:'Não sei informar', value:'nao_sei', score:null },
+      { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const PROFITABILITY_CUSTOS_RECENTES_OPTIONS = [
       { label:'Sim, aumentaram muito', value:'aumentaram_muito', score:90 },
       { label:'Sim, aumentaram um pouco', value:'aumentaram_pouco', score:60 },
       { label:'Permaneceram estáveis', value:'estaveis', score:30 },
       { label:'Reduziram', value:'reduziram', score:15 },
-      { label:'Não sei informar', value:'nao_sei', score:null },
+      { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const PROFITABILITY_PESO_CUSTOS_OPTIONS = [
       { label:'Baixo', value:'baixo', score:20 },
       { label:'Moderado', value:'moderado', score:45 },
       { label:'Alto', value:'alto', score:75 },
       { label:'Muito alto', value:'muito_alto', score:95 },
-      { label:'Não sei informar', value:'nao_sei', score:null },
+      { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const PROFITABILITY_DEPENDENCIA_CLIENTES_OPTIONS = [
       { label:'Sim, depende muito', value:'depende_muito', score:85 },
       { label:'Depende parcialmente', value:'depende_parcial', score:55 },
       { label:'Não, a carteira é diversificada', value:'diversificada', score:20 },
-      { label:'Não sei informar', value:'nao_sei', score:null },
+      { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const PROFITABILITY_CONTROLE_OPTIONS = [
       { label:'Sim, acompanha DRE/resultado mensal', value:'dre_mensal', score:15 },
       { label:'Tem controle parcial', value:'parcial', score:45 },
       { label:'Controla apenas entradas e saídas', value:'entradas_saidas', score:70 },
       { label:'Não possui controle estruturado', value:'sem_controle', score:90 },
-      { label:'Não sei informar', value:'nao_sei', score:null },
+      { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const MARGIN_CLIENTES_OPTIONS = [
       { label:'Empresas que aproveitam crédito tributário', value:'empresas_credito', score:25 },
@@ -2562,31 +2562,31 @@
       { label:'Governo ou contratos públicos', value:'governo', score:75 },
       { label:'Marketplace/intermediadores', value:'marketplace', score:65 },
       { label:'Misto', value:'misto', score:55 },
-      { label:'Não sei informar', value:'nao_sei', score:null },
+      { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const MARGIN_CONTRATO_OPTIONS = [
       { label:'Sim, muitos contratos longos ou preço fixo', value:'muitos_longos', score:85 },
       { label:'Alguns contratos possuem preço fixo', value:'alguns_fixos', score:60 },
       { label:'A maioria das vendas permite reajuste rápido', value:'reajuste_rapido', score:25 },
-      { label:'Não sei informar', value:'nao_sei', score:null },
+      { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const MARGIN_CREDITO_OPTIONS = [
       { label:'Sim, volume relevante de compras com possível crédito', value:'relevante', score:25 },
       { label:'Parcialmente', value:'parcial', score:55 },
       { label:'Pouco ou quase nenhum crédito', value:'baixo', score:85 },
-      { label:'Não sei informar', value:'nao_sei', score:null },
+      { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const MARGIN_SENSIBILIDADE_OPTIONS = [
       { label:'Muito sensível', value:'muito', score:90 },
       { label:'Moderadamente sensível', value:'moderado', score:60 },
       { label:'Pouco sensível', value:'pouco', score:25 },
-      { label:'Não sei informar', value:'nao_sei', score:null },
+      { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
     const MARGIN_CONCORRENCIA_OPTIONS = [
       { label:'Sim, muita concorrência por preço', value:'forte', score:85 },
       { label:'Concorrência moderada', value:'moderada', score:55 },
       { label:'Baixa concorrência por preço', value:'baixa', score:25 },
-      { label:'Não sei informar', value:'nao_sei', score:null },
+      { label:'Não sei — vou verificar com o financeiro/contador', value:'nao_sei', score:null },
     ];
 
     const FATURAMENTOS = [
@@ -3448,15 +3448,15 @@
                 </h1>
 
                 <p style={{ color:C.textMain, fontSize:16, lineHeight:1.75, marginBottom:24, maxWidth:590 }}>
-                  O CORYTAX passa a operar como um diagnóstico integralizador: soma perfil financeiro, exposição operacional, cruzamento fiscal, XML/NFS-e, classificação tributária e plano de governança para orientar a transição IBS/CBS/IS.
+                  Responda perguntas sobre sua operação. Você não precisa ser contador — use o que conhece da sua empresa. Quando aparecer uma pergunta técnica, marque 'não sei' e continue. O CORYTAX integra perfil financeiro, exposição operacional, cruzamento fiscal, XML/NFS-e, classificação tributária e plano de governança para orientar a transição IBS/CBS/IS.
                 </p>
 
                 <div style={{ display:'grid', gridTemplateColumns:'repeat(2,1fr)', gap:10, marginBottom:24, maxWidth:520 }}>
                   {[
-                    { n:'01', t:'Perfil', d:'financeiro e operacional' },
-                    { n:'02', t:'Fiscal', d:'XML, NFS-e, NCM e NBS' },
-                    { n:'03', t:'Score', d:'risco, caixa e conformidade' },
-                    { n:'04', t:'Plano', d:'governança e próximos passos' },
+                    { n:'01', t:'Sua empresa', d:'porte, segmento e operação' },
+                    { n:'02', t:'Seus impostos', d:'como a Reforma afeta você' },
+                    { n:'03', t:'Seu risco', d:'caixa, margem e fornecedores' },
+                    { n:'04', t:'Seu próximo passo', d:'o que fazer agora' },
                   ].map((item,i)=>(
                     <div key={i} style={{ background:'rgba(255,255,255,.06)', border:'1px solid rgba(255,255,255,.14)', borderRadius:14, padding:'14px 12px' }}>
                       <div style={{ color:C.blueSoft, fontSize:11, fontWeight:900, letterSpacing:'.10em', marginBottom:4 }}>{item.n}</div>
@@ -3472,7 +3472,7 @@
                   border:'none', borderRadius:12, cursor:'pointer', letterSpacing:'.02em',
                   boxShadow:'0 12px 34px rgba(255,255,255,.18)', animation:'softGlow 2.4s infinite',
                 }}>
-                  Iniciar diagnóstico agora
+                  Ver como a Reforma impacta minha empresa
                 </button>
               </div>
 
@@ -3506,9 +3506,9 @@
 
           <div className="mobile-stack" style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(230px,1fr))', gap:12 }}>
             {[
-              { icon:'💸', titulo:'Impacto no caixa', desc:'Mapeia a sensibilidade da empresa ao Split Payment e ao novo fluxo de recolhimento.' },
-              { icon:'📊', titulo:'Pressão na margem', desc:'Indica pontos de atenção em preço, fornecedores, créditos e estrutura de custos.' },
-              { icon:'⚖️', titulo:'Próximo passo claro', desc:'Recomenda o nível de assessoria mais aderente ao risco identificado no diagnóstico.' },
+              { icon:'💸', titulo:'O imposto pode reduzir seu caixa?', desc:'Mapeia como o Split Payment e o novo recolhimento podem afetar o dinheiro disponível.' },
+              { icon:'📊', titulo:'Sua margem vai encolher?', desc:'Indica pontos de atenção em preço, fornecedores, créditos e estrutura de custos.' },
+              { icon:'⚖️', titulo:'O que você precisa fazer agora', desc:'Recomenda o nível de assessoria mais aderente ao risco identificado no diagnóstico.' },
             ].map((p,i) => (
               <div key={i} style={{ background:'linear-gradient(180deg, rgba(8,119,201,.12), rgba(5,8,13,.96))', border:`1px solid ${C.border}`, borderRadius:16, padding:'18px 16px' }}>
                 <div style={{ fontSize:25, marginBottom:10 }}>{p.icon}</div>
@@ -3524,7 +3524,7 @@
       if (etapa === 'lead') return (
         <div className="screen-container" style={{ maxWidth:900, margin:'0 auto' }}>
           <style>{`@keyframes fadeSlide{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}`}</style>
-          <ProgressBar pct={10} label="Etapa 1 de 4 — Identificação" />
+          <ProgressBar pct={10} label="Etapa 1 de 4 — Sobre sua empresa" />
           <div className="print-avoid" style={{
             animation:'fadeSlide 0.4s ease', background:'linear-gradient(180deg, rgba(8,17,29,.92), rgba(5,8,13,.98))',
             border:`1px solid ${C.border}`, borderRadius:18, padding:'24px', boxShadow:'0 22px 60px rgba(0,0,0,.32)'
@@ -3659,7 +3659,7 @@
       if (etapa === 'perfil') return (
         <div className="screen-container" style={{ maxWidth:920, margin:'0 auto' }}>
           <style>{`@keyframes fadeSlide{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}`}</style>
-          <ProgressBar pct={30} label="Etapa 2 de 4 — Perfil Empresarial" />
+          <ProgressBar pct={30} label="Etapa 2 de 4 — Como você opera" />
           <div style={{ animation:'fadeSlide 0.4s ease' }}>
             <h2 style={{ color:C.white, fontWeight:900, fontSize:24, marginBottom:4 }}>Perfil da sua empresa</h2>
             <p style={{ color:C.textMuted, fontSize:13, marginBottom:22, lineHeight:1.7 }}>
@@ -4087,7 +4087,7 @@
         return (
           <div className="screen-container" style={{ maxWidth:940, margin:'0 auto' }}>
             <style>{`@keyframes fadeSlide{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}`}</style>
-            <ProgressBar pct={qPct} label={`Avaliação Estratégica — ${quizRespondidas} de ${QUIZ_MAIN.length} respondidas`} />
+            <ProgressBar pct={qPct} label={`Impacto no negócio — ${quizRespondidas} de ${QUIZ_MAIN.length} perguntas`} />
             <div style={{ marginBottom:18 }}>
               <h2 style={{ color:C.white, fontWeight:900, fontSize:24, marginBottom:6 }}>Avaliação estratégica</h2>
               <p style={{ color:C.textMuted, fontSize:13, lineHeight:1.75, maxWidth:760 }}>
@@ -4191,7 +4191,7 @@
         return (
           <div className="screen-container" style={{ maxWidth:940, margin:'0 auto' }}>
             <style>{`@keyframes fadeSlide{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}`}</style>
-            <ProgressBar pct={qPct} label={`Análise Financeira — ${finRespondidas} de ${QUIZ_FIN.length} respondidas`} />
+            <ProgressBar pct={qPct} label={`Caixa e margem — ${finRespondidas} de ${QUIZ_FIN.length} perguntas`} />
             <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:12 }}>
               <div style={{ background:`${C.gold}18`, border:`1px solid ${C.gold}44`,
                 borderRadius:7, padding:'5px 14px', fontSize:11, fontWeight:900, color:C.gold, letterSpacing:'0.07em' }}>
