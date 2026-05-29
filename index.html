@@ -2346,7 +2346,7 @@
        QUIZ
     ═══════════════════════════════════════════════════════════ */
     const QUIZ_QUESTIONS = [
-      { id:'q1', peso:12, titulo:'Vai precisar aumentar seus preços?',
+      { id:'q1', vuln:'Precificação não ajustada para o novo modelo tributário', peso:12, titulo:'Vai precisar aumentar seus preços?',
         desc:'Com o fim do modelo antigo e a chegada do IBS e CBS, os impostos serão cobrados "por fora" do preço. Você já sabe qual será o seu novo preço de venda para não perder lucro?',
         opcoes:[
           { label:'Ainda não calculei isso.', risco:12 },
@@ -2354,7 +2354,7 @@
           { label:'Sim — já refizemos a precificação completa.', risco:0 },
         ],
       },
-      { id:'q2', peso:14, titulo:'O imposto pode travar seu caixa?',
+      { id:'q2', vuln:'Risco de bloqueio de caixa pelo Split Payment', peso:14, titulo:'O imposto pode travar seu caixa?',
         desc:'Na nova regra, o banco vai separar o imposto e pagar diretamente ao governo antes do dinheiro cair na sua conta. Você já calculou o quanto isso vai reduzir o caixa disponível diariamente?',
         opcoes:[
           { label:'Não sabia que isso ia acontecer.', risco:14 },
@@ -2362,7 +2362,7 @@
           { label:'Sim — já temos a projeção financeira.', risco:0 },
         ],
       },
-      { id:'q3', peso:11, titulo:'Seus fornecedores podem virar risco?',
+      { id:'q3', vuln:'Cadeia de fornecedores não avaliada para perda de crédito', peso:11, titulo:'Seus fornecedores podem virar risco?',
         desc:'O que você compra vai gerar créditos para abater impostos. Dependendo do fornecedor ou regime tributário, sua empresa pode perder competitividade. Você já mapeou quais fornecedores manter, renegociar ou substituir?',
         opcoes:[
           { label:'Não sabia que fornecedores afetam meus créditos.', risco:11 },
@@ -2370,7 +2370,7 @@
           { label:'Sim — já avaliamos nossa cadeia de fornecedores.', risco:0 },
         ],
       },
-      { id:'q4', peso:10, titulo:'Seu sistema está pronto para a mudança?',
+      { id:'q4', vuln:'Sistema fiscal não adequado para a Reforma', peso:10, titulo:'Seu sistema está pronto para a mudança?',
         desc:'Em 2026 já começaram os testes operacionais do novo modelo tributário. Seu ERP e emissão fiscal já foram adequados para o novo cenário?',
         opcoes:[
           { label:'Opero da mesma forma, sem nenhuma mudança.', risco:10 },
@@ -2378,7 +2378,7 @@
           { label:'Sim — nosso sistema já está adequado.', risco:0 },
         ],
       },
-      { id:'q5', peso:9, titulo:'Seus contratos protegem sua margem?',
+      { id:'q5', vuln:'Contratos sem proteção de margem contra reajuste tributário', peso:9, titulo:'Seus contratos protegem sua margem?',
         desc:'Contratos de médio e longo prazo podem perder margem quando as novas regras entrarem em vigor. Seus contratos atuais já possuem mecanismos de reajuste tributário?',
         opcoes:[
           { label:'Nenhum contrato tem isso previsto.', risco:9 },
@@ -2386,7 +2386,7 @@
           { label:'Sim — revisamos e adequamos todos os contratos.', risco:0 },
         ],
       },
-      { id:'q6', peso:8, titulo:'Seu produto ou serviço será taxado a mais?',
+      { id:'q6', vuln:'Exposição ao Imposto Seletivo não mapeada', peso:8, titulo:'Seu produto ou serviço será taxado a mais?',
         desc:'Alguns produtos e setores sofrerão incidência adicional do Imposto Seletivo. Você já avaliou se sua operação pode ser impactada?',
         opcoes:[
           { label:'Não sei como isso funciona.', risco:8 },
@@ -2394,7 +2394,7 @@
           { label:'Sim — já analisamos com profundidade.', risco:0 },
         ],
       },
-      { id:'q7', peso:10, titulo:'Você pode perder créditos que já tem?',
+      { id:'q7', vuln:'Créditos tributários acumulados em risco', peso:10, titulo:'Você pode perder créditos que já tem?',
         desc:'Com o encerramento de PIS e COFINS, empresas podem perder créditos acumulados se não houver planejamento. Você possui estratégia para aproveitamento desses créditos?',
         opcoes:[
           { label:'Não sabemos se temos valores a recuperar.', risco:10 },
@@ -2402,7 +2402,7 @@
           { label:'Sim — temos estratégia definida e em execução.', risco:0 },
         ],
       },
-      { id:'q8', peso:9, titulo:'Seu cadastro fiscal está em ordem?',
+      { id:'q8', vuln:'Cadastro fiscal com inconsistências potenciais', peso:9, titulo:'Seu cadastro fiscal está em ordem?',
         desc:'A fiscalização será praticamente instantânea através da nota fiscal eletrônica. Seu cadastro fiscal e tributário está revisado e auditado?',
         opcoes:[
           { label:'Não temos controle disso hoje.', risco:9 },
@@ -2410,7 +2410,7 @@
           { label:'Sim — realizamos auditorias frequentes.', risco:0 },
         ],
       },
-      { id:'q9', peso:9, titulo:'Sua empresa perde terreno para concorrentes?',
+      { id:'q9', vuln:'Competitividade vulnerável à mudança tributária', peso:9, titulo:'Sua empresa perde terreno para concorrentes?',
         desc:'Grandes empresas já começaram seus ajustes tributários e financeiros. Sua empresa já possui estratégia para não perder margem ou competitividade?',
         opcoes:[
           { label:'Ainda não analisamos esse impacto.', risco:9 },
@@ -2418,7 +2418,7 @@
           { label:'Sim — temos planejamento competitivo estruturado.', risco:0 },
         ],
       },
-      { id:'q10', peso:8, titulo:'A liderança tem plano para atravessar a Reforma?',
+      { id:'q10', vuln:'Sem plano estratégico para atravessar a Reforma', peso:8, titulo:'A liderança tem plano para atravessar a Reforma?',
         desc:'A liderança da empresa possui hoje um plano claro para atravessar a Reforma Tributária com segurança financeira?',
         opcoes:[
           { label:'Não temos direcionamento claro.', risco:8 },
@@ -2427,7 +2427,7 @@
         ],
       },
       /* ── BLOCO FINANCEIRO ── */
-      { id:'qf1', peso:10, financeiro:true, titulo:'Você vende mais para empresas ou consumidor final?',
+      { id:'qf1', vuln:'Perfil de clientes com risco de perda de crédito', peso:10, financeiro:true, titulo:'Você vende mais para empresas ou consumidor final?',
         desc:'Como é o perfil dos seus clientes (para quem você vende)?',
         auxilio:'Quem compra de você importa para a Reforma: venda para empresa gera crédito; venda para consumidor final não. Isso afeta sua estratégia de preço e mue muda completamente a dinâmica de negociação.',
         opcoes:[
@@ -2438,7 +2438,7 @@
           { label:'Não se aplica', risco:0, fin:'na' },
         ],
       },
-      { id:'qf2', peso:10, financeiro:true, titulo:'Quanto pesa sua folha sobre o faturamento?',
+      { id:'qf2', vuln:'Folha de pagamento pressionando a margem operacional', peso:10, financeiro:true, titulo:'Quanto pesa sua folha sobre o faturamento?',
         desc:'Qual é o peso aproximado da sua folha de pagamento sobre o faturamento?',
         auxilio:'No novo sistema, folha não gera crédito de imposto. Quanto mais pesada a folha, maior a pressão sobre sua margem.icarem corretamente.',
         opcoes:[
@@ -2449,7 +2449,7 @@
           { label:'Não se aplica', risco:0, fin:'na' },
         ],
       },
-      { id:'qf3', peso:12, financeiro:true, titulo:'Após pagar tudo, a empresa fica confortável?',
+      { id:'qf3', vuln:'Situação de caixa e lucro comprometida', peso:12, financeiro:true, titulo:'Após pagar tudo, a empresa fica confortável?',
         desc:'Depois de pagar custos, despesas e impostos, a empresa costuma ficar confortável financeiramente?',
         auxilio:'Você não precisa saber uma margem percentual. A resposta ajuda a entender sinais de rentabilidade e pressão financeira.',
         opcoes:[
@@ -2461,7 +2461,7 @@
           { label:'Não se aplica', risco:0, fin:'na' },
         ],
       },
-      { id:'qf4', peso:9, financeiro:true, titulo:'Seus clientes pagam rápido ou demorado?',
+      { id:'qf4', vuln:'Prazo de recebimento aumentando risco de caixa', peso:9, financeiro:true, titulo:'Seus clientes pagam rápido ou demorado?',
         desc:'Como seus clientes normalmente realizam os pagamentos?',
         auxilio:'Com o Split Payment, parte do imposto poderá ser retida automaticamente no momento do pagamento, impactando diretamente o capital de giro disponível.',
         opcoes:[
@@ -2473,7 +2473,7 @@
           { label:'Não se aplica', risco:0, fin:'na' },
         ],
       },
-      { id:'qf5', peso:8, financeiro:true, titulo:'Seu estoque gira rápido ou fica parado?',
+      { id:'qf5', vuln:'Giro de estoque impactando capital de giro', peso:8, financeiro:true, titulo:'Seu estoque gira rápido ou fica parado?',
         desc:'Qual é o giro médio do seu estoque?',
         auxilio:'A transição entre os regimes antigos e o novo sistema tributário poderá gerar perda de créditos em estoques de giro lento.',
         opcoes:[
@@ -2484,7 +2484,7 @@
           { label:'Não se aplica', risco:0, fin:'na' },
         ],
       },
-      { id:'qf6', peso:10, financeiro:true, titulo:'Você sabe quanto tem de crédito tributário hoje?',
+      { id:'qf6', vuln:'Créditos tributários não mapeados ou não aproveitados', peso:10, financeiro:true, titulo:'Você sabe quanto tem de crédito tributário hoje?',
         desc:'Qual é a estimativa dos créditos tributários acumulados da empresa hoje?',
         auxilio:'Com o encerramento gradual de ICMS, PIS e COFINS, empresas podem perder valores relevantes sem planejamento de compensação.',
         opcoes:[
@@ -3385,7 +3385,7 @@
         const diagnostico = calcSimulacaoFinanceira();
         const stTotal = diagnostico.scoreDiagnostico;
         const rl = getRiskLevel(stTotal);
-        const vulns = allQ.filter(q=>{ const r=respostas[q.id]; return r!==undefined&&q.opcoes[r].risco>4; }).map(q=>q.titulo);
+        const vulns = allQ.filter(q=>{ const r=respostas[q.id]; return r!==undefined&&q.opcoes[r].risco>4; }).map(q=>q.vuln||q.titulo);
         dispararEnvioLead(stTotal, rl.label, rl.plano, vulns);
         setEtapa('resultado');
       }
@@ -4652,11 +4652,11 @@
         const perfilClientes = sim.isB2C ? 'majoritariamente B2C (Pessoa Física)'
           : sim.isB2B ? 'majoritariamente B2B (Pessoa Jurídica)' : 'perfil B2B/B2C não conclusivo';
 
-        function abrirDetalhes() { setModalAberto(true); dispararEnvioLead(scoreTotal, risk.label, risk.plano, vulns.map(q=>q.titulo)); }
-        function abrirValor()    { setModalValorAberto(true); dispararEnvioLead(scoreTotal, risk.label, risk.plano, vulns.map(q=>q.titulo)); }
+        function abrirDetalhes() { setModalAberto(true); dispararEnvioLead(scoreTotal, risk.label, risk.plano, vulns.map(q=>q.vuln||q.titulo)); }
+        function abrirValor()    { setModalValorAberto(true); dispararEnvioLead(scoreTotal, risk.label, risk.plano, vulns.map(q=>q.vuln||q.titulo)); }
         async function finalizarJornadaEBaixarPDF() {
           setModalValorAberto(true);
-          await dispararEnvioLead(scoreTotal, risk.label, risk.plano, vulns.map(q=>q.titulo));
+          await dispararEnvioLead(scoreTotal, risk.label, risk.plano, vulns.map(q=>q.vuln||q.titulo));
           baixarRelatorioPDF();
         }
         function baixarRelatorioPDF() {
