@@ -2429,7 +2429,7 @@
       /* ── BLOCO FINANCEIRO ── */
       { id:'qf1', peso:10, financeiro:true, titulo:'Você vende mais para empresas ou consumidor final?',
         desc:'Como é o perfil dos seus clientes (para quem você vende)?',
-        auxilio:'Se você vende para Pessoa Física, o imposto trava no preço final. Se vende para Pessoa Jurídica, o cliente utiliza créditos tributários — o que muda completamente a dinâmica de negociação.',
+        auxilio:'Quem compra de você importa para a Reforma: venda para empresa gera crédito; venda para consumidor final não. Isso afeta sua estratégia de preço e mue muda completamente a dinâmica de negociação.',
         opcoes:[
           { label:'Mais de 80% para Pessoa Física (Consumidor Final)', risco:9, fin:'b2c' },
           { label:'Mais de 80% para Pessoa Jurídica (Outras Empresas)', risco:7, fin:'b2b' },
@@ -2440,7 +2440,7 @@
       },
       { id:'qf2', peso:10, financeiro:true, titulo:'Quanto pesa sua folha sobre o faturamento?',
         desc:'Qual é o peso aproximado da sua folha de pagamento sobre o faturamento?',
-        auxilio:'No novo sistema, folha de pagamento NÃO gera créditos de IBS/CBS. Empresas com folha alta podem sofrer forte erosão de margem se não reprecificarem corretamente.',
+        auxilio:'No novo sistema, folha não gera crédito de imposto. Quanto mais pesada a folha, maior a pressão sobre sua margem.icarem corretamente.',
         opcoes:[
           { label:'Baixo — até 10% do faturamento', risco:2, fin:'folha_baixa' },
           { label:'Médio — 11% a 30%', risco:6, fin:'folha_media' },
@@ -2465,10 +2465,10 @@
         desc:'Como seus clientes normalmente realizam os pagamentos?',
         auxilio:'Com o Split Payment, parte do imposto poderá ser retida automaticamente no momento do pagamento, impactando diretamente o capital de giro disponível.',
         opcoes:[
-          { label:'Maioria à vista (PIX/Dinheiro)', risco:2, fin:'avista' },
-          { label:'Parcelado curto (até 30/60 dias)', risco:5, fin:'curto' },
-          { label:'Parcelado longo (acima de 6 parcelas)', risco:9, fin:'longo' },
           { label:'Faço muita antecipação de recebíveis', risco:7, fin:'antecipacao' },
+          { label:'Parcelado longo (acima de 6 parcelas)', risco:9, fin:'longo' },
+          { label:'Parcelado curto (até 30/60 dias)', risco:5, fin:'curto' },
+          { label:'Maioria à vista (PIX/Dinheiro)', risco:2, fin:'avista' },
           { label:'Não sei — vou verificar com o financeiro/contador', risco:6, fin:'ns' },
           { label:'Não se aplica', risco:0, fin:'na' },
         ],
@@ -2477,10 +2477,10 @@
         desc:'Qual é o giro médio do seu estoque?',
         auxilio:'A transição entre os regimes antigos e o novo sistema tributário poderá gerar perda de créditos em estoques de giro lento.',
         opcoes:[
-          { label:'Giro rápido (até 30 dias)', risco:2, fin:'rapido' },
-          { label:'Giro médio (30 a 90 dias)', risco:5, fin:'medio' },
-          { label:'Giro lento (acima de 90 dias)', risco:8, fin:'lento' },
           { label:'Não controlo isso', risco:7, fin:'ns' },
+          { label:'Giro lento (acima de 90 dias)', risco:8, fin:'lento' },
+          { label:'Giro médio (30 a 90 dias)', risco:5, fin:'medio' },
+          { label:'Giro rápido (até 30 dias)', risco:2, fin:'rapido' },
           { label:'Não se aplica', risco:0, fin:'na' },
         ],
       },
@@ -2488,10 +2488,10 @@
         desc:'Qual é a estimativa dos créditos tributários acumulados da empresa hoje?',
         auxilio:'Com o encerramento gradual de ICMS, PIS e COFINS, empresas podem perder valores relevantes sem planejamento de compensação.',
         opcoes:[
+          { label:'Não faço ideia', risco:10, fin:'ns' },
           { label:'Não tenho créditos / Simples Nacional', risco:1, fin:'zero' },
           { label:'Tenho créditos baixos (até R$ 100 mil)', risco:5, fin:'baixo' },
           { label:'Tenho créditos relevantes (acima de R$ 100 mil)', risco:8, fin:'alto' },
-          { label:'Não faço ideia', risco:10, fin:'ns' },
           { label:'Não se aplica', risco:0, fin:'na' },
         ],
       },
@@ -3874,6 +3874,15 @@
                   </div>
                 </div>
 
+                <div style={{ display:'flex', alignItems:'center', gap:8, marginTop:20, marginBottom:4 }}>
+                  <span style={{ background:'rgba(100,200,150,.15)', border:'1px solid rgba(100,200,150,.3)', color:'#6fcf97',
+                    fontSize:10, fontWeight:900, letterSpacing:'.06em', padding:'3px 9px', borderRadius:20 }}>
+                    🔓 OPCIONAL
+                  </span>
+                  <span style={{ color:C.textFaint, fontSize:12 }}>
+                    Preencha o que souber — esses dados refinam o diagnóstico, mas não são obrigatórios.
+                  </span>
+                </div>
                 <div className="mobile-stack" style={{ display:'grid', gridTemplateColumns:'repeat(3,minmax(0,1fr))', gap:12, marginTop:12 }}>
                   <PremiumInputBox
                     label="Créditos tributários já identificados, em revisão ou com chance de recuperação"
@@ -3900,7 +3909,7 @@
                     active={showAdvancedMargin}
                     onToggle={() => setShowAdvancedMargin(v => !v)}
                     title="Tenho estimativa do impacto IBS/CBS na margem"
-                    subtitle="Opcional para quem já possui estudo técnico sobre preço, custo, margem ou efeito da reforma tributária."
+                    subtitle="Opcional — se você tiver esses dados à mão, o diagnóstico fica mais preciso."
                     ctaLabel="Clique aqui para informar"
                     activeLabel="Campo habilitado"
                     icon="∑"
@@ -4024,7 +4033,7 @@
                     active={showAdvancedCash}
                     onToggle={() => setShowAdvancedCash(v => !v)}
                     title="Tenho estimativa do impacto no caixa"
-                    subtitle="Opcional para quem já possui premissa interna de split payment, impacto financeiro ou necessidade adicional de caixa."
+                    subtitle="Opcional — pule se não souber. O sistema calcula mesmo assim."
                     ctaLabel="Clique aqui para informar"
                     activeLabel="Campo habilitado"
                     icon="＄"
