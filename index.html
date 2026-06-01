@@ -4674,7 +4674,7 @@
         }
 
         const dimensoes = [
-          { titulo:'Sensibilidade sobre Margens Operacionais', icon:'📉', score:sim.rMargemScore,
+          { titulo:'Pressão sobre a sua margem', icon:'📉', score:sim.rMargemScore,
             cor: sim.rMargemScore>65?C.risk3:sim.rMargemScore>40?C.risk2:C.risk1,
             desc: sim.folhaPct>0.25
               ? 'Estruturas com alta dependência de folha e baixa capacidade de repasse comercial tendem a apresentar maior sensibilidade operacional no ambiente IBS/CBS.'
@@ -4682,7 +4682,7 @@
             nivel: sim.marginPressure.nivel.label,
             refEscala:`Referência de escala: ${formatMoedaOuPendente(sim.refEscalaMargem)}/ano`,
           },
-          { titulo:'Impacto de Caixa Estimado', icon:'💸', score:sim.rCaixaScore,
+          { titulo:'Impacto estimado no seu caixa', icon:'💸', score:sim.rCaixaScore,
             cor: sim.rCaixaScore>65?C.risk3:sim.rCaixaScore>40?C.risk2:C.risk1,
             desc: sim.recebLongo
               ? 'Empresas com ciclos longos de recebimento podem exigir maior previsibilidade financeira durante a transição operacional do IBS/CBS.'
@@ -4690,7 +4690,7 @@
             nivel: sim.rCaixaScore>65?'Atenção elevada':sim.rCaixaScore>40?'Atenção moderada':'Atenção contida',
             refEscala:`Referência de escala: ${formatMoedaOuPendente(sim.refEscalaCaixa)}/mês · ${sim.impactoCaixa.nivel.label}`,
           },
-          { titulo:'Pressão Estrutural da Folha de Pagamento', icon:'👥', score:sim.rFolhaScore,
+          { titulo:'Peso da folha de pagamento', icon:'👥', score:sim.rFolhaScore,
             cor: sim.rFolhaScore>65?C.risk3:sim.rFolhaScore>40?C.risk2:C.risk1,
             desc: sim.folhaPct>0.25
               ? 'Estruturas com alto peso de folha de pagamento tendem a ter menor aproveitamento relativo de créditos tributários no novo modelo.'
@@ -4698,7 +4698,7 @@
             nivel: sim.folhaPct>0.25?'Exposição elevada':sim.folhaPct>0.12?'Exposição moderada':'Exposição baixa',
             refEscala:null,
           },
-          { titulo:'Exposição Competitiva de Mercado', icon:'⚡', score:sim.rCompetScore,
+          { titulo:'Risco de perder terreno para concorrentes', icon:'⚡', score:sim.rCompetScore,
             cor: sim.rCompetScore>65?C.risk3:sim.rCompetScore>40?C.risk2:C.risk1,
             desc: sim.isB2C
               ? 'Operações majoritariamente B2C enfrentam maior complexidade de repasse do IBS/CBS ao preço final, pois o consumidor não aproveita créditos tributários.'
@@ -4706,7 +4706,7 @@
             nivel: sim.rCompetScore>65?'Pressão competitiva elevada':'Pressão competitiva moderada',
             refEscala:null,
           },
-          { titulo:'Eficiência no Aproveitamento de Créditos', icon:'🔖', score:sim.rCreditoScore,
+          { titulo:'Aproveitamento de créditos tributários', icon:'🔖', score:sim.rCreditoScore,
             cor: sim.rCreditoScore>65?C.risk3:sim.rCreditoScore>40?C.risk2:C.risk1,
             desc: sim.creditoAlto
               ? 'A estrutura atual de fornecedores e o volume de créditos acumulados demandam acompanhamento técnico ativo durante a transição.'
@@ -4714,11 +4714,11 @@
             nivel: sim.rCreditoScore>65?'Complexidade elevada':sim.rCreditoScore>40?'Complexidade moderada':'Complexidade baixa',
             refEscala:`Referência de escala: ${formatMoedaOuPendente(sim.refEscalaCreditos)}/ano`,
           },
-          { titulo:'Adequação Operacional e Fiscal', icon:'⚖️', score:sim.rEstoqueScore,
+          { titulo:'Adequação do sistema e da operação', icon:'⚖️', score:sim.rEstoqueScore,
             cor: sim.rEstoqueScore>60?C.risk3:sim.rEstoqueScore>35?C.risk2:C.risk1,
             desc: sim.estoqueLento
-              ? 'Operações com estoque de giro mais lento podem demandar acompanhamento técnico mais próximo durante a transição entre regimes tributários.'
-              : 'A adequação operacional e fiscal é um vetor crítico de maturidade tributária — empresas com processos revisados tendem a atravessar a transição com menor fricção operacional.',
+              ? 'Estoques parados podem virar problema durante a troca de regime — quanto mais lento o giro, maior a atenção necessária.'
+              : 'A adequação operacional e fiscal é um fator decisivo: empresas com sistema e processos revisados tendem a atravessar a Reforma com muito menos custo e surpresas.',
             nivel: sim.rEstoqueScore>60?'Atenção elevada':sim.rEstoqueScore>35?'Atenção moderada':'Situação favorável',
             refEscala:null,
           },
@@ -4727,7 +4727,7 @@
             icon:'🧩',
             score:fiscalCross.scoreCruzamentoFiscal,
             cor:fiscalCross.nivel.color,
-            desc:'Leitura gerencial dos XML/NFS-e/dados fiscais inseridos, cruzando CNPJ, CNAE, regime, UF, CFOP, NCM/NBS, cClassTrib e CST IBS/CBS.',
+            desc:'Análise dos dados fiscais inseridos, cruzando CNAE, regime, produtos e serviços com as novas regras de IBS e CBS.',
             nivel:fiscalCross.nivel.label,
             refEscala:`${fiscalCross.documentosAnalisados} item(ns) analisado(s) · impacto potencial +${fiscalCross.impactoPotencialScore} pts`,
           }] : []),
@@ -4757,7 +4757,7 @@
                   <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:22 }}>
                     <div>
                       <div style={{ fontSize:10, color:C.textFaint, textTransform:'uppercase', letterSpacing:'0.1em', marginBottom:6 }}>
-                        Solução Estratégica Recomendada
+                        O que recomendamos para sua empresa
                       </div>
                       <div style={{ fontSize:24, fontWeight:900, color:planoRec.cor }}>{planoRec.nome}</div>
                       <div style={{ color:C.textMuted, fontSize:13, marginTop:6, maxWidth:440, lineHeight:1.6 }}>{resumo.headline}</div>
@@ -4770,7 +4770,7 @@
                   <div style={{ background:`${planoRec.cor}0a`, border:`1px solid ${planoRec.cor}33`,
                     borderRadius:10, padding:18, marginBottom:18 }}>
                     <div style={{ color:planoRec.cor, fontWeight:700, fontSize:12, textTransform:'uppercase',
-                      letterSpacing:'0.08em', marginBottom:14 }}>O que está incluído</div>
+                      letterSpacing:'0.08em', marginBottom:14 }}>O que você recebe</div>
                     {resumo.diferenciais.map((d,i) => (
                       <div key={i} style={{ display:'flex', gap:10, marginBottom:10, alignItems:'flex-start' }}>
                         <span style={{ fontSize:14, flexShrink:0 }}>{d.split(' ')[0]}</span>
@@ -4780,7 +4780,7 @@
                   </div>
                   <div style={{ marginBottom:20 }}>
                     <div style={{ color:C.textFaint, fontWeight:700, fontSize:11, textTransform:'uppercase',
-                      letterSpacing:'0.08em', marginBottom:12 }}>Jornada estratégica — 18 meses</div>
+                      letterSpacing:'0.08em', marginBottom:12 }}>Como seria a sua jornada — 18 meses</div>
                     {resumo.cronograma.map((cr,i) => (
                       <div key={i} style={{ display:'flex', gap:14, alignItems:'center', marginBottom:8 }}>
                         <div style={{ background:`${planoRec.cor}18`, border:`1px solid ${planoRec.cor}44`,
@@ -4793,7 +4793,7 @@
                   <div style={{ background:C.bgCardAlt, border:`1px solid ${C.border}`,
                     borderRadius:8, padding:'12px 16px', marginBottom:22 }}>
                     <div style={{ color:C.textFaint, fontSize:10, fontWeight:700, textTransform:'uppercase',
-                      letterSpacing:'0.08em', marginBottom:6 }}>Indicado para</div>
+                      letterSpacing:'0.08em', marginBottom:6 }}>Esse plano é ideal se</div>
                     <p style={{ color:C.textMain, fontSize:13, lineHeight:1.6, margin:0 }}>{resumo.indicado}</p>
                   </div>
                   {!modalValorAberto ? (
@@ -4825,8 +4825,8 @@
                       borderRadius:8, padding:'12px 16px', display:'flex', gap:10, alignItems:'center' }}>
                       <span style={{ fontSize:16 }}>✅</span>
                       <div>
-                        <div style={{ color:C.plan2, fontWeight:700, fontSize:13 }}>Diagnóstico preparado com sucesso</div>
-                        <div style={{ color:C.textMuted, fontSize:12, marginTop:2 }}>O relatório foi preparado nesta sessão do navegador. Para envio automático por e-mail/CRM, use a versão profissional com serverless.</div>
+                        <div style={{ color:C.plan2, fontWeight:700, fontSize:13 }}>Diagnóstico enviado com sucesso</div>
+                        <div style={{ color:C.textMuted, fontSize:12, marginTop:2 }}>Um especialista CORYTAX vai analisar seu perfil e entrar em contato em até 1 dia útil., use a versão profissional com serverless.</div>
                       </div>
                     </div>
                   )}
@@ -4841,24 +4841,24 @@
                 <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', flexWrap:'wrap', gap:10, marginBottom:16 }}>
                   <div>
                     <div style={{ fontSize:10, color:C.gold, fontWeight:800, letterSpacing:'0.15em',
-                      textTransform:'uppercase', marginBottom:6 }}>📊 Diagnóstico Integralizador da Reforma Tributária</div>
+                      textTransform:'uppercase', marginBottom:6 }}>📊 Diagnóstico de Impacto da Reforma Tributária</div>
                     <div style={{ fontSize:10, color:C.textFaint, letterSpacing:'0.08em', textTransform:'uppercase' }}>
-                      CORYTAX · Análise Integrada Financeira, Fiscal e Operacional · 2026
+                      CORYTAX · Diagnóstico personalizado para gestores · 2026
                     </div>
                   </div>
                   <div style={{ background:`${risk.color}15`, border:`1px solid ${risk.color}44`,
                     borderRadius:8, padding:'8px 16px', textAlign:'center' }}>
                     <div style={{ fontSize:10, color:C.textFaint, textTransform:'uppercase', letterSpacing:'0.08em', marginBottom:4 }}>
-                      Nível de Exposição
+                      Seu nível de risco
                     </div>
                     <div style={{ fontSize:20, fontWeight:900, color:risk.color }}>{risk.emoji} {risk.label}</div>
                   </div>
                 </div>
                 <p style={{ color:C.textMuted, fontSize:13, lineHeight:1.8, margin:'0 0 16px' }}>
-                  Empresa enquadrada no <strong style={{color:C.white}}>{perfil.regime || 'regime informado'}</strong>,
-                  com porte compatível com <strong style={{color:C.gold}}>{perfil.faturamento || 'faturamento informado'}</strong>,
-                  operação <strong style={{color:C.white}}>{perfilClientes}</strong>,
-                  estrutura de <strong style={{color:C.white}}>{perfilComplexidade}</strong>
+                  Com base nas suas respostas: empresa no <strong style={{color:C.white}}>{perfil.regime || 'regime informado'}</strong>,
+                  faturamento em torno de <strong style={{color:C.gold}}>{perfil.faturamento || 'faturamento informado'}</strong>,
+                  vende <strong style={{color:C.white}}>{perfilClientes}</strong>,
+                  estrutura <strong style={{color:C.white}}>{perfilComplexidade}</strong>
                   {perfil.segmento ? ` — segmento: ${perfil.segmento}.` : '.'}
                 </p>
 
@@ -4868,12 +4868,12 @@
                 }}>
                   <div style={{ color:C.textFaint, fontSize:10, fontWeight:800, textTransform:'uppercase',
                     letterSpacing:'0.1em', marginBottom:10 }}>
-                    Dados informados no início do diagnóstico
+                    Quem preencheu o diagnóstico
                   </div>
                   <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(170px,1fr))', gap:10 }}>
                     {[
                       { label:'Responsável', valor:lead.nome || '—' },
-                      { label:'Empresa do responsável', valor:lead.empresa || '—' },
+                      { label:'Empresa', valor:lead.empresa || '—' },
                       { label:'E-mail', valor:lead.email || '—' },
                       { label:'Telefone/WhatsApp', valor:lead.telefone || '—' },
                     ].map((item,i) => (
