@@ -3376,14 +3376,14 @@
       }
 
       useEffect(() => {
-        if (etapa !== 'quiz' && etapa !== 'financeiro') return;
-        const primeiraTela = (etapa === 'quiz' && quizIdx === 0) || (etapa === 'financeiro' && finIdx === 0);
+        if (etapa !== 'quiz') return;
+        const primeiraTela = (etapa === 'quiz' && quizIdx === 0);
         const timer = setTimeout(() => {
           if (primeiraTela) {
             window.scrollTo({ top: 0, behavior:'smooth' });
             return;
           }
-          const id = etapa === 'quiz' ? `quiz-question-${quizIdx}` : `finance-question-${finIdx}`;
+          const id = `quiz-question-${quizIdx}`;
           const el = document.getElementById(id);
           if (!el) return;
           const rect = el.getBoundingClientRect();
@@ -4076,11 +4076,11 @@
         const quizRespondidas = QUIZ_MAIN.filter(q => respostas[q.id] !== undefined).length;
         const quizCompleto = quizRespondidas === QUIZ_MAIN.length;
         const quizVisiveis = Math.min(quizIdx + 1, QUIZ_MAIN.length);
-        const qPct = 30 + Math.round((quizRespondidas / QUIZ_MAIN.length) * 30);
+        const qPct = 40 + Math.round((quizRespondidas / QUIZ_MAIN.length) * 50);
         return (
           <div className="screen-container" style={{ maxWidth:940, margin:'0 auto' }}>
             <style>{`@keyframes fadeSlide{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}`}</style>
-            <ProgressBar pct={qPct} label={`Impacto no negócio — ${quizRespondidas} de ${QUIZ_MAIN.length} perguntas`} />
+            <ProgressBar pct={qPct} label={`Etapa 3 de 3 — ${quizRespondidas} de ${QUIZ_MAIN.length} perguntas respondidas`} />
             <div style={{ marginBottom:18 }}>
               <h2 style={{ color:C.white, fontWeight:900, fontSize:24, marginBottom:6 }}>Impacto no negócio</h2>
               <p style={{ color:C.textMuted, fontSize:13, lineHeight:1.75, maxWidth:760 }}>
@@ -4139,120 +4139,6 @@
               })}
             </div>
 
-            <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', gap:12, marginTop:22, flexWrap:'wrap' }}>
-              <button onClick={() => setEtapa('perfil')} style={{
-                padding:'12px 22px', borderRadius:9, border:`1px solid ${C.border}`,
-                background:'transparent', color:C.textMuted, cursor:'pointer', fontSize:13,
-              }}>← Voltar ao Perfil</button>
-              <div style={{ color:C.textFaint, fontSize:12, lineHeight:1.6, flex:'1 1 260px', textAlign:'center' }}>
-                {quizCompleto ? 'Todas as perguntas respondidas. Pode avançar!' : 'Responda para liberar a próxima pergunta.'}
-              </div>
-              <button disabled={!quizCompleto} onClick={() => { setEtapa('financeiro'); setFinIdx(0); }} style={{
-                padding:'12px 26px', borderRadius:9, fontSize:13, fontWeight:900,
-                background: quizCompleto ? `linear-gradient(135deg,${C.blueAccent}cc,${C.blueAccent})` : C.bgCardAlt,
-                color: quizCompleto ? C.white : C.textFaint,
-                border:'none', cursor: quizCompleto ? 'pointer' : 'default', transition:'all 0.2s',
-                boxShadow: quizCompleto ? `0 12px 32px ${C.blueAccent}28` : 'none',
-              }}>
-                Continuar para caixa e margem →
-              </button>
-            </div>
-          </div>
-        );
-      }
-
-      /* ── ETAPA FINANCEIRA ── */
-      if (etapa === 'financeiro') {
-        const finRespondidas = QUIZ_FIN.filter(q => respostas[q.id] !== undefined).length;
-        const finCompleto = finRespondidas === QUIZ_FIN.length;
-        /* INSERIDO V10 — o laudo pode ser gerado mesmo com pendências fiscais/financeiras; o relatório sinaliza cálculo parcial */
-        const podeGerarLaudo = true;
-        const statusGeracaoLaudo = finCompleto
-          ? 'Análise financeira concluída. O laudo já pode ser gerado.'
-          : fiscalCrossAtual.documentosAnalisados
-          ? 'Laudo preliminar liberado: pendências das notas e respostas financeiras em aberto serão consideradas no score e no memorial.'
-          : 'Laudo preliminar liberado. Respostas financeiras não preenchidas serão sinalizadas como dados insuficientes, sem inventar premissas.';
-        const finVisiveis = Math.min(finIdx + 1, QUIZ_FIN.length);
-        const qPct = 60 + Math.round((finRespondidas / QUIZ_FIN.length) * 30);
-        return (
-          <div className="screen-container" style={{ maxWidth:940, margin:'0 auto' }}>
-            <style>{`@keyframes fadeSlide{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}`}</style>
-            <ProgressBar pct={qPct} label={`Caixa e margem — ${finRespondidas} de ${QUIZ_FIN.length} perguntas`} />
-            <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:12 }}>
-              <div style={{ background:`${C.gold}18`, border:`1px solid ${C.gold}44`,
-                borderRadius:7, padding:'5px 14px', fontSize:11, fontWeight:900, color:C.gold, letterSpacing:'0.07em' }}>
-                📊 IMPACTO FINANCEIRO E OPERACIONAL
-              </div>
-            </div>
-            <p style={{ color:C.textMuted, fontSize:13, lineHeight:1.75, margin:'0 0 18px', maxWidth:760 }}>
-              Responda com base no que conhece da operação. Se não souber, marque 'não sei' e continue.do.
-            </p>
-
-            <div className="question-stack">
-              {QUIZ_FIN.slice(0, finVisiveis).map((q, i) => {
-                const resp = respostas[q.id];
-                const ativo = i === finIdx && resp === undefined;
-                return (
-                  <div key={q.id} id={`finance-question-${i}`} className={`question-card print-avoid${ativo ? ' is-active-question' : ''}`} style={{
-                    animation:'fadeSlide 0.35s ease',
-                    background: ativo
-                      ? 'linear-gradient(180deg, rgba(17,24,32,.98), rgba(5,8,13,.99))'
-                      : 'linear-gradient(180deg, rgba(17,24,32,.74), rgba(5,8,13,.96))',
-                    border:`1px solid ${resp !== undefined ? C.gold : C.border}`,
-                    borderRadius:18, padding:'18px 18px 16px',
-                    boxShadow: ativo ? '0 22px 60px rgba(255,255,255,.08)' : '0 14px 38px rgba(0,0,0,.20)',
-                  }}>
-                    <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', gap:12, flexWrap:'wrap', marginBottom:12 }}>
-                      <div style={{ display:'flex', alignItems:'center', gap:10, flexWrap:'wrap' }}>
-                        <div style={{ background:`${C.plan3}18`, border:`1px solid ${C.plan3}44`,
-                          borderRadius:7, padding:'5px 12px', fontSize:11, fontWeight:900, color:C.plan3 }}>
-                          Financeira {i + 1} de {QUIZ_FIN.length}
-                        </div>
-                        <div style={{ background:'rgba(255,255,255,.055)', border:'1px solid rgba(255,255,255,.10)',
-                          borderRadius:7, padding:'5px 12px', fontSize:11, fontWeight:800, color:C.textMain,
-                          display:'flex', alignItems:'center', gap:4 }}>
-                          Contexto
-                          <Tooltip text={q.titulo} />
-                        </div>
-                      </div>
-                      {resp !== undefined && (
-                        <div style={{ background:`${C.plan2}14`, border:`1px solid ${C.plan2}44`, color:C.plan2,
-                          borderRadius:999, padding:'6px 10px', fontSize:10, fontWeight:900, textTransform:'uppercase', letterSpacing:'.06em' }}>
-                          Respondida
-                        </div>
-                      )}
-                    </div>
-                    <h3 style={{ color:C.white, fontWeight:800, fontSize:17, lineHeight:1.55, marginBottom:10 }}>{q.desc}</h3>
-                    {q.auxilio && (
-                      <div style={{ background:`${C.gold}0d`, border:`1px solid ${C.gold}33`,
-                        borderRadius:9, padding:'10px 13px', marginBottom:14 }}>
-                        <p style={{ color:C.goldLight, fontSize:12, lineHeight:1.7, margin:0 }}>💡 {q.auxilio}</p>
-                      </div>
-                    )}
-                    <PremiumSelect
-                      value={resp !== undefined ? String(resp) : ''}
-                      options={q.opcoes.map((o,idx)=>({ label:o.label, value:idx, meta:`Peso de exposição: ${o.risco}/${q.peso}` }))}
-                      placeholder="Escolha uma opção..."
-                      accent={C.gold}
-                      onChange={value => {
-                        setRespostas(prev => ({...prev, [q.id]:Number(value)}));
-                        if (i === finIdx && finIdx < QUIZ_FIN.length - 1) setFinIdx(prev => prev + 1);
-                      }}
-                    />
-                    {resp !== undefined && (
-                      <div style={{ marginTop:12, background:`${C.gold}0d`, border:`1px solid ${C.gold}33`, borderRadius:10, padding:'11px 12px' }}>
-                        <div style={{ color:C.textFaint, fontSize:10, fontWeight:900, textTransform:'uppercase', letterSpacing:'.08em', marginBottom:5 }}>
-                          Resposta registrada
-                        </div>
-                        <div style={{ color:C.plan2, fontSize:13, lineHeight:1.55, fontWeight:850 }}>
-                          {q.opcoes[resp].label}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
 
             {/* INSERIDO — seção visual do Cruzamento Fiscal Integralizador */}
             <div className="report-card print-avoid" style={{
@@ -4552,29 +4438,30 @@
             </div>
 
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', gap:12, marginTop:22, flexWrap:'wrap' }}>
-              <button onClick={() => { setEtapa('quiz'); setQuizIdx(QUIZ_MAIN.length - 1); }} style={{
+              <button onClick={() => setEtapa('perfil')} style={{
                 padding:'12px 22px', borderRadius:9, border:`1px solid ${C.border}`,
                 background:'transparent', color:C.textMuted, cursor:'pointer', fontSize:13,
-              }}>← Voltar à Avaliação Estratégica</button>
-              <div style={{ color:finCompleto ? C.textFaint : C.blueSoft, fontSize:12, lineHeight:1.6, flex:'1 1 260px', textAlign:'center', fontWeight:finCompleto ? 400 : 800 }}>
-                {statusGeracaoLaudo}
+              }}>← Voltar ao Perfil</button>
+              <div style={{ color:C.textFaint, fontSize:12, lineHeight:1.6, flex:'1 1 260px', textAlign:'center' }}>
+                {quizCompleto ? 'Todas as perguntas respondidas. Clique em Gerar Laudo!' : 'Responda para liberar a próxima pergunta.'}
               </div>
-              <button disabled={!podeGerarLaudo} onClick={finalizarDiagnostico} style={{
-                padding:'12px 28px', borderRadius:9, fontSize:13, fontWeight:900,
-                background: podeGerarLaudo ? `linear-gradient(135deg,${C.gold},#dcecff)` : C.bgCardAlt,
-                color: podeGerarLaudo ? '#06101d' : C.textFaint,
-                border: podeGerarLaudo ? `1px solid ${C.blueSoft}55` : 'none',
-                cursor: podeGerarLaudo ? 'pointer' : 'default', transition:'all 0.2s',
-                boxShadow: podeGerarLaudo ? '0 12px 32px rgba(255,255,255,.16)' : 'none',
+              <button disabled={!quizCompleto} onClick={finalizarDiagnostico} style={{
+                padding:'12px 26px', borderRadius:9, fontSize:13, fontWeight:900,
+                background: quizCompleto ? `linear-gradient(135deg,${C.gold},#dcecff)` : C.bgCardAlt,
+                color: quizCompleto ? '#06101d' : C.textFaint,
+                border: quizCompleto ? `1px solid ${C.blueSoft}55` : 'none',
+                cursor: quizCompleto ? 'pointer' : 'default', transition:'all 0.2s',
+                boxShadow: quizCompleto ? '0 12px 32px rgba(255,255,255,.16)' : 'none',
               }}>
-                {finCompleto ? 'Gerar Laudo Financeiro →' : 'Gerar Laudo Preliminar →'}
+                {quizCompleto ? 'Gerar Laudo →' : 'Responda todas as perguntas →'}
               </button>
             </div>
           </div>
         );
       }
 
-      /* ── RESULTADO ── */
+
+            /* ── RESULTADO ── */
       if (etapa === 'resultado') {
         const planoRec = PLANOS.find(p => p.idx === risk.planoIdx);
         const resumo   = PLANO_RESUMO[risk.planoId];
